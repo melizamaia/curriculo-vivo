@@ -57,6 +57,9 @@ class Settings(BaseSettings):
     kafka_consumer_group: str = "ingestor-curriculo"
     kafka_topic_evidencia_nova: str = "evidencia.nova"
     kafka_topic_evidencia_indexada: str = "evidencia.indexada"
+    # Mensagem reprovada na validação vai para cá, com o motivo, e o offset
+    # é confirmado: sem isso, uma mensagem malformada trava a partição.
+    kafka_topic_evidencia_rejeitada: str = "evidencia.rejeitada"
     kafka_topic_defasagem: str = "defasagem.detectada"
 
     # --- Síntese da justificativa ----------------------------------------

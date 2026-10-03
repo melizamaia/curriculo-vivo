@@ -1,0 +1,8 @@
+.git
+.venv
+.claude
+.env
+**/__pycache__
+.pytest_cache
+eval/results.json
+dashboard/index.html

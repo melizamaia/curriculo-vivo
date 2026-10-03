@@ -1,0 +1,91 @@
+# Stack completa: API + worker de ingestão + Mongo + Kafka (KRaft, sem ZooKeeper).
+#
+#   docker compose up --build
+#
+# A API não depende do Kafka (O7): sobe assim que o Mongo responde. O worker
+# espera os tópicos existirem. Do host, o broker responde em localhost:9092 e
+# o Mongo em localhost:27017 — os mesmos padrões do .env.example.
+
+x-app: &app
+  build: .
+  image: curriculo-vivo:local
+  environment:
+    MONGO_URI: mongodb://mongo:27017
+    KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+
+services:
+  api:
+    <<: *app
+    ports:
+      - "8000:8000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  worker:
+    <<: *app
+    command: ["python", "-m", "app.workers.ingestor"]
+    healthcheck:
+      disable: true
+    # Broker fora no meio do caminho derruba o loop sem confirmar o offset
+    # (ADR-9); o restart retoma do último offset confirmado.
+    restart: on-failure
+    depends_on:
+      mongo:
+        condition: service_healthy
+      kafka-topicos:
+        condition: service_completed_successfully
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-dados:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  kafka:
+    image: apache/kafka:3.9.0
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNO://:29092,EXTERNO://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNO://kafka:29092,EXTERNO://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNO:PLAINTEXT,EXTERNO:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNO
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      # Tópico com nome errado deve falhar alto, não nascer vazio.
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server kafka:29092 > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+
+  kafka-topicos:
+    image: apache/kafka:3.9.0
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        for t in evidencia.nova evidencia.indexada evidencia.rejeitada defasagem.detectada; do
+          /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 \
+            --create --if-not-exists --topic "$$t" --partitions 3 --replication-factor 1 || exit 1
+        done
+    restart: "no"
+
+volumes:
+  mongo-dados:

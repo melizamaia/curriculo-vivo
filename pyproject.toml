@@ -2,3 +2,5 @@
 # Sem isso, `pytest` (fora de `python -m pytest`) não acha o pacote `app`.
 pythonpath = ["."]
 testpaths = ["tests"]
+# Testes `async def` do worker rodam sem marcador.
+asyncio_mode = "auto"

@@ -21,6 +21,7 @@ from app.core.retriever import Retriever
 from app.core.servico import ServicoAnalise
 from app.repositories.auditoria import criar_repositorio_auditoria
 from app.repositories.catalogo import RepositorioCatalogo
+from app.repositories.evidencias import criar_armazem_evidencias
 
 logger = logging.getLogger("app")
 
@@ -31,6 +32,7 @@ def criar_app(settings: Settings | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         retriever = Retriever.carregar(settings.caminho_evidencias)
+        ingeridas = await _carregar_ingeridas(settings, retriever)
         catalogo = RepositorioCatalogo.carregar(settings.caminho_material)
         guardrail = Guardrail(settings)
         servico = ServicoAnalise(retriever, settings, guardrail=guardrail)
@@ -43,12 +45,13 @@ def criar_app(settings: Settings | None = None) -> FastAPI:
         app.state.auditoria = auditoria
 
         logger.info(
-            "%s %s no ar: índice=%s (%d evidências), catálogo=%d objetos, "
-            "auditoria=%s, síntese=%s, exigir_fonte_oficial=%s",
+            "%s %s no ar: índice=%s (%d evidências, %d do worker), catálogo=%d "
+            "objetos, auditoria=%s, síntese=%s, exigir_fonte_oficial=%s",
             settings.app_nome,
             settings.app_versao,
             retriever.versao_indice,
             retriever.total_evidencias,
+            ingeridas,
             catalogo.total,
             auditoria.backend,
             settings.modo_sintese,
@@ -75,6 +78,25 @@ def criar_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(routes_catalogo.router)
     app.include_router(routes_ops.router)
     return app
+
+
+async def _carregar_ingeridas(settings: Settings, retriever: Retriever) -> int:
+    """Soma ao índice o que o worker já ingeriu por `evidencia.nova`.
+
+    Sem isso a API e o worker divergiriam de `versao_indice`. Só no boot: a
+    propagação ao vivo (consumir `evidencia.indexada`) é o próximo passo.
+    """
+    armazem = await criar_armazem_evidencias(settings)
+    try:
+        ingeridas = await armazem.listar()
+    except Exception as exc:
+        logger.warning("Evidências do worker não carregadas (%s); só a base curada", exc)
+        return 0
+    finally:
+        await armazem.fechar()
+    for evidencia in ingeridas:
+        retriever.upsert(evidencia)
+    return len(ingeridas)
 
 
 def _configurar_log() -> None:
