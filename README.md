@@ -16,6 +16,20 @@
 com a evidência vigente e aponta, com citação, o que envelheceu — e se cala
 quando não tem base para apontar.**
 
+![Radar do coordenador](docs/radar-1-topo.png)
+*O radar do coordenador, ordenado por severidade.*
+
+![Painel de avaliação](docs/painel-1-metas.png)
+*O painel de avaliação: falso alarme em 0%.*
+
+![Casos-chave c026 e c027](docs/painel-4-casos-chave.png)
+*c026 e c027: os dois níveis do filtro de proveniência.*
+
+![API em OpenAPI](docs/api-openapi.png)
+*A API documentada em OpenAPI.*
+
+Galeria completa, com as sete capturas: [docs/capturas.md](docs/capturas.md).
+
 > ⚠️ **Corpus sintético.** Todas as evidências e todos os objetos de
 > aprendizagem deste repositório são fictícios e marcados com
 > `exemplo_ilustrativo: true`. Não reproduzem protocolo, diretriz ou material
