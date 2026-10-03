@@ -345,12 +345,35 @@ ou, para análise de material não catalogado:
 `status` ∈ `defasagem_detectada` | `sem_achado` | `abstido`.
 
 `motivo_abstencao` ∈ `evidencia_insuficiente` | `fonte_nao_validada` |
-`material_sem_referencia` | `fora_de_escopo` | `objeto_invalido`.
+`material_sem_referencia` | `fora_de_escopo` | `objeto_invalido` |
+`alerta_descartado`.
+
+Os cinco primeiros são abstenções **sobre o material**: o serviço se absteve
+porque não tinha base. O sexto é diferente — `alerta_descartado` significa que
+havia base, um alerta foi gerado e ele **não passou na própria validação do
+serviço** (barreira 3). Isso é regressão no gerador de justificativa, não
+funcionamento normal, e por isso tem valor próprio: conflatá-lo com
+`evidencia_insuficiente` faria uma falha de software aparecer como número
+saudável no painel. Em operação normal esse motivo nunca deve aparecer; se
+aparecer, é alerta de incidente.
 
 **Convenção de marcadores:** `[0]` é sempre a referência do próprio material;
-`[1]`, `[2]`, … são as evidências citadas na resposta, numeradas na ordem em que
-aparecem. A justificativa de uma defasagem só pode usar `[0]` e o marcador da
-sua própria evidência.
+`[1]`, `[2]`, … são as evidências citadas na resposta, atribuídas na ordem em
+que são geradas. A justificativa de uma defasagem só pode usar `[0]` e o
+marcador da sua própria evidência.
+
+O marcador é **identificador estável, não posição sequencial**: se a barreira 3
+descartar a defasagem `[2]`, as que sobram continuam `[1]` e `[3]`, com um
+buraco. Isso é deliberado. Renumerar exigiria reescrever o texto da
+justificativa, que já contém o literal do marcador, e reescrever texto para
+corrigir numeração é fonte de bug. A invariante que importa — todo marcador
+citado existe entre as evidências da resposta — continua valendo com buraco.
+
+Dois descartes adicionais da barreira 3, mais rígidos que a leitura literal das
+invariantes e igualmente obrigatórios: justificativa que cita **apenas** `[0]`
+é descartada, porque citar o próprio material não é citar evidência; e o mesmo
+marcador apontando para evidências diferentes é descartado, porque torna a
+citação ambígua para quem lê a resposta.
 
 **Invariantes críticas:**
 
@@ -361,8 +384,9 @@ sua própria evidência.
 3. Para toda defasagem, `evidencia.publicado_em` é posterior à referência do
    material. Um alerta que não satisfaz isso é descartado pela barreira 3.
 4. Se **todas** as defasagens de um objeto forem descartadas pela barreira 3, o
-   status cai para `abstido` — nunca para `sem_achado`. Fingir que não houve
-   nada esconderia uma regressão no gerador de justificativa.
+   status cai para `abstido` com motivo `alerta_descartado` — nunca para
+   `sem_achado`, e nunca com um motivo que descreva o material. Fingir que não
+   houve nada esconderia uma regressão no gerador de justificativa.
 
 ### 5.6 Radar (`GET /v1/defasagens`)
 
@@ -445,7 +469,7 @@ Agregação do objeto:
 | Pelo menos um tema gerou defasagem válida | `defasagem_detectada` |
 | Todos os temas passaram pela barreira 2, nenhum gerou defasagem | `sem_achado` |
 | Nenhum tema passou pela barreira 2 | `abstido` (motivo do primeiro tema) |
-| Houve defasagens, mas todas foram descartadas pela barreira 3 | `abstido` |
+| Houve defasagens, mas todas foram descartadas pela barreira 3 | `abstido` com `alerta_descartado` |
 
 `severidade_maxima` do objeto é a maior entre as defasagens válidas.
 
@@ -486,9 +510,17 @@ mudar severidade é mudança de produto, não de implementação.
 
 - Defasagem sem `evidencia` → descartada.
 - `justificativa` sem nenhum marcador `[n]` → descartada.
+- `justificativa` que cita **apenas** `[0]` → descartada (citar o próprio
+  material não é citar evidência).
 - Marcador apontando para evidência inexistente → descartada.
+- Mesmo marcador apontando para evidências diferentes → descartada (citação
+  ambígua).
 - `evidencia.publicado_em` não posterior à referência do material → descartada.
-- Se **todas** as defasagens forem descartadas, o status cai para `abstido`.
+- Se **todas** as defasagens forem descartadas, o status cai para `abstido` com
+  motivo `alerta_descartado`.
+
+Todo descarte vai para log com `objeto_id`, tema, `doc_id` e motivo. Esse log é
+o sinal de incidente: em operação normal ele fica vazio.
 
 Roda independentemente do modo de síntese. É a proteção contra regressão quando
 o gerador de justificativa é um LLM.

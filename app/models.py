@@ -79,6 +79,9 @@ class MotivoAbstencao(str, Enum):
     MATERIAL_SEM_REFERENCIA = "material_sem_referencia"
     FORA_DE_ESCOPO = "fora_de_escopo"
     OBJETO_INVALIDO = "objeto_invalido"
+    # Não descreve o material: o alerta foi gerado e reprovou na barreira 3.
+    # Em operação normal nunca aparece; se aparecer, é incidente (seção 5.5).
+    ALERTA_DESCARTADO = "alerta_descartado"
 
 
 # --------------------------------------------------------------------------
