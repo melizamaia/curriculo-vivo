@@ -1,0 +1,17 @@
+# Manifestos para revisão: escritos e validados na sintaxe, não aplicados a um
+# cluster neste MVP. Para aplicar: kubectl apply -k k8s/
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - configmap.yaml
+  - secret.yaml # só exemplo; em produção o Secret vem do gerenciador de segredos
+  - api-deployment.yaml
+  - api-service.yaml
+  - api-hpa.yaml
+  - worker-deployment.yaml
+
+# Troque pela imagem publicada no registry do cluster.
+images:
+  - name: curriculo-vivo
+    newTag: local

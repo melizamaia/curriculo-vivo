@@ -1,0 +1,28 @@
+# Variáveis não sensíveis, compartilhadas pela API e pelo worker. Os nomes são
+# os mesmos do .env.example; o que não está aqui fica no padrão de app/config.py.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: curriculo-vivo-config
+  labels:
+    app.kubernetes.io/name: curriculo-vivo
+data:
+  # Detecção
+  LIMIAR_CONFIANCA: "0.18"
+  TOP_K: "3"
+  EXIGIR_FONTE_OFICIAL: "true"
+
+  # Auditoria e evidências ingeridas (a URI, com credencial, fica no Secret)
+  MONGO_DB: curriculo_vivo
+
+  # Mensageria. O endereço do broker é um exemplo: Kafka e Mongo não fazem
+  # parte destes manifestos.
+  KAFKA_BOOTSTRAP_SERVERS: kafka.exemplo.svc.cluster.local:9092
+  KAFKA_CONSUMER_GROUP: ingestor-curriculo
+  KAFKA_TOPIC_EVIDENCIA_NOVA: evidencia.nova
+  KAFKA_TOPIC_EVIDENCIA_INDEXADA: evidencia.indexada
+  KAFKA_TOPIC_EVIDENCIA_REJEITADA: evidencia.rejeitada
+  KAFKA_TOPIC_DEFASAGEM: defasagem.detectada
+
+  # Síntese da justificativa (só vale com ANTHROPIC_API_KEY no Secret)
+  LLM_MODEL: claude-opus-5

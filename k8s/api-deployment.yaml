@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curriculo-vivo-api
+  labels:
+    app.kubernetes.io/name: curriculo-vivo
+    app.kubernetes.io/component: api
+spec:
+  # Ponto de partida; quem ajusta daqui em diante é o HPA (hpa.yaml).
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: curriculo-vivo
+      app.kubernetes.io/component: api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: curriculo-vivo
+        app.kubernetes.io/component: api
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000 # o usuário `app` do Dockerfile
+      containers:
+        - name: api
+          # Mesma imagem do docker-compose. Sem registry neste MVP: em um
+          # cluster real, troque pela imagem publicada (no kustomization.yaml).
+          image: curriculo-vivo:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: curriculo-vivo-config
+            - secretRef:
+                name: curriculo-vivo-secret
+          # Medido localmente: ~140 MB de RSS depois do boot com a base curada.
+          # O índice TF-IDF cresce com a base; revisar o limite junto com ela.
+          resources:
+            requests:
+              cpu: 100m
+              memory: 192Mi
+            limits:
+              cpu: 500m
+              memory: 384Mi
+          # O readiness usa /health/ready, não /health: sem índice de evidência
+          # o serviço não tem contra o que comparar o material e só sabe se
+          # abster. Ele responde 503 (`degraded`), e o pod sai do Service em vez
+          # de receber tráfego e devolver abstenção para tudo. Mongo fora do ar
+          # não reprova o readiness: a auditoria cai para memória (ADR-8).
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          # O liveness só pergunta se o processo responde. Usar /health/ready
+          # aqui faria o kubelet reiniciar em loop um pod com índice vazio, o
+          # que não resolve nada: o índice vem da mesma fonte a cada boot.
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3

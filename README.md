@@ -263,9 +263,10 @@ Este repositório é o lado Python (a API FastAPI, o worker de ingestão e o
 harness de avaliação) mais duas camadas finas que fecham o caminho de ponta a
 ponta como prova de contrato: o front Next.js e um BFF NestJS que só agrega o
 radar. O front funciona com ou sem o BFF. Ficam de fora o NestJS de domínio
-(cursos, turmas, docentes) e a camada de plataforma do PRD (Kubernetes,
-GitLab CI/CD, OpenTelemetry); o diagrama-alvo completo está na seção 4 do
-[PRD](PRD.md).
+(cursos, turmas, docentes) e parte da camada de plataforma do PRD (GitLab
+CI/CD, OpenTelemetry). Para Kubernetes há manifestos para revisão, não
+aplicados (veja [Kubernetes](#kubernetes)). O diagrama-alvo completo está na
+seção 4 do [PRD](PRD.md).
 
 ### O caminho de uma análise
 
@@ -332,6 +333,70 @@ quaisquer. `tests/test_ingestor.py` prova a ordem publicar → commit, que falha
 no meio não confirma offset, e que restart não perde evidência, tudo sem
 broker.
 
+## Kubernetes
+
+> **Não há cluster neste MVP.** Os manifestos em `k8s/` foram escritos e
+> validados na sintaxe, mas nunca aplicados a um cluster. Servem para revisão
+> do desenho de implantação.
+
+Num cluster, aplicam-se com:
+
+```bash
+kubectl apply -k k8s/
+```
+
+| Arquivo | O que define |
+| --- | --- |
+| `api-deployment.yaml` | API com 2 réplicas, requests e limits, readiness em `/health/ready` e liveness em `/health` |
+| `worker-deployment.yaml` | worker de ingestão, 1 réplica, sem Service |
+| `api-service.yaml` | Service ClusterIP da API |
+| `api-hpa.yaml` | HPA da API por CPU (70%, de 2 a 6 réplicas) |
+| `configmap.yaml` | variáveis não sensíveis: limiar, `top_k`, tópicos Kafka |
+| `secret.yaml` | `MONGO_URI` e `ANTHROPIC_API_KEY` com placeholders; em produção, vem de um gerenciador de segredos |
+| `kustomization.yaml` | amarra tudo e centraliza a imagem |
+
+O readiness usa `/health/ready`, e não `/health`, porque sem índice de
+evidência o serviço só sabe se abster: ele responde 503 e o pod sai do
+Service em vez de receber tráfego. O liveness fica em `/health` para o
+kubelet não reiniciar em loop um pod que não se conserta com restart.
+
+**Por que dá para escalar a API horizontalmente.** O índice de evidência vive
+em memória, um por pod. Cada réplica o reconstrói no boot a partir da mesma
+fonte (a base curada, que vai dentro da imagem, mais as evidências que o
+worker gravou no Mongo). A `versao_indice` é um hash do conteúdo indexado,
+independente da ordem de carga, e o TF-IDF é determinístico. Mesma fonte,
+mesma `versao_indice`, mesmo resultado em qualquer réplica: o balanceador
+pode mandar a análise para qualquer pod sem divergência.
+
+A garantia vale enquanto a fonte for a mesma no boot de cada réplica, e há
+dois jeitos de quebrá-la:
+
+- **Evidência ingerida entre dois boots.** Um pod que sobe depois de uma
+  ingestão (por um scale-up do HPA, por exemplo) carrega uma evidência a mais
+  que os antigos e fica com outra `versao_indice`. É a mesma limitação da
+  [propagação só no boot](#limitações-conhecidas). Até a API consumir
+  `evidencia.indexada`, a saída é `kubectl rollout restart
+  deployment/curriculo-vivo-api` depois de cada ingestão.
+- **Mongo fora do ar no boot.** O pod sobe só com a base curada e fica pronto
+  mesmo assim, porque a base curada basta para o readiness.
+
+Nos dois casos a divergência aparece: cada pod expõe a sua `versao_indice` em
+`/health/ready` e no radar (`GET /v1/defasagens`), e cada análise grava a
+versão usada no registro de auditoria (`/v1/auditoria`).
+
+Validação feita, sem cluster:
+
+- `kubectl kustomize k8s/` monta os 6 objetos sem erro.
+- [kubeconform](https://github.com/yannh/kubeconform) em modo `-strict`
+  contra os schemas do Kubernetes 1.35: 6 de 6 válidos.
+- `kubectl apply -k k8s/ --dry-run=client` **não** roda sem cluster: mesmo em
+  dry-run client, o kubectl consulta o API server (schema OpenAPI e
+  discovery). Essa validação fica para quando houver um cluster.
+
+Fora destes manifestos: Mongo e Kafka (o ConfigMap e o Secret apontam para
+endereços de exemplo), Ingress, a imagem num registry (o `kustomization.yaml`
+usa `curriculo-vivo:local`) e o metrics-server, de que o HPA depende.
+
 ## Limitações conhecidas
 
 - **Propagação para a API só no boot.** A API carrega a base curada mais o
@@ -358,6 +423,7 @@ eval/            dataset rotulado, harness e template do painel
 web/             front Next.js: o radar do coordenador (uma tela)
 bff/             BFF NestJS opcional: GET /api/radar → GET /v1/defasagens
 docs/            capturas de tela (galeria em docs/capturas.md)
+k8s/             manifestos Kubernetes para revisão (não aplicados)
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
 tests/           214 testes
 .github/         CI: pytest + eval em push e PR, painel no GitHub Pages

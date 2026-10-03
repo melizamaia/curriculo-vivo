@@ -1,0 +1,47 @@
+# Worker de ingestão: consome evidencia.nova e publica evidencia.indexada.
+# Sem Service, porque não recebe requisição: só fala com o Kafka e o Mongo.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curriculo-vivo-worker
+  labels:
+    app.kubernetes.io/name: curriculo-vivo
+    app.kubernetes.io/component: worker
+spec:
+  # Uma réplica: mais consumidores no mesmo grupo só dividem as partições,
+  # e cada um reconstruiria o índice inteiro a cada ingestão.
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: curriculo-vivo
+      app.kubernetes.io/component: worker
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: curriculo-vivo
+        app.kubernetes.io/component: worker
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+        - name: worker
+          image: curriculo-vivo:local
+          imagePullPolicy: IfNotPresent
+          # Mesma imagem da API; muda só o comando, como no docker-compose.
+          command: ["python", "-m", "app.workers.ingestor"]
+          envFrom:
+            - configMapRef:
+                name: curriculo-vivo-config
+            - secretRef:
+                name: curriculo-vivo-secret
+          resources:
+            requests:
+              cpu: 100m
+              memory: 192Mi
+            limits:
+              cpu: 500m
+              memory: 384Mi
+          # Sem probe HTTP: o worker não expõe porta. Broker fora derruba o
+          # loop sem confirmar o offset (ADR-9), o container sai e o
+          # Deployment o reinicia a partir do último offset confirmado.
