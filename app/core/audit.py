@@ -12,7 +12,12 @@ import json
 import math
 from collections.abc import Sequence
 
-from app.models import AnaliseResponse, ObjetoAprendizagem, RegistroAuditoria
+from app.models import (
+    AnaliseResponse,
+    ObjetoAprendizagem,
+    OrigemAnalise,
+    RegistroAuditoria,
+)
 
 
 def hash_objeto(objeto: ObjetoAprendizagem) -> str:
@@ -27,10 +32,12 @@ def montar_registro(
     resposta: AnaliseResponse,
     objeto: ObjetoAprendizagem,
     versao_indice: str,
+    origem: OrigemAnalise = OrigemAnalise.ANALISE,
 ) -> RegistroAuditoria:
     """Registro da seção 5.7: o que foi citado, com que score, contra qual base."""
     return RegistroAuditoria(
         request_id=resposta.request_id,
+        origem=origem,
         objeto_id=resposta.objeto_id,
         objeto_hash=hash_objeto(objeto),
         curso=resposta.curso,

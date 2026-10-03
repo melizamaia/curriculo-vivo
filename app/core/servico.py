@@ -183,12 +183,17 @@ class ServicoAnalise:
         disciplina: str | None = None,
         severidade: Severidade | None = None,
         limite: int | None = None,
+        registrar: Callable[[ObjetoAprendizagem, AnaliseResponse], None] | None = None,
     ) -> RadarResponse:
         """Varre o catálogo: a fila do coordenador, mais grave primeiro.
 
         Os filtros de curso e disciplina recortam o catálogo antes da
         análise; o de severidade recorta o resultado. Contagens refletem o
         recorte inteiro; `limite` corta só a lista de itens.
+
+        `registrar` recebe toda análise feita, antes dos recortes de
+        severidade e limite: o que foi analisado é auditado, apareça ou não
+        na fila devolvida.
         """
         selecionados = [
             o
@@ -197,6 +202,9 @@ class ServicoAnalise:
             and (disciplina is None or o.disciplina == disciplina)
         ]
         itens = [self.analisar(o) for o in selecionados]
+        if registrar is not None:
+            for objeto, item in zip(selecionados, itens):
+                registrar(objeto, item)
         if severidade is not None:
             itens = [i for i in itens if i.severidade_maxima is severidade]
 

@@ -3,6 +3,10 @@
 Indisponibilidade de infra degrada observabilidade, não a análise. Mongo fora
 no boot → memória. Mongo que cai depois do boot → o registro vai para a
 reserva em memória e a análise segue respondendo.
+
+Toda análise é gravada, inclusive as do radar. As estatísticas são filtradas
+por `origem`: um lote de 31 análises de varredura não pode diluir a latência
+que o docente vê por request.
 """
 
 from __future__ import annotations
@@ -10,22 +14,25 @@ from __future__ import annotations
 import logging
 import threading
 from collections import Counter, deque
+from collections.abc import Collection, Sequence
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
 from app.config import Settings
-from app.models import RegistroAuditoria
+from app.models import OrigemAnalise, RegistroAuditoria
 
 logger = logging.getLogger(__name__)
 
 BACKEND_MEMORIA = "memoria"
 BACKEND_MONGO = "mongo"
 COLECAO = "auditoria"
+SO_ANALISES: frozenset[OrigemAnalise] = frozenset({OrigemAnalise.ANALISE})
 
 
 @dataclass(frozen=True)
 class Estatisticas:
-    """Insumo de `/v1/metricas`. Latências cobrem só a janela mais recente."""
+    """Insumo de `/v1/metricas`. Latências cobrem só a janela mais recente
+    de cada origem."""
 
     total: int = 0
     por_status: dict[str, int] = field(default_factory=dict)
@@ -37,42 +44,59 @@ class RepositorioAuditoria(Protocol):
 
     async def gravar(self, registro: RegistroAuditoria) -> None: ...
 
+    async def gravar_lote(self, registros: Sequence[RegistroAuditoria]) -> None: ...
+
     async def listar(self, limite: int = 50) -> list[RegistroAuditoria]: ...
 
-    async def estatisticas(self) -> Estatisticas: ...
+    async def estatisticas(
+        self, origens: Collection[OrigemAnalise] = SO_ANALISES
+    ) -> Estatisticas: ...
 
     async def fechar(self) -> None: ...
 
 
 class AuditoriaMemoria:
-    """Janela circular dos últimos registros; contagens desde o boot."""
+    """Janela circular dos últimos registros; contagens desde o boot.
+
+    A janela de latência é por origem: sem isso, algumas varreduras do radar
+    expulsariam da janela todas as análises avulsas.
+    """
 
     backend = BACKEND_MEMORIA
 
     def __init__(self, limite: int = 1000) -> None:
         self._lock = threading.Lock()
         self._registros: deque[RegistroAuditoria] = deque(maxlen=limite)
-        self._total = 0
-        self._por_status: Counter[str] = Counter()
+        self._latencias: dict[OrigemAnalise, deque[float]] = {
+            o: deque(maxlen=limite) for o in OrigemAnalise
+        }
+        self._por_status: Counter[tuple[OrigemAnalise, str]] = Counter()
 
     async def gravar(self, registro: RegistroAuditoria) -> None:
+        await self.gravar_lote([registro])
+
+    async def gravar_lote(self, registros: Sequence[RegistroAuditoria]) -> None:
         with self._lock:
-            self._registros.append(registro)
-            self._total += 1
-            self._por_status[registro.status.value] += 1
+            for r in registros:
+                self._registros.append(r)
+                self._latencias[r.origem].append(r.latencia_ms)
+                self._por_status[(r.origem, r.status.value)] += 1
 
     async def listar(self, limite: int = 50) -> list[RegistroAuditoria]:
         with self._lock:
             recentes = list(self._registros)
         return recentes[::-1][:limite]
 
-    async def estatisticas(self) -> Estatisticas:
+    async def estatisticas(
+        self, origens: Collection[OrigemAnalise] = SO_ANALISES
+    ) -> Estatisticas:
         with self._lock:
-            return Estatisticas(
-                total=self._total,
-                por_status=dict(self._por_status),
-                latencias_ms=[r.latencia_ms for r in self._registros],
-            )
+            por_status: Counter[str] = Counter()
+            for (origem, status), n in self._por_status.items():
+                if origem in origens:
+                    por_status[status] += n
+            latencias = [x for o in origens for x in self._latencias[o]]
+        return Estatisticas(sum(por_status.values()), dict(por_status), latencias)
 
     async def fechar(self) -> None:
         return None
@@ -92,6 +116,7 @@ class AuditoriaMongo:
     async def preparar(self) -> None:
         await self._colecao.create_index("request_id", unique=True)
         await self._colecao.create_index([("criado_em", -1)])
+        await self._colecao.create_index([("origem", 1), ("criado_em", -1)])
 
     async def gravar(self, registro: RegistroAuditoria) -> None:
         try:
@@ -104,6 +129,21 @@ class AuditoriaMongo:
             )
             await self._reserva.gravar(registro)
 
+    async def gravar_lote(self, registros: Sequence[RegistroAuditoria]) -> None:
+        if not registros:
+            return
+        try:
+            await self._colecao.insert_many(
+                [r.model_dump(mode="python") for r in registros], ordered=False
+            )
+        except Exception as exc:
+            logger.warning(
+                "Mongo indisponível ao gravar lote de %d registros (%s); lote na memória",
+                len(registros),
+                exc,
+            )
+            await self._reserva.gravar_lote(registros)
+
     async def listar(self, limite: int = 50) -> list[RegistroAuditoria]:
         try:
             cursor = (
@@ -114,25 +154,32 @@ class AuditoriaMongo:
             logger.warning("Mongo indisponível ao listar auditoria (%s)", exc)
             return await self._reserva.listar(limite)
 
-    async def estatisticas(self) -> Estatisticas:
+    async def estatisticas(
+        self, origens: Collection[OrigemAnalise] = SO_ANALISES
+    ) -> Estatisticas:
+        filtro = {"origem": {"$in": [o.value for o in origens]}}
         try:
-            total = await self._colecao.count_documents({})
             por_status = {
                 d["_id"]: d["n"]
                 async for d in await self._colecao.aggregate(
-                    [{"$group": {"_id": "$status", "n": {"$sum": 1}}}]
+                    [
+                        {"$match": filtro},
+                        {"$group": {"_id": "$status", "n": {"$sum": 1}}},
+                    ]
                 )
             }
-            cursor = (
-                self._colecao.find({}, {"_id": 0, "latencia_ms": 1})
-                .sort("criado_em", -1)
-                .limit(self._janela)
-            )
-            latencias = [float(d.get("latencia_ms", 0.0)) async for d in cursor]
-            return Estatisticas(total, por_status, latencias)
+            latencias: list[float] = []
+            for origem in origens:
+                cursor = (
+                    self._colecao.find({"origem": origem.value}, {"_id": 0, "latencia_ms": 1})
+                    .sort("criado_em", -1)
+                    .limit(self._janela)
+                )
+                latencias += [float(d.get("latencia_ms", 0.0)) async for d in cursor]
+            return Estatisticas(sum(por_status.values()), por_status, latencias)
         except Exception as exc:
             logger.warning("Mongo indisponível ao calcular métricas (%s)", exc)
-            return await self._reserva.estatisticas()
+            return await self._reserva.estatisticas(origens)
 
     async def fechar(self) -> None:
         await self._cliente.close()

@@ -10,7 +10,14 @@ from fastapi.concurrency import run_in_threadpool
 from app.api.dependencias import get_auditoria, get_catalogo, get_servico
 from app.core.audit import montar_registro
 from app.core.servico import ServicoAnalise
-from app.models import AnaliseRequest, AnaliseResponse, RadarResponse, Severidade
+from app.models import (
+    AnaliseRequest,
+    AnaliseResponse,
+    ObjetoAprendizagem,
+    OrigemAnalise,
+    RadarResponse,
+    Severidade,
+)
 from app.repositories.auditoria import RepositorioAuditoria
 from app.repositories.catalogo import RepositorioCatalogo
 
@@ -50,6 +57,7 @@ async def analisar(
 async def radar(
     servico: Annotated[ServicoAnalise, Depends(get_servico)],
     catalogo: Annotated[RepositorioCatalogo, Depends(get_catalogo)],
+    auditoria: Annotated[RepositorioAuditoria, Depends(get_auditoria)],
     curso: str | None = None,
     disciplina: str | None = None,
     severidade: Severidade | None = None,
@@ -57,15 +65,24 @@ async def radar(
 ) -> RadarResponse:
     """Varre o catálogo e devolve a fila do coordenador, mais grave primeiro.
 
-    O radar é varredura, não análise individual: não gera um registro de
-    auditoria por objeto. A resposta carrega `versao_indice`, que basta para
-    reconstruí-la.
+    O radar é um lote de análises e cada uma é auditada com `origem=radar`:
+    toda defasagem que aparece na fila tem registro para ser reconstruída.
     """
-    return await run_in_threadpool(
+    analisados: list[tuple[ObjetoAprendizagem, AnaliseResponse]] = []
+    resultado = await run_in_threadpool(
         servico.radar,
         catalogo.listar(),
         curso=curso,
         disciplina=disciplina,
         severidade=severidade,
         limite=limite,
+        registrar=lambda objeto, resposta: analisados.append((objeto, resposta)),
     )
+    # Mesma versão que a resposta do radar carrega: registro e fila batem.
+    await auditoria.gravar_lote(
+        [
+            montar_registro(r, o, resultado.versao_indice, origem=OrigemAnalise.RADAR)
+            for o, r in analisados
+        ]
+    )
+    return resultado

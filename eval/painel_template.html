@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Currículo Vivo · Avaliação</title>
+<!--
+  Painel autocontido do harness de avaliação (seção 8 do PRD).
+  Gerado por `python -m eval.run_eval`: os dados vêm embutidos no <script
+  type="application/json"> abaixo. Sem fetch, sem CDN — abre com duplo clique.
+-->
+<style>
+  .viz-root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface-1: #fcfcfb;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --border: rgba(11, 11, 11, 0.10);
+    --accent: #2a78d6;
+    --track: #cde2fb;
+    --good: #0ca30c;
+    --good-text: #006300;
+    --critical: #d03b3b;
+    --critical-text: #d03b3b;
+    --warning: #fab219;
+    --banner: #f0efec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface-1: #1a1a19;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --axis: #383835;
+      --border: rgba(255, 255, 255, 0.10);
+      --accent: #3987e5;
+      --track: #0d366b;
+      --good: #0ca30c;
+      --good-text: #0ca30c;
+      --critical: #d03b3b;
+      --critical-text: #e66767;
+      --banner: #383835;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.10);
+    --accent: #3987e5;
+    --track: #0d366b;
+    --good: #0ca30c;
+    --good-text: #0ca30c;
+    --critical: #d03b3b;
+    --critical-text: #e66767;
+    --banner: #383835;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .viz-root {
+    min-height: 100vh;
+    background: var(--page);
+    color: var(--text-primary);
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 32px clamp(16px, 4vw, 48px) 48px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 12px; }
+  .sub { color: var(--text-secondary); margin: 0; }
+  .meta-linha { color: var(--text-muted); font-size: 12.5px; margin-top: 6px; }
+  .meta-linha code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .aviso {
+    background: var(--banner); color: var(--text-secondary);
+    border-radius: 8px; padding: 10px 14px; margin: 20px 0 24px; font-size: 13px;
+  }
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+  }
+  section { margin-top: 24px; }
+
+  /* Portão das metas duras: status com ícone + rótulo, nunca só cor. */
+  .portao { display: flex; align-items: center; gap: 12px; font-weight: 600; }
+  .status { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; white-space: nowrap; }
+  .status .icone {
+    display: inline-grid; place-items: center; width: 18px; height: 18px;
+    border-radius: 50%; color: #fff; font-size: 11px; line-height: 1;
+  }
+  .status.ok { color: var(--good-text); }
+  .status.ok .icone { background: var(--good); }
+  .status.falha { color: var(--critical-text); }
+  .status.falha .icone { background: var(--critical); }
+  .status.na { color: var(--text-muted); }
+  .status.na .icone { background: var(--axis); }
+
+  .topo { display: grid; grid-template-columns: minmax(260px, 1fr) 2fr; gap: 16px; }
+  @media (max-width: 820px) { .topo { grid-template-columns: 1fr; } }
+  .hero-valor { font-size: 56px; font-weight: 600; line-height: 1.05; margin: 8px 0 4px; }
+  .rotulo { color: var(--text-secondary); font-size: 13px; }
+  .detalhe { color: var(--text-muted); font-size: 12.5px; }
+  .duras { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .duras .valor { font-size: 34px; font-weight: 600; margin: 6px 0 2px; }
+  .explica { color: var(--text-secondary); font-size: 13px; margin: 14px 0 0; }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .tile .valor { font-size: 28px; font-weight: 600; margin: 4px 0 8px; }
+  .tile .rodape { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; font-size: 12.5px; }
+
+  /* Meter: trilha num passo claro da mesma rampa; o traço marca a meta. */
+  .meter { position: relative; height: 8px; border-radius: 4px; background: var(--track); }
+  .meter .fill { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--accent); }
+  .meter.falha .fill { background: var(--critical); }
+  .meter .alvo {
+    position: absolute; top: -4px; bottom: -4px; width: 2px;
+    background: var(--text-primary); border-radius: 1px; transform: translateX(-1px);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { color: var(--text-secondary); font-weight: 600; font-size: 12px; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody tr:hover td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+  .matriz td.esperado { font-weight: 700; }
+  .matriz td.zero { color: var(--text-muted); }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .div { color: var(--critical-text); }
+  .tabela-rolagem { overflow-x: auto; }
+
+  .filtros { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 12px; }
+  .filtros label { color: var(--text-secondary); display: inline-flex; gap: 8px; align-items: center; }
+  select, input[type="checkbox"] { font: inherit; accent-color: var(--accent); }
+  select {
+    background: var(--surface-1); color: var(--text-primary);
+    border: 1px solid var(--axis); border-radius: 6px; padding: 4px 8px;
+  }
+  .contagem { color: var(--text-muted); margin-left: auto; font-size: 12.5px; }
+  footer { color: var(--text-muted); font-size: 12px; margin-top: 32px; }
+  .vazio { color: var(--text-muted); padding: 16px 0; }
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+  <header>
+    <h1>Currículo Vivo · Avaliação</h1>
+    <p class="sub">O radar está gritando lobo? Taxas medidas contra o conjunto de avaliação, com o serviço rodando em processo.</p>
+    <div class="meta-linha" id="meta-linha"></div>
+  </header>
+
+  <div class="aviso" id="aviso"></div>
+
+  <div class="card portao" id="portao"></div>
+
+  <section class="topo">
+    <div class="card" id="hero"></div>
+    <div class="card">
+      <h2>Metas duras — travam o build</h2>
+      <div class="duras" id="duras"></div>
+      <p class="explica">Verificadas pelo harness de forma independente da barreira 3: o painel não confia no guardrail que está medindo.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Demais metas</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section class="card">
+    <h2>Classe esperada × status obtido</h2>
+    <div class="tabela-rolagem"><table class="matriz" id="matriz"></table></div>
+    <p class="explica">Em negrito, a célula esperada para cada classe. Qualquer número fora dela é erro do radar.</p>
+  </section>
+
+  <section class="card">
+    <h2>Casos</h2>
+    <div class="filtros">
+      <label>Classe
+        <select id="filtro-classe"><option value="">todas</option></select>
+      </label>
+      <label><input type="checkbox" id="filtro-divergencias"> só divergências</label>
+      <span class="contagem" id="contagem"></span>
+    </div>
+    <div class="tabela-rolagem">
+      <table id="casos">
+        <thead>
+          <tr>
+            <th>Caso</th><th>Objeto</th><th>Classe</th><th>Esperado</th><th>Obtido</th>
+            <th class="num">Confiança</th><th class="num">ms</th><th>Resultado</th><th>Nota</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer id="rodape"></footer>
+</div>
+</div>
+
+<script id="dados-eval" type="application/json">__DADOS_EVAL__</script>
+<script>
+(function () {
+  "use strict";
+  var R = JSON.parse(document.getElementById("dados-eval").textContent);
+  var M = R.metricas;
+
+  function el(tag, attrs, filhos) {
+    var n = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === "texto") n.textContent = attrs[k];
+      else if (k === "classe") n.className = attrs[k];
+      else n.setAttribute(k, attrs[k]);
+    });
+    (filhos || []).forEach(function (f) { if (f != null) n.appendChild(f); });
+    return n;
+  }
+  function pct(v) { return v == null ? "—" : Math.round(v * 100) + "%"; }
+  function fmt(meta, v) {
+    if (v == null) return "—";
+    return meta.metrica.indexOf("taxa_") === 0 ? pct(v) : String(v);
+  }
+  function status(ok, rotulos) {
+    var cls = ok === true ? "ok" : ok === false ? "falha" : "na";
+    var icone = ok === true ? "✓" : ok === false ? "✕" : "–";
+    var r = rotulos || {};
+    var texto = ok === true ? (r.ok || "na meta") : ok === false ? (r.falha || "fora da meta") : (r.na || "sem casos");
+    return el("span", { classe: "status " + cls }, [
+      el("span", { classe: "icone", "aria-hidden": "true", texto: icone }),
+      el("span", { texto: texto })
+    ]);
+  }
+  function meter(meta) {
+    // Só para taxas: escala 0–100%, traço vertical na meta.
+    var v = meta.valor == null ? 0 : meta.valor;
+    var dica = meta.rotulo + ": " + fmt(meta, meta.valor) + " (meta " + meta.operador + " " + fmt(meta, meta.alvo) + ")";
+    return el("div", {
+      classe: "meter" + (meta.ok === false ? " falha" : ""),
+      role: "meter", "aria-valuemin": "0", "aria-valuemax": "100",
+      "aria-valuenow": String(Math.round(v * 100)), "aria-label": dica, title: dica
+    }, [
+      el("div", { classe: "fill", style: "width:" + (v * 100) + "%" }),
+      el("div", { classe: "alvo", style: "left:" + (meta.alvo * 100) + "%" })
+    ]);
+  }
+  var porMetrica = {};
+  R.metas.forEach(function (m) { porMetrica[m.metrica] = m; });
+
+  // --- cabeçalho ---------------------------------------------------------
+  var cfg = R.configuracao;
+  var linha = document.getElementById("meta-linha");
+  linha.append(
+    "gerado em " + R.gerado_em + " · versao_indice ",
+    el("code", { texto: R.versao_indice }),
+    " · " + [
+      R.casos.length + " casos",
+      cfg.evidencias_indexadas + " evidências · " + cfg.objetos_catalogados + " objetos",
+      "síntese " + cfg.modo_sintese,
+      "limiar " + cfg.limiar_confianca + " · top_k " + cfg.top_k,
+      "fonte oficial " + (cfg.exigir_fonte_oficial ? "exigida" : "não exigida")
+    ].join(" · ")
+  );
+  document.getElementById("aviso").textContent = R.aviso;
+
+  // --- portão ------------------------------------------------------------
+  document.getElementById("portao").appendChild(status(R.metas_duras_ok, {
+    ok: "Metas duras cumpridas — build liberado",
+    falha: "Meta dura violada — build travado"
+  }));
+  document.getElementById("portao").appendChild(el("span", {
+    classe: "detalhe",
+    texto: M.casos_corretos + " de " + R.casos.length + " casos com o comportamento esperado"
+  }));
+
+  // --- hero: falso alarme ------------------------------------------------
+  var fa = porMetrica.taxa_falso_alarme;
+  var atualizados = R.casos.filter(function (c) { return c.classe === "atualizado"; });
+  var alarmes = atualizados.filter(function (c) { return c.falso_alarme; }).length;
+  document.getElementById("hero").append(
+    el("div", { classe: "rotulo", texto: "Falso alarme" }),
+    el("div", { classe: "hero-valor", texto: pct(fa.valor) }),
+    el("div", { classe: "detalhe", texto: alarmes + " de " + atualizados.length + " materiais atualizados apontados indevidamente · meta ≤ " + pct(fa.alvo) }),
+    el("div", { style: "margin-top:14px" }, [meter(fa)]),
+    el("div", { style: "margin-top:12px" }, [status(fa.ok)]),
+    el("p", { classe: "explica", texto: "Na segunda vez que o radar aponta errado, o coordenador para de olhar. É o número que decide se a fila é confiável." })
+  );
+
+  // --- metas duras -------------------------------------------------------
+  R.metas.filter(function (m) { return m.dura; }).forEach(function (m) {
+    document.getElementById("duras").appendChild(el("div", null, [
+      el("div", { classe: "rotulo", texto: m.rotulo }),
+      el("div", { classe: "valor", texto: fmt(m, m.valor) }),
+      el("div", { classe: "detalhe", texto: "meta = " + m.alvo }),
+      el("div", { style: "margin-top:8px" }, [status(m.ok)])
+    ]));
+  });
+
+  // --- demais metas ------------------------------------------------------
+  var detalhes = {
+    taxa_deteccao: "defasados corretamente apontados",
+    taxa_citacao_correta: "defasados que citam a evidência esperada",
+    taxa_severidade_correta: "defasados com a severidade da tabela",
+    taxa_abstencao_adequada: "inelegíveis e sem evidência abstidos",
+    taxa_motivo_correto: "abstenções com o motivo esperado",
+    latencia_p95_ms: "p50 " + M.latencia_p50_ms + " ms · em processo"
+  };
+  R.metas.filter(function (m) { return !m.dura && m.metrica !== "taxa_falso_alarme"; }).forEach(function (m) {
+    var ehTaxa = m.metrica.indexOf("taxa_") === 0;
+    document.getElementById("kpis").appendChild(el("div", { classe: "card tile" }, [
+      el("div", { classe: "rotulo", texto: m.rotulo }),
+      el("div", { classe: "valor", texto: fmt(m, m.valor) }),
+      ehTaxa ? meter(m) : null,
+      el("div", { classe: "detalhe", style: "margin-top:8px", texto: detalhes[m.metrica] || "" }),
+      el("div", { classe: "rodape" }, [
+        el("span", { classe: "detalhe", texto: "meta " + m.operador + " " + fmt(m, m.alvo) }),
+        status(m.ok)
+      ])
+    ]));
+  });
+  document.getElementById("kpis").appendChild(el("div", { classe: "card tile" }, [
+    el("div", { classe: "rotulo", texto: "Custo estimado" }),
+    el("div", { classe: "valor", texto: "US$ " + M.custo_estimado_usd.toFixed(4) }),
+    el("div", { classe: "detalhe", texto: M.tokens + " tokens · síntese " + cfg.modo_sintese }),
+    el("div", { classe: "rodape" }, [
+      el("span", { classe: "detalhe", texto: "descartes na barreira 3: " + M.descartes_barreira_3 })
+    ])
+  ]));
+
+  // --- matriz classe × status -------------------------------------------
+  var STATUS = ["defasagem_detectada", "sem_achado", "abstido"];
+  var CLASSES = ["defasado", "atualizado", "sem_evidencia", "inelegivel"];
+  var matriz = document.getElementById("matriz");
+  matriz.appendChild(el("thead", null, [el("tr", null,
+    [el("th", { texto: "Classe" })].concat(STATUS.map(function (s) {
+      return el("th", { classe: "num", texto: s });
+    })).concat([el("th", { classe: "num", texto: "total" })]))]));
+  var corpoMatriz = el("tbody");
+  CLASSES.forEach(function (classe) {
+    var casos = R.casos.filter(function (c) { return c.classe === classe; });
+    if (!casos.length) return;
+    var celulas = STATUS.map(function (s) {
+      var n = casos.filter(function (c) { return c.obtido.status === s; }).length;
+      var esperado = casos[0].esperado.status === s;
+      return el("td", { classe: "num" + (esperado ? " esperado" : "") + (n === 0 ? " zero" : ""), texto: String(n) });
+    });
+    corpoMatriz.appendChild(el("tr", null,
+      [el("td", { texto: classe })].concat(celulas).concat([el("td", { classe: "num", texto: String(casos.length) })])));
+  });
+  matriz.appendChild(corpoMatriz);
+
+  // --- tabela de casos ---------------------------------------------------
+  var selClasse = document.getElementById("filtro-classe");
+  CLASSES.forEach(function (c) {
+    if (R.casos.some(function (x) { return x.classe === c; })) selClasse.appendChild(el("option", { value: c, texto: c }));
+  });
+  var soDiv = document.getElementById("filtro-divergencias");
+  var tbody = document.querySelector("#casos tbody");
+
+  function descreve(o) {
+    var partes = [o.status];
+    if (o.severidade) partes.push(o.severidade);
+    if (o.motivo) partes.push(o.motivo);
+    var ev = o.evidencias || (o.evidencia ? [o.evidencia] : []);
+    return { texto: partes.join(" · "), ev: ev.join(", ") };
+  }
+  function celulaDesc(o) {
+    var d = descreve(o);
+    return el("td", null, [
+      el("div", { texto: d.texto }),
+      d.ev ? el("div", { classe: "mono detalhe", texto: d.ev }) : null
+    ]);
+  }
+  function render() {
+    var classe = selClasse.value;
+    var linhas = R.casos.filter(function (c) {
+      return (!classe || c.classe === classe) && (!soDiv.checked || !c.acertou);
+    });
+    tbody.replaceChildren();
+    linhas.forEach(function (c) {
+      var nota = c.divergencias.length
+        ? el("td", { classe: "div", texto: c.divergencias.join("; ") })
+        : el("td", { classe: "detalhe", texto: c.nota || "" });
+      tbody.appendChild(el("tr", null, [
+        el("td", { classe: "mono", texto: c.id }),
+        el("td", { classe: "mono", texto: c.objeto_id }),
+        el("td", { texto: c.classe }),
+        celulaDesc(c.esperado),
+        celulaDesc(c.obtido),
+        el("td", { classe: "num", texto: c.obtido.confianca.toFixed(3) }),
+        el("td", { classe: "num", texto: c.obtido.latencia_ms.toFixed(2) }),
+        el("td", null, [status(c.acertou, { ok: "correto", falha: "divergente" })]),
+        nota
+      ]));
+    });
+    if (!linhas.length) {
+      tbody.appendChild(el("tr", null, [el("td", { colspan: "9", classe: "vazio", texto: "Nenhum caso neste recorte." })]));
+    }
+    document.getElementById("contagem").textContent = linhas.length + " de " + R.casos.length + " casos";
+  }
+  selClasse.addEventListener("change", render);
+  soDiv.addEventListener("change", render);
+  render();
+
+  document.getElementById("rodape").textContent =
+    "Gerado por python -m eval.run_eval · resultado completo em eval/results.json · " +
+    "material didático e evidências sintéticos; nenhum dado de aluno ou paciente.";
+})();
+</script>
+</body>
+</html>

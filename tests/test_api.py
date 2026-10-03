@@ -187,3 +187,36 @@ def test_ingestao_de_objeto():
         assert cliente.post("/v1/objetos", json=objeto).status_code == 200
         assert analisar(cliente, "ingerido-01")["objeto_id"] == "ingerido-01"
         assert cliente.get("/v1/defasagens").json()["total_objetos"] == 32
+
+
+def test_radar_audita_cada_analise_e_metricas_separam_origem():
+    # Cliente próprio: as contagens precisam partir do zero.
+    with TestClient(criar_app(Settings(**SEM_MONGO))) as cliente:
+        analisar(cliente, "med-clin-sepse-aula07")
+        # Severidade e limite recortam a fila, não a auditoria: as 31
+        # análises da varredura são gravadas.
+        radar = cliente.get(
+            "/v1/defasagens", params={"severidade": "alta", "limite": 1}
+        ).json()
+        assert len(radar["itens"]) == 1
+
+        trilha = cliente.get("/v1/auditoria", params={"limite": 1000}).json()
+        do_radar = [r for r in trilha if r["origem"] == "radar"]
+        assert len(do_radar) == 31
+        assert [r["origem"] for r in trilha].count("analise") == 1
+        assert {r["versao_indice"] for r in do_radar} == {radar["versao_indice"]}
+        apontado = radar["itens"][0]
+        assert any(
+            r["objeto_id"] == apontado["objeto_id"]
+            and r["evidencias_citadas"]
+            == [d["evidencia"]["doc_id"] for d in apontado["defasagens"]]
+            for r in do_radar
+        )
+
+        padrao = cliente.get("/v1/metricas").json()
+        assert padrao["total_analises"] == 1
+        assert padrao["por_status"] == {"defasagem_detectada": 1}
+
+        com_radar = cliente.get("/v1/metricas", params={"incluir_radar": True}).json()
+        assert com_radar["total_analises"] == 32
+        assert com_radar["por_status"]["defasagem_detectada"] == 13

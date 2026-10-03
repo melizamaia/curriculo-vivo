@@ -410,6 +410,7 @@ Filtros opcionais: `?curso=`, `?disciplina=`, `?severidade=alta`, `?limite=`.
 {
   "request_id": "uuid",
   "criado_em": "2026-10-03T04:00:00Z",
+  "origem": "analise",
   "objeto_id": "med-clin-sepse-aula07",
   "objeto_hash": "sha256...",
   "curso": "Medicina",
@@ -429,6 +430,11 @@ Filtros opcionais: `?curso=`, `?disciplina=`, `?severidade=alta`, `?limite=`.
 
 `versao_indice` é o hash do conteúdo indexado. É o que permite provar, meses
 depois, contra qual versão da base de evidência um alerta foi emitido.
+
+`origem` ∈ `analise` | `radar`: toda análise é auditada, inclusive cada objeto
+de uma varredura do radar — defasagem na fila sem registro não é
+reconstruível (O6) —, e `/v1/metricas` filtra por `origem=analise` por padrão
+(`?incluir_radar=true` soma o radar) para o lote não distorcer o p95.
 
 ### 5.8 Eventos Kafka
 

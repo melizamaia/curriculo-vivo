@@ -285,6 +285,14 @@ class RadarResponse(BaseModel):
 # --------------------------------------------------------------------------
 
 
+class OrigemAnalise(str, Enum):
+    """De onde veio a análise. Toda análise é auditada, inclusive as do radar;
+    a origem só separa as do radar das métricas de latência por request."""
+
+    ANALISE = "analise"
+    RADAR = "radar"
+
+
 class RegistroAuditoria(BaseModel):
     """Trilha reconstruível. O material entra como hash, nunca em texto claro."""
 
@@ -292,6 +300,7 @@ class RegistroAuditoria(BaseModel):
 
     request_id: str
     criado_em: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    origem: OrigemAnalise = OrigemAnalise.ANALISE
     objeto_id: str
     objeto_hash: str
     curso: str | None = None

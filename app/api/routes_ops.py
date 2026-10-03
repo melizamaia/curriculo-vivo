@@ -16,8 +16,14 @@ from app.api.dependencias import (
 from app.config import RAIZ_PROJETO, Settings
 from app.core.audit import percentil
 from app.core.retriever import Retriever
-from app.models import HealthResponse, MetricasResponse, RegistroAuditoria, StatusAnalise
-from app.repositories.auditoria import RepositorioAuditoria
+from app.models import (
+    HealthResponse,
+    MetricasResponse,
+    OrigemAnalise,
+    RegistroAuditoria,
+    StatusAnalise,
+)
+from app.repositories.auditoria import SO_ANALISES, RepositorioAuditoria
 from app.repositories.catalogo import RepositorioCatalogo
 
 router = APIRouter(tags=["operação"])
@@ -74,9 +80,15 @@ async def metricas(
     retriever: Annotated[Retriever, Depends(get_retriever)],
     catalogo: Annotated[RepositorioCatalogo, Depends(get_catalogo)],
     auditoria: Annotated[RepositorioAuditoria, Depends(get_auditoria)],
+    incluir_radar: bool = False,
 ) -> MetricasResponse:
-    """Contagens desde o boot (ou da coleção); latências da janela recente."""
-    est = await auditoria.estatisticas()
+    """Contagens desde o boot (ou da coleção); latências da janela recente.
+
+    Por padrão só análises avulsas (`origem=analise`): é a latência que o
+    docente sente. `incluir_radar=true` soma as análises das varreduras.
+    """
+    origens = set(OrigemAnalise) if incluir_radar else SO_ANALISES
+    est = await auditoria.estatisticas(origens)
     abstidos = est.por_status.get(StatusAnalise.ABSTIDO.value, 0)
     latencias = est.latencias_ms
     return MetricasResponse(
