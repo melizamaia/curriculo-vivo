@@ -2,9 +2,10 @@
   "versao": "1.0",
   "descricao": "Conjunto de avaliacao do Curriculo Vivo, calibrado contra o corpus de data/. Quatro classes: defasado (deve apontar, com severidade e evidencia esperadas), atualizado (nao deve apontar - teste de falso alarme), sem_evidencia (deve se abster), inelegivel (deve se abster, por motivo especifico).",
   "corpus_esperado": {
-    "evidencias": 13,
+    "evidencias": 14,
     "objetos": 31
   },
+  "politica_de_fonte": "Com EXIGIR_FONTE_OFICIAL=true, so orgao_oficial e diretriz_sociedade sustentam alerta. Literatura revisada por pares e fonte legitima, mas um estudo primario isolado nao muda curriculo: o que muda e diretriz ou protocolo oficial. Os casos c026 e c027 testam os dois niveis do filtro de proveniencia.",
   "itens": [
     {
       "id": "c001",
@@ -37,7 +38,7 @@
       "id": "c004",
       "objeto_id": "med-geri-delirium-aula02",
       "classe": "defasado",
-      "evidencia_esperada": "pubmed-oa-delirium-2025",
+      "evidencia_esperada": "diretriz-delirium-2025",
       "severidade_esperada": "alta",
       "motivo_esperado": null,
       "nota": "practice-changing com gap de 49 meses"
@@ -46,7 +47,7 @@
       "id": "c005",
       "objeto_id": "med-infecto-antibiotico-aula09",
       "classe": "defasado",
-      "evidencia_esperada": "pubmed-oa-antibiotico-duracao-2024",
+      "evidencia_esperada": "diretriz-antibiotico-duracao-2024",
       "severidade_esperada": "media",
       "motivo_esperado": null,
       "nota": "FRONTEIRA: practice-changing com gap de exatamente 12 meses"
@@ -237,8 +238,8 @@
       "classe": "sem_evidencia",
       "evidencia_esperada": null,
       "severidade_esperada": null,
-      "motivo_esperado": "evidencia_insuficiente",
-      "nota": "tema hematologia nao existe na base curada"
+      "motivo_esperado": "fonte_nao_validada",
+      "nota": "CASO-CHAVE (nivel 2 do filtro): existe evidencia de 2025 sobre o tema, de literatura revisada por pares, e o material e de 2017. Sem o filtro de proveniencia isso viraria alerta de severidade alta. Um estudo primario isolado nao muda curriculo - diretriz muda."
     },
     {
       "id": "c027",

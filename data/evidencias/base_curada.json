@@ -266,11 +266,11 @@
     ]
   },
   {
-    "doc_id": "pubmed-oa-delirium-2025",
+    "doc_id": "diretriz-delirium-2025",
     "titulo": "Prevencao nao farmacologica de delirium em pacientes internados",
-    "fonte": "PubMed Open Access (exemplo ilustrativo)",
-    "fonte_tipo": "literatura_revisada",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/delirium",
     "publicado_em": "2025-01-28",
     "nivel_evidencia": "B",
     "temas": ["delirium"],
@@ -279,21 +279,21 @@
     "exemplo_ilustrativo": true,
     "trechos": [
       {
-        "trecho_id": "pubmed-oa-delirium-2025#t1",
+        "trecho_id": "diretriz-delirium-2025#t1",
         "texto": "Intervencoes multicomponentes nao farmacologicas, incluindo reorientacao, mobilizacao precoce, higiene do sono e correcao de deficits sensoriais, reduzem a incidencia de delirium em pacientes internados de maior risco. A mobilizacao precoce passa a ser recomendada como componente essencial do pacote."
       },
       {
-        "trecho_id": "pubmed-oa-delirium-2025#t2",
-        "texto": "O rastreamento sistematico com instrumento validado aumenta a deteccao de delirium hipoativo, que frequentemente passa sem diagnostico e associa-se a pior desfecho funcional."
+        "trecho_id": "diretriz-delirium-2025#t2",
+        "texto": "O rastreamento sistematico de delirium com instrumento validado aumenta a deteccao da forma hipoativa, que frequentemente passa sem diagnostico e associa-se a pior desfecho funcional."
       }
     ]
   },
   {
-    "doc_id": "pubmed-oa-antibiotico-duracao-2024",
-    "titulo": "Duracao de antibioticoterapia: evidencia acumulada para cursos mais curtos",
-    "fonte": "PubMed Open Access (exemplo ilustrativo)",
-    "fonte_tipo": "literatura_revisada",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "doc_id": "diretriz-antibiotico-duracao-2024",
+    "titulo": "Duracao de antibioticoterapia e uso racional de antimicrobianos",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/antibioticoterapia",
     "publicado_em": "2024-12-03",
     "nivel_evidencia": "B",
     "temas": ["antibioticoterapia"],
@@ -302,12 +302,35 @@
     "exemplo_ilustrativo": true,
     "trechos": [
       {
-        "trecho_id": "pubmed-oa-antibiotico-duracao-2024#t1",
+        "trecho_id": "diretriz-antibiotico-duracao-2024#t1",
         "texto": "Em diversas sindromes infecciosas nao complicadas, cursos mais curtos de antibiotico mostraram eficacia comparavel a cursos prolongados, com menor exposicao e menor pressao seletiva. A evidencia de nao inferioridade sustenta mudanca de conduta na duracao padrao."
       },
       {
-        "trecho_id": "pubmed-oa-antibiotico-duracao-2024#t2",
+        "trecho_id": "diretriz-antibiotico-duracao-2024#t2",
         "texto": "A decisao de encurtar a duracao da antibioticoterapia depende da sindrome, do controle do foco e da resposta clinica documentada. A extrapolacao automatica para pacientes imunossuprimidos ou com foco nao controlado nao se sustenta na evidencia disponivel."
+      }
+    ]
+  },
+  {
+    "doc_id": "pubmed-oa-falciforme-2025",
+    "titulo": "Manejo da dor na crise vaso-oclusiva: estudo primario",
+    "fonte": "PubMed Open Access (exemplo ilustrativo)",
+    "fonte_tipo": "literatura_revisada",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "publicado_em": "2025-03-12",
+    "nivel_evidencia": "C",
+    "temas": ["hematologia"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "pubmed-oa-falciforme-2025#t1",
+        "texto": "Este documento existe para exercitar o segundo nivel do filtro de proveniencia. Trata da avaliacao e do manejo da dor na crise vaso-oclusiva da doenca falciforme, com hidratacao e oxigenacao, e e um estudo primario, nao uma diretriz."
+      },
+      {
+        "trecho_id": "pubmed-oa-falciforme-2025#t2",
+        "texto": "Literatura revisada por pares e fonte legitima, mas um estudo primario isolado nao sustenta alerta de revisao curricular: o que muda curriculo e diretriz ou protocolo oficial. O resultado esperado aqui e abstencao por fonte nao validada para este fim."
       }
     ]
   },

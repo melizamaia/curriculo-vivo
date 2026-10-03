@@ -34,8 +34,8 @@ conjunto cubra todos os comportamentos que o produto precisa acertar.
 | Defasado, severidade media | 4 | `defasagem_detectada` com `severidade: media` |
 | Defasado, severidade baixa | 4 | `defasagem_detectada` com `severidade: baixa` |
 | Atualizado | 10 | `sem_achado` — **o teste de falso alarme** |
-| Tema sem evidencia na base | 4 | `abstido` / `evidencia_insuficiente` |
-| Tema so em fonte nao validada | 1 | `abstido` / `fonte_nao_validada` |
+| Tema sem evidencia na base | 3 | `abstido` / `evidencia_insuficiente` |
+| Tema so em fonte nao validada | 2 | `abstido` / `fonte_nao_validada` |
 | Sem referencia datada | 2 | `abstido` / `material_sem_referencia` |
 | Fora de escopo | 1 | `abstido` / `fora_de_escopo` |
 | Sem conteudo extraido | 1 | `abstido` / `objeto_invalido` |
@@ -43,6 +43,23 @@ conjunto cubra todos os comportamentos que o produto precisa acertar.
 Dois casos ficam de proposito na **fronteira** da tabela — gap de exatamente 12
 e de exatamente 24 meses. E onde um erro de comparacao (`>` em vez de `>=`)
 aparece, e por isso eles existem.
+
+## Os dois niveis do filtro de proveniencia
+
+A base tem, de proposito, duas evidencias que **nao podem** sustentar alerta,
+cada uma por um motivo diferente:
+
+| Evidencia | `fonte_tipo` | Tema | Por que nao sustenta |
+| --- | --- | --- | --- |
+| `fonte-nao-validada-rinite-2025` | `nao_validada` | rinite | Blog sem revisao editorial |
+| `pubmed-oa-falciforme-2025` | `literatura_revisada` | hematologia | Estudo primario isolado: legitimo, mas nao e consenso |
+
+As duas sao mais novas que o material correspondente, entao **sem o filtro de
+proveniencia as duas virariam alerta**. E exatamente isso que elas testam.
+
+A segunda e a mais interessante na apresentacao: recusar fonte sem curadoria e
+obvio; recusar literatura revisada por pares e uma decisao de produto, e a
+justificativa esta na secao 5.2 do PRD.
 
 ## Regenerar
 

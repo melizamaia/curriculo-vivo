@@ -235,11 +235,33 @@ para o material seria exatamente o tipo de alucinação que o produto combate.
 }
 ```
 
-`fonte_tipo` ∈ `orgao_oficial` | `diretriz_sociedade` | `literatura_revisada` |
-`nao_validada`. Com `EXIGIR_FONTE_OFICIAL=true`, apenas as duas primeiras podem
-sustentar um alerta.
-
 `nivel_evidencia` ∈ `A` | `B` | `C` | `D` | `NA`.
+
+#### Política de fonte (decisão de produto, não de implementação)
+
+`fonte_tipo` tem quatro valores, em três níveis de autoridade:
+
+| `fonte_tipo` | Sustenta alerta? | Racional |
+| --- | --- | --- |
+| `orgao_oficial` | **Sim** | Protocolo ou norma vigente |
+| `diretriz_sociedade` | **Sim** | Consenso formal da especialidade |
+| `literatura_revisada` | **Não** | Legítima, mas estudo primário isolado é hipótese, não consenso |
+| `nao_validada` | **Não** | Sem curadoria editorial |
+
+Com `EXIGIR_FONTE_OFICIAL=true`, apenas os dois primeiros podem sustentar um
+alerta; os outros resultam em abstenção por `fonte_nao_validada`.
+
+A linha do `literatura_revisada` é a decisão mais importante desta seção.
+**Um artigo revisado por pares não é motivo para dizer a um coordenador que a
+aula dele está desatualizada.** Metade dos achados primários não se replica, e o
+que muda currículo é diretriz e protocolo, não o último paper. Aceitar
+literatura isolada como gatilho construiria exatamente a máquina de gritar lobo
+que este produto existe para evitar — e o custo seria pago na confiança do
+coordenador, que é o ativo mais caro do sistema.
+
+Evolução natural fora do MVP: literatura revisada **corrobora** uma diretriz
+(elevando a confiança de um alerta que já existe) sem nunca **originar** um
+alerta sozinha.
 
 ### 5.3 Requisição de análise
 
@@ -750,16 +772,19 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
 > serviço que avisa — e que se cala quando não tem base para avisar."
 
 ### Demo (3 min)
-1. `GET /v1/defasagens` → o radar. "300 objetos, 7 defasagens altas. Esta é a
-   fila do coordenador na segunda-feira."
-2. Abrir uma defasagem alta → mostrar **a citação com fonte, data e nível de
-   evidência**, e a justificativa com marcador.
-3. Analisar um objeto atualizado → `sem_achado`. "Não inventei trabalho."
-4. Analisar um objeto sem referência datada → `abstido`. **Pausar aqui.** "Eu
-   poderia ter chutado um ano. Preferi me calar — é o que protege a confiança
-   no resto da fila."
-5. `/v1/auditoria` → "o material nunca é gravado em texto claro, só o hash."
-6. `/painel` → taxa de detecção, **falso alarme**, alerta sem citação em zero.
+1. `GET /v1/defasagens` → o radar. "31 objetos, 4 defasagens altas. Esta é a
+   fila do coordenador na segunda-feira, ordenada por severidade."
+2. `med-clin-sepse-aula07` → defasagem alta. Mostrar **a citação com fonte,
+   data e nível de evidência**, e a justificativa com os marcadores `[0]` e
+   `[1]`: a referência do material e a evidência que a supera.
+3. `med-card-hipertensao-aula03` → `sem_achado`. "Não inventei trabalho."
+4. `med-sem-referencia-aula01` → `abstido` com `material_sem_referencia`.
+   **Pausar aqui.** "Eu poderia ter chutado um ano. Preferi me calar — é o que
+   protege a confiança no resto da fila."
+5. `med-orl-rinite-aula05` → `abstido` com `fonte_nao_validada`. "Existe texto
+   sobre o tema, mas de blog sem revisão. Não sustento alerta nisso."
+6. `/v1/auditoria` → "o material nunca é gravado em texto claro, só o hash."
+7. `/painel` → taxa de detecção, **falso alarme**, alerta sem citação em zero.
 
 ### Fechamento (30 s)
 > "A arquitetura é a mesma do time: FastAPI ao lado de NestJS, eventos em Kafka,
@@ -774,52 +799,154 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
 | "Por que não embeddings?" | ADR-1: determinismo para auditoria, custo zero, sobe offline. A interface isola a troca; o gatilho é quando a detecção cair abaixo da meta por sinonímia de tema. |
 | "Como escala para todos os cursos?" | Índice de evidência em memória por pod, reconstruído na ingestão. O radar é varredura em lote, assíncrona. Acima de ~100k trechos, migra para Atlas Vector Search sem tocar no resto. |
 | "E se apontar errado?" | É a métrica que eu mais olho. Falso alarme tem meta de 10% e o eval reprova o build se a invariante de citação quebrar. Prefiro abster e perder um achado a entregar uma fila que o coordenador não confia. |
+| "Por que artigo revisado por pares não dispara alerta?" | Porque estudo primário isolado é hipótese, não consenso — o que muda currículo é diretriz e protocolo. Se eu aceitasse paper isolado como gatilho, teria construído a máquina de gritar lobo que o produto existe para evitar. O conjunto de eval tem um caso só para isso (c026). |
 | "E LGPD?" | Nenhum dado de aluno ou paciente entra. O objeto vira hash na auditoria. A barreira de escopo abstém quando o texto menciona pessoa identificada. |
 | "Dá para usar no lado clínico também?" | Sim, e é o ponto: a regra é de proveniência, não de medicina. Troca o corpus, mantém guardrail, auditoria e eval. |
 
 ---
 
-## 15. Comandos
+## 15. Ambiente de desenvolvimento (Debian no WSL2)
+
+O projeto é desenvolvido em **Debian sobre WSL2**. Quatro detalhes desse
+ambiente que custam tempo se descobertos no meio do caminho:
+
+### 15.1 O Debian não traz `venv` nem `pip` por padrão
 
 ```bash
-# setup
-python -m venv .venv && source .venv/bin/activate
+sudo apt update
+sudo apt install -y python3-venv python3-pip python3-dev build-essential
+```
+
+O `build-essential` é necessário porque `scikit-learn` e `numpy` podem precisar
+compilar algo se não houver wheel para a sua versão de Python.
+
+### 15.2 PEP 668: o Python do sistema é "externally managed"
+
+Instalar pacote direto com `pip install` falha com
+`error: externally-managed-environment`. **Use sempre venv** — é o caminho
+correto e o que o `Makefile` assume:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Nunca use `--break-system-packages` neste projeto: ele contorna o erro quebrando
+o Python do sistema.
+
+### 15.3 Mantenha o repositório no filesystem do Linux
+
+```bash
+# certo: rápido
+cd ~ && git clone <repo> curriculo-vivo
+
+# errado: lento (I/O atravessa a fronteira Windows/Linux)
+cd /mnt/c/Users/<voce>/Documents
+```
+
+Em `/mnt/c` o `pytest` e o `pip install` ficam várias vezes mais lentos, e as
+permissões de arquivo não se comportam como o esperado. Para abrir no VS Code a
+partir do WSL: `code .` dentro do diretório.
+
+### 15.4 Docker
+
+Duas opções:
+
+**Docker Desktop no Windows com integração WSL** (mais simples): em Settings →
+Resources → WSL Integration, habilite a distro Debian. O `docker` e o
+`docker compose` passam a funcionar no shell do Debian sem mais nada.
+
+**Docker nativo no Debian** (sem Docker Desktop): precisa de systemd no WSL2.
+
+```bash
+# /etc/wsl.conf
+[boot]
+systemd=true
+```
+
+Depois, no PowerShell: `wsl --shutdown`, e reabrir o Debian. Então instale o
+Docker Engine e o plugin do compose pelo repositório oficial do Docker, e
+adicione seu usuário ao grupo:
+
+```bash
+sudo usermod -aG docker $USER   # exige reabrir o shell
+```
+
+### 15.5 Outros pontos
+
+| Item | Nota |
+| --- | --- |
+| Portas | `localhost:8000` do WSL2 abre direto no navegador do Windows, sem configuração |
+| Fim de linha | `git config core.autocrlf false` e um `.gitattributes` com `* text=auto eol=lf`, para o CRLF do Windows não entrar nos arquivos |
+| Relógio | Após suspender o Windows, o clock do WSL pode dessincronizar e quebrar TLS. `sudo hwclock -s` resolve |
+| Memória | Se o `pytest` ou o compose travarem a máquina, limite a RAM do WSL em `%UserProfile%\.wslconfig` (`[wsl2]` / `memory=6GB`) |
+| `jq` | `sudo apt install -y jq` — usado nos comandos da seção 16 |
+
+---
+
+## 16. Comandos
+
+```bash
+# setup (Debian/WSL2 — ver seção 15)
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
 
-# subir a API (sem infra externa)
+# gerar o corpus sintético de material didático
+python scripts/gerar_corpus_material.py
+
+# subir a API (sem Mongo, sem Kafka, sem chave de LLM)
 uvicorn app.main:app --reload
 # http://localhost:8000/docs
 
-# o radar
-curl -s localhost:8000/v1/defasagens | jq
+# o radar: a fila do coordenador
+curl -s localhost:8000/v1/defasagens | jq '{total_objetos, objetos_com_defasagem, por_severidade, abstencoes}'
 
-# objeto defasado
+# só as defasagens de severidade alta
+curl -s 'localhost:8000/v1/defasagens?severidade=alta' | jq '.itens[].objeto_id'
+
+# objeto defasado (severidade alta, practice-changing)
 curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
   -d '{"objeto_id":"med-clin-sepse-aula07"}' | jq
 
-# objeto atualizado (sem falso alarme)
+# objeto atualizado: sem falso alarme
 curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
-  -d '{"objeto_id":"med-card-hipertensao-aula03"}' | jq
+  -d '{"objeto_id":"med-card-hipertensao-aula03"}' | jq '{status, severidade_maxima}'
 
-# objeto sem referência datada (abstenção)
+# objeto sem referência datada: abstenção por material_sem_referencia
 curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
-  -d '{"objeto_id":"med-sem-referencia-aula01"}' | jq
+  -d '{"objeto_id":"med-sem-referencia-aula01"}' | jq '{status, motivo_abstencao}'
 
-# avaliação + painel
+# tema que existe só em fonte não validada: abstenção por fonte_nao_validada
+curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
+  -d '{"objeto_id":"med-orl-rinite-aula05"}' | jq '{status, motivo_abstencao}'
+
+# tema sem evidência na base: abstenção por evidencia_insuficiente
+curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
+  -d '{"objeto_id":"med-oftalmo-glaucoma-aula01"}' | jq '{status, motivo_abstencao}'
+
+# trilha de auditoria (o material só aparece como hash)
+curl -s 'localhost:8000/v1/auditoria?limite=5' | jq
+
+# métricas de operação
+curl -s localhost:8000/v1/metricas | jq
+
+# avaliação + painel (gera dashboard/index.html)
 python -m eval.run_eval
 
 # testes
 pytest -q
 
-# stack completa
+# stack completa com Mongo e Kafka
 docker compose up --build
 python -m app.workers.ingestor
 ```
 
 ---
 
-## 16. Aviso permanente
+## 17. Aviso permanente
 
 Este é um projeto de portfólio. O corpus de evidência e o material didático são
 **sintéticos e ilustrativos**: os textos não reproduzem protocolos, diretrizes,
