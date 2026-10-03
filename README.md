@@ -55,7 +55,9 @@ abstenção explícita**. Nunca um alerta sem fonte.
 ## Resultado da avaliação
 
 `make eval` roda 31 casos rotulados em quatro classes e gera um painel
-autocontido em `dashboard/index.html` (também servido em `/painel`).
+autocontido em `dashboard/index.html` (também servido em `/painel`). A CI roda
+testes e eval a cada push e PR na `main` e publica o painel do último build
+verde em [melizamaia.github.io/curriculo-vivo](https://melizamaia.github.io/curriculo-vivo/).
 
 | Métrica | Meta | Resultado |
 | --- | --- | --- |
@@ -79,8 +81,9 @@ Como ler esses números:
   reais, o número a vigiar é o falso alarme.
 - **As metas duras travam o pipeline.** `alerta_sem_citacao` ou
   `invariante_violada` diferente de zero faz `run_eval` sair com código ≠ 0, e
-  o `docker build` roda o eval, ou seja, uma imagem que alerta sem fonte não chega
-  a ser construída.
+  tanto a CI quanto o `docker build` rodam o eval: o build fica vermelho, o
+  painel não é publicado e uma imagem que alerta sem fonte não chega a ser
+  construída.
 
 ## Como rodar
 
@@ -102,6 +105,9 @@ make test         # 214 testes
 make eval         # harness de avaliação + painel em dashboard/index.html
 ```
 
+`make demo` não precisa da API no ar (sobe em processo). Para rodar contra a
+API: `make demo URL=http://localhost:8000`.
+
 ### Front (radar do coordenador)
 
 Uma tela em Next.js (App Router) + React + TypeScript, em `web/`, que consome
@@ -114,9 +120,10 @@ make front        # http://localhost:5173 (instala as dependências na 1ª vez)
 
 Ou, sem o Makefile: `cd web && npm install && npm run dev`. A API libera CORS
 para `http://localhost:5173` por padrão. Para outra origem, use
-`CORS_ORIGINS=http://a:1,http://b:2` no ambiente (essa variável não é lida do `.env`); vazio desliga o CORS. O front aponta
-para `http://localhost:8000`; para outra URL, use `VITE_API_URL=... npm run dev`
-(modelo em `web/.env.example`). Os nomes `VITE_*` vêm de antes da migração
+`CORS_ORIGINS=http://a:1,http://b:2` no ambiente (essa variável não é lida do
+`.env`); vazio desliga o CORS. O front aponta para `http://localhost:8000`;
+para outra URL, use `VITE_API_URL=... npm run dev` (modelo em
+`web/.env.example`). Os nomes `VITE_*` vêm de antes da migração
 para Next e foram mantidos; o `web/next.config.ts` os expõe ao navegador.
 
 ### BFF NestJS (opcional)
@@ -139,13 +146,14 @@ make bff                                          # 2. BFF em :3001 (opcional)
 VITE_BFF_URL=http://localhost:3001 make front     # 3. front em :5173, via BFF
 ```
 
-Sem o BFF, pule o passo 2 e rode só `make front`. Variáveis do BFF:
+Sem o BFF, pule o passo 2 e rode só `make front`. Para subir os três de uma
+vez num terminal só, `make stack` (Ctrl+C derruba tudo; `make parar` libera as
+portas se algum processo ficar para trás).
+
+Variáveis do BFF:
 `FASTAPI_URL` (padrão `http://localhost:8000`), `PORT` (padrão `3001`;
 no Makefile, `PORTA_BFF`) e `CORS_ORIGINS` (padrão
 `http://localhost:5173,http://localhost:3000`).
-
-`make demo` não precisa da API no ar (sobe em processo). Para rodar contra a
-API: `make demo URL=http://localhost:8000`.
 
 ### Stack completa (API + worker + Mongo + Kafka)
 
@@ -308,8 +316,10 @@ data/            corpus sintético (evidências curadas + catálogo de material)
 eval/            dataset rotulado, harness e template do painel
 web/             front Next.js: o radar do coordenador (uma tela)
 bff/             BFF NestJS opcional: GET /api/radar → GET /v1/defasagens
+docs/            capturas de tela (galeria em docs/capturas.md)
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
 tests/           214 testes
+.github/         CI: pytest + eval em push e PR, painel no GitHub Pages
 PRD.md           requisitos, contratos e regras completas
 ```
 
