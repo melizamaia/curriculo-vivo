@@ -92,9 +92,18 @@ Galeria com uma explicação por captura: [docs/capturas.md](docs/capturas.md).
 
 ## Como rodar
 
-Pré-requisitos: Python 3.12 com `venv` (no Debian/Ubuntu,
-`sudo apt install python3-venv`) e `make`. Nada mais: sem Mongo, sem Kafka,
-sem chave de API.
+Pré-requisitos: Python 3.12 com `venv` e `make`. Nada mais: sem Mongo, sem
+Kafka, sem chave de API.
+
+- **Debian/Ubuntu:** `sudo apt install python3-venv make`.
+- **Windows:** o caminho recomendado é o
+  [WSL 2](https://learn.microsoft.com/windows/wsl/install) com Ubuntu
+  (`wsl --install` num PowerShell como administrador). Dentro do Ubuntu, vale
+  a linha do Debian/Ubuntu acima e todos os comandos deste README funcionam
+  como estão. Clone o repositório dentro do WSL (`~/`), não em `/mnt/c`: o
+  acesso ao disco do Windows é bem mais lento. O Makefile usa caminhos e
+  ferramentas de Linux, então ele não roda no PowerShell. Para rodar sem WSL,
+  veja [Windows sem WSL](#windows-sem-wsl).
 
 ```bash
 git clone https://github.com/melizamaia/curriculo-vivo.git && cd curriculo-vivo
@@ -112,6 +121,33 @@ make eval         # harness de avaliação + painel em dashboard/index.html
 
 `make demo` não precisa da API no ar (sobe em processo). Para rodar contra a
 API: `make demo URL=http://localhost:8000`.
+
+### Windows sem WSL
+
+Requer o [Python 3.12](https://www.python.org/downloads/windows/) (marque
+"Add python.exe to PATH" no instalador) e o Git for Windows. No PowerShell,
+os alvos do Makefile viram:
+
+```powershell
+git clone https://github.com/melizamaia/curriculo-vivo.git; cd curriculo-vivo
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1          # se bloquear: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+pip install -r requirements.txt
+Copy-Item .env.example .env
+uvicorn app.main:app --reload --port 8000   # make run
+```
+
+Em outro PowerShell, com o `.venv` ativado:
+
+```powershell
+python -m scripts.demo     # make demo
+pytest -q                  # make test
+python -m eval.run_eval    # make eval
+```
+
+O front e o BFF rodam com `npm` direto (`cd web; npm install; npm run dev`,
+`cd bff; npm install; npm start`), com o Node 24 instalado no Windows. A
+stack completa precisa do Docker Desktop.
 
 ### Front (radar do coordenador)
 
