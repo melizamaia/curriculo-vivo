@@ -9,6 +9,8 @@ on:
 jobs:
   testes-e-eval:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # push do painel no branch gh-pages
     steps:
       - uses: actions/checkout@v7
 
@@ -37,3 +39,16 @@ jobs:
           name: dashboard
           path: dashboard/index.html
           if-no-files-found: warn
+
+      # Painel no GitHub Pages (branch gh-pages), só em push na main e com
+      # o eval aprovado: o link público mostra sempre o último build verde.
+      - name: Publica o painel no GitHub Pages
+        if: github.event_name == 'push'
+        working-directory: dashboard
+        run: |
+          touch .nojekyll
+          git init -q -b gh-pages
+          git add index.html .nojekyll
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com \
+            commit -q -m "painel de ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" gh-pages
