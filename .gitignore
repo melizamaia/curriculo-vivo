@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+.cache/
+.python-version
+.env
+.pytest_cache/
+eval/results.json
+dashboard/index.html
