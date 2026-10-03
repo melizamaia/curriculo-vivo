@@ -1,0 +1,337 @@
+[
+  {
+    "doc_id": "ms-sepse-2024",
+    "titulo": "Reconhecimento precoce e manejo inicial da sepse e do choque septico",
+    "fonte": "Ministerio da Saude (exemplo ilustrativo)",
+    "fonte_tipo": "orgao_oficial",
+    "url": "https://www.gov.br/saude/pt-br",
+    "publicado_em": "2024-05-20",
+    "nivel_evidencia": "A",
+    "temas": ["sepse"],
+    "practice_changing": true,
+    "substitui": ["protocolo institucional de sepse 2019"],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "ms-sepse-2024#t1",
+        "texto": "A suspeita de sepse deve ser levantada diante de infeccao presumida associada a sinais de disfuncao organica. O rastreamento sistematico na porta de entrada reduz o tempo ate o inicio do tratamento."
+      },
+      {
+        "trecho_id": "ms-sepse-2024#t2",
+        "texto": "O pacote de primeira hora inclui coleta de lactato arterial, coleta de hemoculturas antes da primeira dose de antimicrobiano, inicio de antimicrobiano de amplo espectro e reposicao volemica com cristaloide isotonico nos casos com hipoperfusao. Esta e a principal mudanca de conduta em relacao a versao anterior do protocolo."
+      },
+      {
+        "trecho_id": "ms-sepse-2024#t3",
+        "texto": "A reavaliacao da perfusao apos a expansao volemica inicial e obrigatoria. A persistencia de hipotensao apesar da reposicao caracteriza choque septico e indica introducao de vasopressor com monitorizacao continua."
+      }
+    ]
+  },
+  {
+    "doc_id": "ms-cetoacidose-2023",
+    "titulo": "Manejo da cetoacidose diabetica no adulto em servico de emergencia",
+    "fonte": "Ministerio da Saude (exemplo ilustrativo)",
+    "fonte_tipo": "orgao_oficial",
+    "url": "https://www.gov.br/saude/pt-br",
+    "publicado_em": "2023-08-14",
+    "nivel_evidencia": "A",
+    "temas": ["cetoacidose"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "ms-cetoacidose-2023#t1",
+        "texto": "O diagnostico de cetoacidose diabetica combina hiperglicemia, acidose metabolica com anion gap aumentado e presenca de cetonemia ou cetonuria. A gasometria e a dosagem de eletrolitos sao exames iniciais indispensaveis."
+      },
+      {
+        "trecho_id": "ms-cetoacidose-2023#t2",
+        "texto": "O pilar do tratamento e a reposicao volemica com cristaloide isotonico, iniciada antes da insulinoterapia. A insulinoterapia venosa continua comeca apos a reposicao inicial e apos confirmacao de potassio serico em faixa segura."
+      },
+      {
+        "trecho_id": "ms-cetoacidose-2023#t3",
+        "texto": "A monitorizacao horaria de glicemia capilar e a reavaliacao periodica de eletrolitos e do estado acidobasico orientam a transicao da insulina venosa para subcutanea, que deve ocorrer apenas apos a resolucao da acidose."
+      }
+    ]
+  },
+  {
+    "doc_id": "ms-avc-isquemico-2024",
+    "titulo": "Fluxo de atendimento ao acidente vascular cerebral isquemico agudo",
+    "fonte": "Ministerio da Saude (exemplo ilustrativo)",
+    "fonte_tipo": "orgao_oficial",
+    "url": "https://www.gov.br/saude/pt-br",
+    "publicado_em": "2024-11-02",
+    "nivel_evidencia": "A",
+    "temas": ["avc"],
+    "practice_changing": true,
+    "substitui": ["fluxo de AVC 2018"],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "ms-avc-isquemico-2024#t1",
+        "texto": "O tempo entre a chegada do paciente e a decisao terapeutica e o principal determinante de desfecho no acidente vascular cerebral isquemico agudo. A definicao do horario de inicio dos sintomas orienta toda a elegibilidade subsequente."
+      },
+      {
+        "trecho_id": "ms-avc-isquemico-2024#t2",
+        "texto": "A neuroimagem de urgencia e obrigatoria antes de qualquer terapia de reperfusao, com objetivo primario de excluir hemorragia intracraniana. A ampliacao da janela para trombectomia mecanica em casos selecionados representa nova recomendacao em relacao ao fluxo anterior."
+      },
+      {
+        "trecho_id": "ms-avc-isquemico-2024#t3",
+        "texto": "A elegibilidade para tromboli se depende da janela temporal, da ausencia de contraindicacoes e da avaliacao por profissional habilitado. A escala de deficit neurologico deve ser aplicada e registrada antes e depois da intervencao."
+      }
+    ]
+  },
+  {
+    "doc_id": "anvisa-metformina-2025",
+    "titulo": "Informacoes de bula consolidadas: metformina e antidiabeticos orais",
+    "fonte": "Bulario Eletronico ANVISA (exemplo ilustrativo)",
+    "fonte_tipo": "orgao_oficial",
+    "url": "https://consultas.anvisa.gov.br/#/bulario/",
+    "publicado_em": "2025-02-10",
+    "nivel_evidencia": "NA",
+    "temas": ["farmacologia"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "anvisa-metformina-2025#t1",
+        "texto": "A metformina e indicada no tratamento do diabetes mellitus tipo 2, isolada ou associada a outros antidiabeticos, como parte de um plano que inclui dieta e atividade fisica."
+      },
+      {
+        "trecho_id": "anvisa-metformina-2025#t2",
+        "texto": "O uso e contraindicado na presenca de disfuncao renal significativa, acidose metabolica aguda e condicoes associadas a hipoxia tecidual, pelo risco de acidose lactica. A funcao renal deve ser avaliada antes do inicio e periodicamente."
+      },
+      {
+        "trecho_id": "anvisa-metformina-2025#t3",
+        "texto": "A suspensao temporaria deve ser considerada em situacoes de risco de deterioracao da funcao renal, como exames com contraste iodado, desidratacao e procedimentos cirurgicos de grande porte."
+      }
+    ]
+  },
+  {
+    "doc_id": "conitec-imunizacao-adulto-2025",
+    "titulo": "Recomendacoes de imunizacao no adulto e no idoso",
+    "fonte": "CONITEC (exemplo ilustrativo)",
+    "fonte_tipo": "orgao_oficial",
+    "url": "https://www.gov.br/conitec/pt-br",
+    "publicado_em": "2025-04-18",
+    "nivel_evidencia": "B",
+    "temas": ["imunizacao"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "conitec-imunizacao-adulto-2025#t1",
+        "texto": "A avaliacao do estado vacinal deve integrar a consulta de rotina do adulto, com registro em caderneta e verificacao de esquemas incompletos."
+      },
+      {
+        "trecho_id": "conitec-imunizacao-adulto-2025#t2",
+        "texto": "Pacientes com condicoes cronicas e imunossupressao exigem analise individualizada do calendario vacinal, com atencao a vacinas de agente vivo atenuado, cujo uso pode estar contraindicado."
+      }
+    ]
+  },
+  {
+    "doc_id": "diretriz-dor-toracica-2024",
+    "titulo": "Abordagem da dor toracica aguda na emergencia",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/dor-toracica",
+    "publicado_em": "2024-09-30",
+    "nivel_evidencia": "A",
+    "temas": ["dor_toracica"],
+    "practice_changing": true,
+    "substitui": ["protocolo de dor toracica 2021"],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "diretriz-dor-toracica-2024#t1",
+        "texto": "O eletrocardiograma deve ser realizado e interpretado precocemente na chegada do paciente com dor toracica sugestiva de origem isquemica. O achado de supradesnivelamento do segmento ST muda imediatamente a conduta para a via de reperfusao."
+      },
+      {
+        "trecho_id": "diretriz-dor-toracica-2024#t2",
+        "texto": "A dosagem seriada de troponina de alta sensibilidade, associada a protocolos de descarte rapido, permite estratificar com seguranca pacientes de baixo risco e reduzir internacoes desnecessarias. O protocolo acelerado passa a ser recomendado como padrao nas unidades com disponibilidade do ensaio."
+      },
+      {
+        "trecho_id": "diretriz-dor-toracica-2024#t3",
+        "texto": "A estratificacao de risco deve combinar dados clinicos, eletrocardiograficos e laboratoriais em escore validado. Pacientes de risco intermediario ou alto nao devem ser liberados sem investigacao adicional."
+      }
+    ]
+  },
+  {
+    "doc_id": "diretriz-tev-2023",
+    "titulo": "Diagnostico e tratamento inicial do tromboembolismo venoso",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/tev",
+    "publicado_em": "2023-06-05",
+    "nivel_evidencia": "A",
+    "temas": ["tev"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "diretriz-tev-2023#t1",
+        "texto": "A investigacao de trombose venosa profunda comeca pela estimativa de probabilidade clinica por escore validado, que define a sequencia racional de exames e evita solicitacoes desnecessarias."
+      },
+      {
+        "trecho_id": "diretriz-tev-2023#t2",
+        "texto": "Em probabilidade clinica baixa, o D-dimero negativo tem alto valor preditivo negativo e permite afastar o diagnostico. Em probabilidade alta, o D-dimero nao deve ser usado para excluir a hipotese."
+      },
+      {
+        "trecho_id": "diretriz-tev-2023#t3",
+        "texto": "A ultrassonografia com doppler venoso de membros inferiores e o exame de escolha para confirmacao diagnostica. A anticoagulacao deve ser iniciada apos confirmacao, ou empiricamente quando a suspeita for alta e o exame nao estiver disponivel de imediato."
+      }
+    ]
+  },
+  {
+    "doc_id": "diretriz-asma-exacerbacao-2024",
+    "titulo": "Manejo da exacerbacao de asma no adulto",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/asma",
+    "publicado_em": "2024-03-22",
+    "nivel_evidencia": "A",
+    "temas": ["asma"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "diretriz-asma-exacerbacao-2024#t1",
+        "texto": "A gravidade da exacerbacao de asma e definida pela avaliacao clinica associada a oximetria de pulso e, quando disponivel, a medida de pico de fluxo expiratorio."
+      },
+      {
+        "trecho_id": "diretriz-asma-exacerbacao-2024#t2",
+        "texto": "O tratamento inicial combina broncodilatador de curta acao por via inalatoria e corticosteroide sistemico precoce, que reduz recaida e necessidade de internacao."
+      },
+      {
+        "trecho_id": "diretriz-asma-exacerbacao-2024#t3",
+        "texto": "A alta da emergencia exige reavaliacao objetiva da resposta, revisao da tecnica inalatoria, ajuste do tratamento de manutencao e agendamento de seguimento ambulatorial."
+      }
+    ]
+  },
+  {
+    "doc_id": "diretriz-hipertensao-2024",
+    "titulo": "Diagnostico e tratamento da hipertensao arterial no adulto",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/hipertensao",
+    "publicado_em": "2024-07-11",
+    "nivel_evidencia": "A",
+    "temas": ["hipertensao"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "diretriz-hipertensao-2024#t1",
+        "texto": "O diagnostico de hipertensao arterial nao deve se basear em uma unica medida de consultorio. A confirmacao por monitorizacao ambulatorial ou residencial da pressao arterial reduz erro de classificacao e identifica hipertensao do avental branco e mascarada."
+      },
+      {
+        "trecho_id": "diretriz-hipertensao-2024#t2",
+        "texto": "As mudancas de estilo de vida integram o tratamento em todos os estagios, com reducao de sodio, controle de peso, atividade fisica regular e moderacao no consumo de alcool."
+      },
+      {
+        "trecho_id": "diretriz-hipertensao-2024#t3",
+        "texto": "A escolha da classe anti-hipertensiva considera comorbidades, lesao de orgao alvo, tolerabilidade e custo. A combinacao de classes em dose otimizada costuma superar a monoterapia em dose maxima para atingir a meta pressorica."
+      }
+    ]
+  },
+  {
+    "doc_id": "diretriz-pneumonia-comunitaria-2023",
+    "titulo": "Pneumonia adquirida na comunidade: estratificacao e conduta inicial",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/pac",
+    "publicado_em": "2023-10-09",
+    "nivel_evidencia": "A",
+    "temas": ["pneumonia"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "diretriz-pneumonia-comunitaria-2023#t1",
+        "texto": "A decisao entre tratamento ambulatorial e internacao na pneumonia adquirida na comunidade deve ser apoiada por escore de gravidade validado, somado ao julgamento clinico e as condicoes sociais do paciente."
+      },
+      {
+        "trecho_id": "diretriz-pneumonia-comunitaria-2023#t2",
+        "texto": "A radiografia de torax e o exame de imagem inicial para confirmacao diagnostica. A ausencia de infiltrado em paciente com quadro clinico compativel nao descarta o diagnostico nas primeiras horas."
+      },
+      {
+        "trecho_id": "diretriz-pneumonia-comunitaria-2023#t3",
+        "texto": "O antimicrobiano empirico deve considerar o perfil epidemiologico local, as comorbidades e o uso recente de antibioticos. O inicio precoce reduz mortalidade em casos graves."
+      }
+    ]
+  },
+  {
+    "doc_id": "pubmed-oa-delirium-2025",
+    "titulo": "Prevencao nao farmacologica de delirium em pacientes internados",
+    "fonte": "PubMed Open Access (exemplo ilustrativo)",
+    "fonte_tipo": "literatura_revisada",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "publicado_em": "2025-01-28",
+    "nivel_evidencia": "B",
+    "temas": ["delirium"],
+    "practice_changing": true,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "pubmed-oa-delirium-2025#t1",
+        "texto": "Intervencoes multicomponentes nao farmacologicas, incluindo reorientacao, mobilizacao precoce, higiene do sono e correcao de deficits sensoriais, reduzem a incidencia de delirium em pacientes internados de maior risco. A mobilizacao precoce passa a ser recomendada como componente essencial do pacote."
+      },
+      {
+        "trecho_id": "pubmed-oa-delirium-2025#t2",
+        "texto": "O rastreamento sistematico com instrumento validado aumenta a deteccao de delirium hipoativo, que frequentemente passa sem diagnostico e associa-se a pior desfecho funcional."
+      }
+    ]
+  },
+  {
+    "doc_id": "pubmed-oa-antibiotico-duracao-2024",
+    "titulo": "Duracao de antibioticoterapia: evidencia acumulada para cursos mais curtos",
+    "fonte": "PubMed Open Access (exemplo ilustrativo)",
+    "fonte_tipo": "literatura_revisada",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "publicado_em": "2024-12-03",
+    "nivel_evidencia": "B",
+    "temas": ["antibioticoterapia"],
+    "practice_changing": true,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "pubmed-oa-antibiotico-duracao-2024#t1",
+        "texto": "Em diversas sindromes infecciosas nao complicadas, cursos mais curtos de antibiotico mostraram eficacia comparavel a cursos prolongados, com menor exposicao e menor pressao seletiva. A evidencia de nao inferioridade sustenta mudanca de conduta na duracao padrao."
+      },
+      {
+        "trecho_id": "pubmed-oa-antibiotico-duracao-2024#t2",
+        "texto": "A decisao de encurtar a duracao da antibioticoterapia depende da sindrome, do controle do foco e da resposta clinica documentada. A extrapolacao automatica para pacientes imunossuprimidos ou com foco nao controlado nao se sustenta na evidencia disponivel."
+      }
+    ]
+  },
+  {
+    "doc_id": "fonte-nao-validada-rinite-2025",
+    "titulo": "Compilado de condutas em rinite alergica publicado sem revisao editorial",
+    "fonte": "Blog clinico sem revisao (exemplo ilustrativo)",
+    "fonte_tipo": "nao_validada",
+    "url": "https://example.net/blog/condutas",
+    "publicado_em": "2025-05-15",
+    "nivel_evidencia": "D",
+    "temas": ["rinite"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "fonte-nao-validada-rinite-2025#t1",
+        "texto": "Este documento existe para exercitar o filtro de proveniencia do servico. Trata de rinite alergica sazonal e persistente, tema que nao aparece em nenhuma fonte oficial ou diretriz desta base."
+      },
+      {
+        "trecho_id": "fonte-nao-validada-rinite-2025#t2",
+        "texto": "Com EXIGIR_FONTE_OFICIAL ligado, nenhum trecho deste documento pode sustentar um alerta de defasagem, mesmo que a similaridade textual com o material didatico seja alta. O resultado esperado e abstencao por fonte nao validada."
+      }
+    ]
+  }
+]

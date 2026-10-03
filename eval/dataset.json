@@ -1,0 +1,289 @@
+{
+  "versao": "1.0",
+  "descricao": "Conjunto de avaliacao do Curriculo Vivo, calibrado contra o corpus de data/. Quatro classes: defasado (deve apontar, com severidade e evidencia esperadas), atualizado (nao deve apontar - teste de falso alarme), sem_evidencia (deve se abster), inelegivel (deve se abster, por motivo especifico).",
+  "corpus_esperado": {
+    "evidencias": 13,
+    "objetos": 31
+  },
+  "itens": [
+    {
+      "id": "c001",
+      "objeto_id": "med-clin-sepse-aula07",
+      "classe": "defasado",
+      "evidencia_esperada": "ms-sepse-2024",
+      "severidade_esperada": "alta",
+      "motivo_esperado": null,
+      "nota": "practice-changing com gap de 53 meses"
+    },
+    {
+      "id": "c002",
+      "objeto_id": "med-neuro-avc-aula12",
+      "classe": "defasado",
+      "evidencia_esperada": "ms-avc-isquemico-2024",
+      "severidade_esperada": "alta",
+      "motivo_esperado": null,
+      "nota": "practice-changing com gap de 71 meses"
+    },
+    {
+      "id": "c003",
+      "objeto_id": "med-card-dor-toracica-aula05",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-dor-toracica-2024",
+      "severidade_esperada": "alta",
+      "motivo_esperado": null,
+      "nota": "practice-changing com gap de 33 meses"
+    },
+    {
+      "id": "c004",
+      "objeto_id": "med-geri-delirium-aula02",
+      "classe": "defasado",
+      "evidencia_esperada": "pubmed-oa-delirium-2025",
+      "severidade_esperada": "alta",
+      "motivo_esperado": null,
+      "nota": "practice-changing com gap de 49 meses"
+    },
+    {
+      "id": "c005",
+      "objeto_id": "med-infecto-antibiotico-aula09",
+      "classe": "defasado",
+      "evidencia_esperada": "pubmed-oa-antibiotico-duracao-2024",
+      "severidade_esperada": "media",
+      "motivo_esperado": null,
+      "nota": "FRONTEIRA: practice-changing com gap de exatamente 12 meses"
+    },
+    {
+      "id": "c006",
+      "objeto_id": "med-clin-cetoacidose-aula04",
+      "classe": "defasado",
+      "evidencia_esperada": "ms-cetoacidose-2023",
+      "severidade_esperada": "media",
+      "motivo_esperado": null,
+      "nota": "sem practice-changing, gap de 44 meses (acima de 36)"
+    },
+    {
+      "id": "c007",
+      "objeto_id": "med-pneumo-pac-aula10",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-pneumonia-comunitaria-2023",
+      "severidade_esperada": "media",
+      "motivo_esperado": null,
+      "nota": "sem practice-changing, gap de 46 meses"
+    },
+    {
+      "id": "c008",
+      "objeto_id": "med-fam-imunizacao-aula01",
+      "classe": "defasado",
+      "evidencia_esperada": "conitec-imunizacao-adulto-2025",
+      "severidade_esperada": "media",
+      "motivo_esperado": null,
+      "nota": "sem practice-changing, gap de 40 meses"
+    },
+    {
+      "id": "c009",
+      "objeto_id": "med-pneumo-asma-aula06",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-asma-exacerbacao-2024",
+      "severidade_esperada": "baixa",
+      "motivo_esperado": null,
+      "nota": "sem practice-changing, gap de 15 meses"
+    },
+    {
+      "id": "c010",
+      "objeto_id": "med-angio-tev-aula08",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-tev-2023",
+      "severidade_esperada": "baixa",
+      "motivo_esperado": null,
+      "nota": "sem practice-changing, gap de 18 meses"
+    },
+    {
+      "id": "c011",
+      "objeto_id": "med-endo-metformina-aula11",
+      "classe": "defasado",
+      "evidencia_esperada": "anvisa-metformina-2025",
+      "severidade_esperada": "baixa",
+      "motivo_esperado": null,
+      "nota": "sem practice-changing, gap de 26 meses"
+    },
+    {
+      "id": "c012",
+      "objeto_id": "med-card-dor-toracica-sim01",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-dor-toracica-2024",
+      "severidade_esperada": "baixa",
+      "motivo_esperado": null,
+      "nota": "FRONTEIRA: practice-changing com gap de 9 meses (abaixo de 12)"
+    },
+    {
+      "id": "c013",
+      "objeto_id": "med-card-hipertensao-aula03",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": "FRONTEIRA: evidencia de 2024-07-11 e referencia de 2024 - nao e posterior a 31/12/2024"
+    },
+    {
+      "id": "c014",
+      "objeto_id": "med-clin-sepse-aula07r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c015",
+      "objeto_id": "med-neuro-avc-aula12r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c016",
+      "objeto_id": "med-endo-metformina-aula11r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c017",
+      "objeto_id": "med-geri-delirium-aula02r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c018",
+      "objeto_id": "med-pneumo-asma-aula06r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c019",
+      "objeto_id": "med-angio-tev-aula08r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c020",
+      "objeto_id": "med-fam-imunizacao-aula01r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c021",
+      "objeto_id": "med-pneumo-pac-aula10r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c022",
+      "objeto_id": "med-infecto-antibiotico-aula09r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c023",
+      "objeto_id": "med-oftalmo-glaucoma-aula01",
+      "classe": "sem_evidencia",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "evidencia_insuficiente",
+      "nota": "tema oftalmologia nao existe na base curada"
+    },
+    {
+      "id": "c024",
+      "objeto_id": "med-gineco-hipertensiva-aula02",
+      "classe": "sem_evidencia",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "evidencia_insuficiente",
+      "nota": "tema obstetricia nao existe na base curada"
+    },
+    {
+      "id": "c025",
+      "objeto_id": "med-cirurgia-hernia-aula03",
+      "classe": "sem_evidencia",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "evidencia_insuficiente",
+      "nota": "tema cirurgia nao existe na base curada"
+    },
+    {
+      "id": "c026",
+      "objeto_id": "med-hemato-falciforme-aula04",
+      "classe": "sem_evidencia",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "evidencia_insuficiente",
+      "nota": "tema hematologia nao existe na base curada"
+    },
+    {
+      "id": "c027",
+      "objeto_id": "med-orl-rinite-aula05",
+      "classe": "sem_evidencia",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "fonte_nao_validada",
+      "nota": "CASO-CHAVE: existe evidencia sobre rinite, mas so em fonte nao validada. Material e de 2019 e a 'evidencia' e de 2025, entao sem o filtro de proveniencia este caso viraria um alerta."
+    },
+    {
+      "id": "c028",
+      "objeto_id": "med-sem-referencia-aula01",
+      "classe": "inelegivel",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "material_sem_referencia",
+      "nota": "sem bibliografia registrada"
+    },
+    {
+      "id": "c029",
+      "objeto_id": "med-referencia-sem-ano-aula02",
+      "classe": "inelegivel",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "material_sem_referencia",
+      "nota": "bibliografia presente mas sem ano"
+    },
+    {
+      "id": "c030",
+      "objeto_id": "med-escopo-questao-aula03",
+      "classe": "inelegivel",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "fora_de_escopo",
+      "nota": "enunciado pede dose individualizada e menciona paciente concreto"
+    },
+    {
+      "id": "c031",
+      "objeto_id": "med-objeto-invalido-aula04",
+      "classe": "inelegivel",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "objeto_invalido",
+      "nota": "sem conteudo extraido"
+    }
+  ]
+}

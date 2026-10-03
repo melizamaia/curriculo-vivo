@@ -1,0 +1,957 @@
+[
+  {
+    "objeto_id": "med-clin-sepse-aula07",
+    "titulo": "Sepse e choque septico: reconhecimento e manejo inicial",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "sepse"
+    ],
+    "atualizado_em": "2019-08-01",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre sepse (2017)",
+        "fonte": "Referencia sintetica",
+        "ano": 2017,
+        "url": "https://example.org/referencia"
+      },
+      {
+        "titulo": "Material de referencia ilustrativo sobre sepse (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-clin-sepse-aula07#t1",
+        "texto": "A aula aborda o reconhecimento precoce da sepse a partir de infeccao presumida com sinais de disfuncao organica, discute o rastreamento na porta de entrada, a coleta de lactato arterial e de hemoculturas, a reposicao volemica com cristaloide e a identificacao de choque septico."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-neuro-avc-aula12",
+    "titulo": "AVC isquemico agudo: fluxo de atendimento",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Neurologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "avc"
+    ],
+    "atualizado_em": "2018-11-15",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre avc (2018)",
+        "fonte": "Referencia sintetica",
+        "ano": 2018,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-neuro-avc-aula12#t1",
+        "texto": "A aula trata do fluxo de atendimento ao acidente vascular cerebral isquemico agudo, com definicao do horario de inicio dos sintomas, neuroimagem de urgencia para excluir hemorragia, elegibilidade para terapia de reperfusao e aplicacao da escala de deficit neurologico."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-card-dor-toracica-aula05",
+    "titulo": "Dor toracica aguda na emergencia",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Cardiologia",
+    "periodo": "6",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "dor_toracica"
+    ],
+    "atualizado_em": "2021-03-10",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre dor_toracica (2021)",
+        "fonte": "Referencia sintetica",
+        "ano": 2021,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-card-dor-toracica-aula05#t1",
+        "texto": "A aula aborda a dor toracica aguda na emergencia, com eletrocardiograma precoce, reconhecimento de supradesnivelamento do segmento ST, dosagem seriada de troponina de alta sensibilidade e estratificacao de risco por escore validado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-geri-delirium-aula02",
+    "titulo": "Delirium no paciente internado: prevencao e rastreio",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Geriatria",
+    "periodo": "9",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "delirium"
+    ],
+    "atualizado_em": "2020-05-20",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre delirium (2020)",
+        "fonte": "Referencia sintetica",
+        "ano": 2020,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-geri-delirium-aula02#t1",
+        "texto": "A aula apresenta a prevencao de delirium em pacientes internados por intervencoes multicomponentes nao farmacologicas, com reorientacao, mobilizacao precoce, higiene do sono, correcao de deficits sensoriais e rastreamento de delirium hipoativo por instrumento validado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-infecto-antibiotico-aula09",
+    "titulo": "Duracao de antibioticoterapia e uso racional",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Infectologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "antibioticoterapia"
+    ],
+    "atualizado_em": "2023-02-01",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre antibioticoterapia (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-infecto-antibiotico-aula09#t1",
+        "texto": "A aula discute a duracao da antibioticoterapia em sindromes infecciosas nao complicadas, comparando cursos curtos e prolongados, a pressao seletiva associada a exposicao e as ressalvas para pacientes imunossuprimidos ou com foco nao controlado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-clin-cetoacidose-aula04",
+    "titulo": "Cetoacidose diabetica no adulto",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "cetoacidose"
+    ],
+    "atualizado_em": "2019-09-12",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre cetoacidose (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-clin-cetoacidose-aula04#t1",
+        "texto": "A aula percorre o diagnostico de cetoacidose diabetica com hiperglicemia, acidose metabolica e anion gap aumentado, a reposicao volemica inicial, a insulinoterapia venosa continua, a reposicao de potassio e a monitorizacao de glicemia capilar."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-pneumo-pac-aula10",
+    "titulo": "Pneumonia adquirida na comunidade",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Pneumologia",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "pneumonia"
+    ],
+    "atualizado_em": "2019-04-04",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre pneumonia (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-pneumo-pac-aula10#t1",
+        "texto": "A aula aborda a pneumonia adquirida na comunidade, com escore de gravidade validado para decidir entre tratamento ambulatorial e internacao, radiografia de torax como imagem inicial e escolha do antimicrobiano empirico conforme perfil epidemiologico local."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-fam-imunizacao-aula01",
+    "titulo": "Imunizacao do adulto na atencao primaria",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Medicina de Familia",
+    "periodo": "5",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "imunizacao"
+    ],
+    "atualizado_em": "2021-07-19",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre imunizacao (2021)",
+        "fonte": "Referencia sintetica",
+        "ano": 2021,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-fam-imunizacao-aula01#t1",
+        "texto": "A aula apresenta a avaliacao do estado vacinal do adulto na consulta de rotina, o registro em caderneta, a verificacao de esquemas incompletos e a analise individualizada do calendario vacinal em imunossupressao, com atencao a vacinas de agente vivo atenuado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-pneumo-asma-aula06",
+    "titulo": "Exacerbacao de asma no adulto",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Pneumologia",
+    "periodo": "6",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "asma"
+    ],
+    "atualizado_em": "2022-08-30",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre asma (2022)",
+        "fonte": "Referencia sintetica",
+        "ano": 2022,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-pneumo-asma-aula06#t1",
+        "texto": "A aula trata da exacerbacao de asma no adulto, com avaliacao de gravidade por oximetria de pulso e pico de fluxo expiratorio, broncodilatador de curta acao inalatorio, corticosteroide sistemico precoce e criterios de alta da emergencia."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-angio-tev-aula08",
+    "titulo": "Tromboembolismo venoso: diagnostico e tratamento inicial",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Angiologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "tev"
+    ],
+    "atualizado_em": "2021-10-05",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre tev (2021)",
+        "fonte": "Referencia sintetica",
+        "ano": 2021,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-angio-tev-aula08#t1",
+        "texto": "A aula percorre a investigacao de trombose venosa profunda pela estimativa de probabilidade clinica, o uso e as limitacoes do D-dimero, a ultrassonografia com doppler venoso de membros inferiores e o inicio da anticoagulacao."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-endo-metformina-aula11",
+    "titulo": "Antidiabeticos orais: metformina",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Endocrinologia",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "farmacologia"
+    ],
+    "atualizado_em": "2022-06-14",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre farmacologia (2022)",
+        "fonte": "Referencia sintetica",
+        "ano": 2022,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-endo-metformina-aula11#t1",
+        "texto": "A aula discute antidiabeticos orais, com indicacao da metformina no diabetes mellitus tipo 2, contraindicacao na disfuncao renal pelo risco de acidose lactica, avaliacao periodica da funcao renal e suspensao temporaria antes de exame com contraste iodado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-card-dor-toracica-sim01",
+    "titulo": "Simulado: dor toracica na emergencia",
+    "tipo": "questao",
+    "curso": "Medicina",
+    "disciplina": "Cardiologia",
+    "periodo": "6",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "dor_toracica"
+    ],
+    "atualizado_em": "2023-11-22",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre dor_toracica (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-card-dor-toracica-sim01#t1",
+        "texto": "A aula aborda a dor toracica aguda na emergencia, com eletrocardiograma precoce, reconhecimento de supradesnivelamento do segmento ST, dosagem seriada de troponina de alta sensibilidade e estratificacao de risco por escore validado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-card-hipertensao-aula03",
+    "titulo": "Hipertensao arterial: diagnostico e tratamento",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Cardiologia",
+    "periodo": "6",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "hipertensao"
+    ],
+    "atualizado_em": "2024-08-01",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre hipertensao (2024)",
+        "fonte": "Referencia sintetica",
+        "ano": 2024,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-card-hipertensao-aula03#t1",
+        "texto": "A aula discute o diagnostico de hipertensao arterial sem depender de medida unica de consultorio, a confirmacao por monitorizacao ambulatorial ou residencial da pressao arterial, as mudancas de estilo de vida e a escolha da classe anti-hipertensiva."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-clin-sepse-aula07r",
+    "titulo": "Sepse e choque septico (revisao 2024)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "sepse"
+    ],
+    "atualizado_em": "2024-09-10",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre sepse (2024)",
+        "fonte": "Referencia sintetica",
+        "ano": 2024,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-clin-sepse-aula07r#t1",
+        "texto": "A aula aborda o reconhecimento precoce da sepse a partir de infeccao presumida com sinais de disfuncao organica, discute o rastreamento na porta de entrada, a coleta de lactato arterial e de hemoculturas, a reposicao volemica com cristaloide e a identificacao de choque septico."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-neuro-avc-aula12r",
+    "titulo": "AVC isquemico agudo (revisao 2025)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Neurologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "avc"
+    ],
+    "atualizado_em": "2025-02-18",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre avc (2025)",
+        "fonte": "Referencia sintetica",
+        "ano": 2025,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-neuro-avc-aula12r#t1",
+        "texto": "A aula trata do fluxo de atendimento ao acidente vascular cerebral isquemico agudo, com definicao do horario de inicio dos sintomas, neuroimagem de urgencia para excluir hemorragia, elegibilidade para terapia de reperfusao e aplicacao da escala de deficit neurologico."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-endo-metformina-aula11r",
+    "titulo": "Antidiabeticos orais (revisao 2025)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Endocrinologia",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "farmacologia"
+    ],
+    "atualizado_em": "2025-05-06",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre farmacologia (2025)",
+        "fonte": "Referencia sintetica",
+        "ano": 2025,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-endo-metformina-aula11r#t1",
+        "texto": "A aula discute antidiabeticos orais, com indicacao da metformina no diabetes mellitus tipo 2, contraindicacao na disfuncao renal pelo risco de acidose lactica, avaliacao periodica da funcao renal e suspensao temporaria antes de exame com contraste iodado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-geri-delirium-aula02r",
+    "titulo": "Delirium no paciente internado (revisao 2025)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Geriatria",
+    "periodo": "9",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "delirium"
+    ],
+    "atualizado_em": "2025-03-27",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre delirium (2025)",
+        "fonte": "Referencia sintetica",
+        "ano": 2025,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-geri-delirium-aula02r#t1",
+        "texto": "A aula apresenta a prevencao de delirium em pacientes internados por intervencoes multicomponentes nao farmacologicas, com reorientacao, mobilizacao precoce, higiene do sono, correcao de deficits sensoriais e rastreamento de delirium hipoativo por instrumento validado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-pneumo-asma-aula06r",
+    "titulo": "Exacerbacao de asma (revisao 2024)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Pneumologia",
+    "periodo": "6",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "asma"
+    ],
+    "atualizado_em": "2024-06-11",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre asma (2024)",
+        "fonte": "Referencia sintetica",
+        "ano": 2024,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-pneumo-asma-aula06r#t1",
+        "texto": "A aula trata da exacerbacao de asma no adulto, com avaliacao de gravidade por oximetria de pulso e pico de fluxo expiratorio, broncodilatador de curta acao inalatorio, corticosteroide sistemico precoce e criterios de alta da emergencia."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-angio-tev-aula08r",
+    "titulo": "Tromboembolismo venoso (revisao 2023)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Angiologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "tev"
+    ],
+    "atualizado_em": "2023-12-01",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre tev (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-angio-tev-aula08r#t1",
+        "texto": "A aula percorre a investigacao de trombose venosa profunda pela estimativa de probabilidade clinica, o uso e as limitacoes do D-dimero, a ultrassonografia com doppler venoso de membros inferiores e o inicio da anticoagulacao."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-fam-imunizacao-aula01r",
+    "titulo": "Imunizacao do adulto (revisao 2025)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Medicina de Familia",
+    "periodo": "5",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "imunizacao"
+    ],
+    "atualizado_em": "2025-06-23",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre imunizacao (2025)",
+        "fonte": "Referencia sintetica",
+        "ano": 2025,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-fam-imunizacao-aula01r#t1",
+        "texto": "A aula apresenta a avaliacao do estado vacinal do adulto na consulta de rotina, o registro em caderneta, a verificacao de esquemas incompletos e a analise individualizada do calendario vacinal em imunossupressao, com atencao a vacinas de agente vivo atenuado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-pneumo-pac-aula10r",
+    "titulo": "Pneumonia adquirida na comunidade (revisao 2024)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Pneumologia",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "pneumonia"
+    ],
+    "atualizado_em": "2024-01-30",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre pneumonia (2024)",
+        "fonte": "Referencia sintetica",
+        "ano": 2024,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-pneumo-pac-aula10r#t1",
+        "texto": "A aula aborda a pneumonia adquirida na comunidade, com escore de gravidade validado para decidir entre tratamento ambulatorial e internacao, radiografia de torax como imagem inicial e escolha do antimicrobiano empirico conforme perfil epidemiologico local."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-infecto-antibiotico-aula09r",
+    "titulo": "Duracao de antibioticoterapia (revisao 2025)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Infectologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "antibioticoterapia"
+    ],
+    "atualizado_em": "2025-04-02",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre antibioticoterapia (2025)",
+        "fonte": "Referencia sintetica",
+        "ano": 2025,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-infecto-antibiotico-aula09r#t1",
+        "texto": "A aula discute a duracao da antibioticoterapia em sindromes infecciosas nao complicadas, comparando cursos curtos e prolongados, a pressao seletiva associada a exposicao e as ressalvas para pacientes imunossuprimidos ou com foco nao controlado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-oftalmo-glaucoma-aula01",
+    "titulo": "Glaucoma agudo de angulo fechado",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Oftalmologia",
+    "periodo": "9",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "oftalmologia"
+    ],
+    "atualizado_em": "2019-02-11",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre oftalmologia (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-oftalmo-glaucoma-aula01#t1",
+        "texto": "A aula trata do glaucoma agudo de angulo fechado, com reconhecimento do quadro doloroso, avaliacao da pressao intraocular e encaminhamento para avaliacao especializada."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-gineco-hipertensiva-aula02",
+    "titulo": "Sindromes hipertensivas da gestacao",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Ginecologia e Obstetricia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "obstetricia"
+    ],
+    "atualizado_em": "2018-07-09",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre obstetricia (2018)",
+        "fonte": "Referencia sintetica",
+        "ano": 2018,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-gineco-hipertensiva-aula02#t1",
+        "texto": "A aula aborda os criterios de gravidade das sindromes hipertensivas da gestacao no terceiro trimestre e a vigilancia materno-fetal."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-cirurgia-hernia-aula03",
+    "titulo": "Hernia inguinal encarcerada",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Cirurgia Geral",
+    "periodo": "9",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "cirurgia"
+    ],
+    "atualizado_em": "2017-05-16",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre cirurgia (2017)",
+        "fonte": "Referencia sintetica",
+        "ano": 2017,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-cirurgia-hernia-aula03#t1",
+        "texto": "A aula apresenta a abordagem da hernia inguinal encarcerada, com reconhecimento clinico, avaliacao de sofrimento de alca e indicacao cirurgica."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-hemato-falciforme-aula04",
+    "titulo": "Crise vaso-oclusiva na doenca falciforme",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Hematologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "hematologia"
+    ],
+    "atualizado_em": "2019-10-21",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre hematologia (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-hemato-falciforme-aula04#t1",
+        "texto": "A aula discute a crise vaso-oclusiva na doenca falciforme, com avaliacao da dor, hidratacao, oxigenacao e investigacao de complicacoes."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-orl-rinite-aula05",
+    "titulo": "Rinite alergica: diagnostico e manejo",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Otorrinolaringologia",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "rinite"
+    ],
+    "atualizado_em": "2019-03-08",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre rinite (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-orl-rinite-aula05#t1",
+        "texto": "A aula trata da rinite alergica sazonal e persistente, com identificacao de desencadeantes, controle ambiental e abordagem farmacologica de manutencao."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-sem-referencia-aula01",
+    "titulo": "Sepse: aula sem bibliografia registrada",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "sepse"
+    ],
+    "atualizado_em": "2019-08-01",
+    "exemplo_ilustrativo": true,
+    "referencias": [],
+    "trechos": [
+      {
+        "trecho_id": "med-sem-referencia-aula01#t1",
+        "texto": "A aula aborda o reconhecimento precoce da sepse a partir de infeccao presumida com sinais de disfuncao organica, discute o rastreamento na porta de entrada, a coleta de lactato arterial e de hemoculturas, a reposicao volemica com cristaloide e a identificacao de choque septico."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-referencia-sem-ano-aula02",
+    "titulo": "AVC isquemico: aula com bibliografia sem ano",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Neurologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "avc"
+    ],
+    "atualizado_em": "2018-11-15",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Capitulo de livro sem ano informado",
+        "fonte": "Referencia sintetica",
+        "ano": null,
+        "url": null
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-referencia-sem-ano-aula02#t1",
+        "texto": "A aula trata do fluxo de atendimento ao acidente vascular cerebral isquemico agudo, com definicao do horario de inicio dos sintomas, neuroimagem de urgencia para excluir hemorragia, elegibilidade para terapia de reperfusao e aplicacao da escala de deficit neurologico."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-escopo-questao-aula03",
+    "titulo": "Simulado com enunciado fora de escopo",
+    "tipo": "questao",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "sepse"
+    ],
+    "atualizado_em": "2019-08-01",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre sepse (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-escopo-questao-aula03#t1",
+        "texto": "Qual a dose que devo prescrever para o meu paciente de 70 kg no choque septico? Informe a posologia exata."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-objeto-invalido-aula04",
+    "titulo": "Objeto digital sem conteudo extraido",
+    "tipo": "objeto_digital",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "sepse"
+    ],
+    "atualizado_em": "2019-08-01",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre sepse (2019)",
+        "fonte": "Referencia sintetica",
+        "ano": 2019,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": []
+  }
+]
