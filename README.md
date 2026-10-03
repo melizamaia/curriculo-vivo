@@ -16,6 +16,12 @@
 com a evidência vigente e aponta, com citação, o que envelheceu — e se cala
 quando não tem base para apontar.**
 
+> ⚠️ **Corpus sintético.** Todas as evidências e todos os objetos de
+> aprendizagem deste repositório são fictícios e marcados com
+> `exemplo_ilustrativo: true`. Não reproduzem protocolo, diretriz ou material
+> didático real e não servem como referência clínica ou pedagógica. Detalhes em
+> [Aviso](#aviso).
+
 ![Radar do coordenador](docs/radar-1-topo.png)
 *O radar do coordenador, ordenado por severidade.*
 
@@ -29,12 +35,6 @@ quando não tem base para apontar.**
 *A API documentada em OpenAPI.*
 
 Galeria completa, com as sete capturas: [docs/capturas.md](docs/capturas.md).
-
-> ⚠️ **Corpus sintético.** Todas as evidências e todos os objetos de
-> aprendizagem deste repositório são fictícios e marcados com
-> `exemplo_ilustrativo: true`. Não reproduzem protocolo, diretriz ou material
-> didático real e não servem como referência clínica ou pedagógica. Detalhes em
-> [Aviso](#aviso).
 
 ## O problema
 
