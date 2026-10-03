@@ -9,8 +9,6 @@ on:
 jobs:
   testes-e-eval:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # push do painel no branch gh-pages
     steps:
       - uses: actions/checkout@v7
 
@@ -32,7 +30,7 @@ jobs:
 
       # always(): o painel é gerado antes da checagem das metas, então
       # ele também fica disponível quando o eval reprova o build.
-      - name: Publica o painel
+      - name: Sobe o painel como artefato
         if: always()
         uses: actions/upload-artifact@v7
         with:
@@ -40,11 +38,22 @@ jobs:
           path: dashboard/index.html
           if-no-files-found: warn
 
-      # Painel no GitHub Pages (branch gh-pages), só em push na main e com
-      # o eval aprovado: o link público mostra sempre o último build verde.
-      - name: Publica o painel no GitHub Pages
-        if: github.event_name == 'push'
-        working-directory: dashboard
+  # Só em push na main e só com testes e eval aprovados (needs): o link
+  # público mostra sempre o painel do último build verde.
+  pages:
+    needs: testes-e-eval
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # push do painel no branch gh-pages
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dashboard
+          path: site
+
+      - name: Publica o painel no branch gh-pages
+        working-directory: site
         run: |
           touch .nojekyll
           git init -q -b gh-pages
