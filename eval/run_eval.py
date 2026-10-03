@@ -423,7 +423,7 @@ def gerar_painel(
 
 def _fmt(valor: Any, metrica: str) -> str:
     if valor is None:
-        return "—"
+        return "n/d"
     if metrica.startswith("taxa_"):
         return f"{valor:.0%}"
     return f"{valor:g}"

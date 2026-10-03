@@ -1,7 +1,7 @@
-# PRD — Currículo Vivo
+# PRD: Currículo Vivo
 
 **Radar de defasagem curricular para educação médica: cruza o material didático
-com a evidência vigente e aponta, com citação, o que envelheceu — e se cala
+com a evidência vigente e aponta, com citação, o que envelheceu, e se cala
 quando não tem base para apontar.**
 
 | Campo | Valor |
@@ -41,7 +41,7 @@ ementa), o serviço:
 1. identifica o tema,
 2. busca a evidência vigente sobre o mesmo tema numa base curada,
 3. compara a data da referência usada pelo material com a data da evidência,
-4. e **emite um alerta de defasagem com citação obrigatória** — ou se abstém.
+4. e **emite um alerta de defasagem com citação obrigatória**, ou se abstém.
 
 ### Hipótese do produto
 
@@ -256,7 +256,7 @@ A linha do `literatura_revisada` é a decisão mais importante desta seção.
 aula dele está desatualizada.** Metade dos achados primários não se replica, e o
 que muda currículo é diretriz e protocolo, não o último paper. Aceitar
 literatura isolada como gatilho construiria exatamente a máquina de gritar lobo
-que este produto existe para evitar — e o custo seria pago na confiança do
+que este produto existe para evitar, e o custo seria pago na confiança do
 coordenador, que é o ativo mais caro do sistema.
 
 Evolução natural fora do MVP: literatura revisada **corrobora** uma diretriz
@@ -275,7 +275,7 @@ ou, para análise de material não catalogado:
 { "objeto": { "...": "ObjetoAprendizagem completo" } }
 ```
 
-### 5.4 Resposta — defasagem encontrada
+### 5.4 Resposta: defasagem encontrada
 
 ```json
 {
@@ -317,7 +317,7 @@ ou, para análise de material não catalogado:
 }
 ```
 
-### 5.5 Resposta — sem achado ou abstenção
+### 5.5 Resposta: sem achado ou abstenção
 
 ```json
 {
@@ -349,7 +349,7 @@ ou, para análise de material não catalogado:
 `alerta_descartado`.
 
 Os cinco primeiros são abstenções **sobre o material**: o serviço se absteve
-porque não tinha base. O sexto é diferente — `alerta_descartado` significa que
+porque não tinha base. O sexto é diferente: `alerta_descartado` significa que
 havia base, um alerta foi gerado e ele **não passou na própria validação do
 serviço** (barreira 3). Isso é regressão no gerador de justificativa, não
 funcionamento normal, e por isso tem valor próprio: conflatá-lo com
@@ -366,8 +366,8 @@ O marcador é **identificador estável, não posição sequencial**: se a barrei
 descartar a defasagem `[2]`, as que sobram continuam `[1]` e `[3]`, com um
 buraco. Isso é deliberado. Renumerar exigiria reescrever o texto da
 justificativa, que já contém o literal do marcador, e reescrever texto para
-corrigir numeração é fonte de bug. A invariante que importa — todo marcador
-citado existe entre as evidências da resposta — continua valendo com buraco.
+corrigir numeração é fonte de bug. A invariante que importa (todo marcador
+citado existe entre as evidências da resposta) continua valendo com buraco.
 
 Dois descartes adicionais da barreira 3, mais rígidos que a leitura literal das
 invariantes e igualmente obrigatórios: justificativa que cita **apenas** `[0]`
@@ -384,7 +384,7 @@ citação ambígua para quem lê a resposta.
 3. Para toda defasagem, `evidencia.publicado_em` é posterior à referência do
    material. Um alerta que não satisfaz isso é descartado pela barreira 3.
 4. Se **todas** as defasagens de um objeto forem descartadas pela barreira 3, o
-   status cai para `abstido` com motivo `alerta_descartado` — nunca para
+   status cai para `abstido` com motivo `alerta_descartado`, nunca para
    `sem_achado`, e nunca com um motivo que descreva o material. Fingir que não
    houve nada esconderia uma regressão no gerador de justificativa.
 
@@ -432,8 +432,8 @@ Filtros opcionais: `?curso=`, `?disciplina=`, `?severidade=alta`, `?limite=`.
 depois, contra qual versão da base de evidência um alerta foi emitido.
 
 `origem` ∈ `analise` | `radar`: toda análise é auditada, inclusive cada objeto
-de uma varredura do radar — defasagem na fila sem registro não é
-reconstruível (O6) —, e `/v1/metricas` filtra por `origem=analise` por padrão
+de uma varredura do radar (defasagem na fila sem registro não é
+reconstruível, O6), e `/v1/metricas` filtra por `origem=analise` por padrão
 (`?incluir_radar=true` soma o radar) para o lote não distorcer o p95.
 
 ### 5.8 Eventos Kafka
@@ -496,7 +496,7 @@ mudar severidade é mudança de produto, não de implementação.
 
 ### Barreiras de guardrail
 
-**Barreira 1 — escopo e elegibilidade (antes de recuperar)**
+**Barreira 1: escopo e elegibilidade (antes de recuperar)**
 
 | Condição | Motivo |
 | --- | --- |
@@ -506,13 +506,13 @@ mudar severidade é mudança de produto, não de implementação.
 | Texto do objeto pede emissão de documento médico | `fora_de_escopo` |
 | Texto menciona paciente ou aluno identificado | `fora_de_escopo` |
 
-**Barreira 2 — confiança e proveniência (após recuperar)**
+**Barreira 2: confiança e proveniência (após recuperar)**
 
 - Sem candidato, ou `max(score) < LIMIAR_CONFIANCA` → `evidencia_insuficiente`.
 - Nenhum candidato acima do limiar de fonte validada (com
   `EXIGIR_FONTE_OFICIAL=true`) → `fonte_nao_validada`.
 
-**Barreira 3 — validação do achado (antes de devolver)**
+**Barreira 3: validação do achado (antes de devolver)**
 
 - Defasagem sem `evidencia` → descartada.
 - `justificativa` sem nenhum marcador `[n]` → descartada.
@@ -531,7 +531,7 @@ o sinal de incidente: em operação normal ele fica vazio.
 Roda independentemente do modo de síntese. É a proteção contra regressão quando
 o gerador de justificativa é um LLM.
 
-**Barreira 4 — alertas que acompanham (não bloqueiam)**
+**Barreira 4: alertas que acompanham (não bloqueiam)**
 
 - Evidência com `exemplo_ilustrativo: true` → alerta de base de demonstração.
 - `max(score) < LIMIAR_CONFIANCA * 1.5` → alerta de confiança no limiar.
@@ -552,7 +552,7 @@ o gerador de justificativa é um LLM.
 | GET | `/v1/metricas` | Total, taxa de abstenção, latência média e p95, versão do índice |
 | GET | `/v1/auditoria?limite=50` | Trilha de auditoria |
 | GET | `/health` | Liveness |
-| GET | `/health/ready` | Readiness — `degraded` se o índice de evidência não carregou |
+| GET | `/health/ready` | Readiness: `degraded` se o índice de evidência não carregou |
 | GET | `/painel` | Painel de avaliação gerado pelo harness |
 | GET | `/docs` | Swagger / OpenAPI |
 
@@ -574,7 +574,7 @@ mensurável", e o número que o diretor olha é a taxa de falso alarme.
 | Classe | Mínimo | Comportamento esperado |
 | --- | --- | --- |
 | `defasado` | 12 | `defasagem_detectada`, com `evidencia_esperada` citada e `severidade_esperada` |
-| `atualizado` | 10 | `sem_achado` — **o teste de falso alarme** |
+| `atualizado` | 10 | `sem_achado`: **o teste de falso alarme** |
 | `sem_evidencia` | 5 | `abstido` com `evidencia_insuficiente` ou `fonte_nao_validada` |
 | `inelegivel` | 4 | `abstido` com `material_sem_referencia`, `fora_de_escopo` ou `objeto_invalido` |
 
@@ -608,8 +608,8 @@ Cada caso:
 
 ### Saídas
 
-1. `eval/results.json` — resultado por caso e agregados.
-2. `dashboard/index.html` — painel **autocontido**, dados embutidos, abre com
+1. `eval/results.json`: resultado por caso e agregados.
+2. `dashboard/index.html`: painel **autocontido**, dados embutidos, abre com
    duplo clique e também é servido em `/painel`.
 3. Código de saída diferente de zero quando uma meta dura é violada, para
    travar o pipeline de CI.
@@ -696,13 +696,13 @@ curriculo-vivo/
 Ordem desenhada para que **o projeto seja apresentável ao fim de qualquer
 fase**. Se o tempo acabar na fase 4, o que existe já se defende.
 
-### Fase 1 — Scaffold (30 min)
+### Fase 1: Scaffold (30 min)
 - [ ] Estrutura de pastas, `requirements.txt`, `.env.example`, `.gitignore`
 - [ ] `app/config.py` com `Settings` e `get_settings()` cacheado
 - [ ] `app/models.py` com todos os contratos da seção 5
 - **Aceite:** `python -c "from app.config import get_settings; print(get_settings())"`
 
-### Fase 2 — Corpus (40 min)
+### Fase 2: Corpus (40 min)
 - [ ] 13 evidências em `data/evidencias/base_curada.json`, cobrindo 17 temas,
       com datas variadas e 4 `practice_changing`
 - [ ] 1 evidência `fonte_tipo: nao_validada` (tema `rinite`), para exercitar o
@@ -710,8 +710,8 @@ fase**. Se o tempo acabar na fase 4, o que existe já se defende.
 - [ ] `scripts/gerar_corpus_material.py` gerando 31 objetos em
       `data/material/catalogo.json`: 12 defasados (4 de cada severidade),
       10 atualizados, 5 sem evidência na base, 4 inelegíveis
-- [ ] Tudo marcado `exemplo_ilustrativo: true`; o gerador existe por honestidade
-      — documenta que o material é sintético
+- [ ] Tudo marcado `exemplo_ilustrativo: true`; o gerador existe por honestidade:
+      documenta que o material é sintético
 - **Aceite:** `python scripts/gerar_corpus_material.py` roda e todos os itens
   validam contra `Evidencia` e `ObjetoAprendizagem`
 
@@ -719,7 +719,7 @@ Os anos de referência de cada objeto foram escolhidos a partir da tabela de
 severidade, para que o conjunto de eval cubra as três severidades e os casos de
 fronteira (gap exatamente em 12 e em 24 meses).
 
-### Fase 3 — Núcleo (100 min) — **não corte nada aqui**
+### Fase 3: Núcleo (100 min), **não corte nada aqui**
 - [ ] `core/texto.py`: normalização sem acento, stopwords PT, uni + bigramas
 - [ ] `core/retriever.py`: carga, índice, `buscar`, `upsert`, `versao_indice`
 - [ ] `core/detector.py`: `ano_material`, `gap_meses`, tabela de severidade
@@ -730,21 +730,21 @@ fronteira (gap exatamente em 12 e em 24 meses).
 - **Aceite:** em REPL, um objeto defasado gera alerta com citação; um objeto
   atualizado gera `sem_achado`; um sem referência gera `abstido`
 
-### Fase 4 — API (50 min)
+### Fase 4: API (50 min)
 - [ ] `main.py` com lifespan montando índice, catálogo, guardrail e repositório
 - [ ] Rotas da seção 7
 - [ ] `repositories/` com Mongo e fallback em memória
 - **Aceite:** `uvicorn app.main:app` sobe sem Mongo; `/docs` abre;
   `POST /v1/analises` e `GET /v1/defasagens` respondem
 
-### Fase 5 — Eval e painel (70 min) — **o que ganha a conversa**
+### Fase 5: Eval e painel (70 min), **o que ganha a conversa**
 - [ ] `eval/dataset.json` com 30+ casos nas quatro classes
 - [ ] `eval/run_eval.py` com as métricas da seção 8 e exit code em falha dura
 - [ ] `eval/painel_template.html` e geração de `dashboard/index.html`
 - **Aceite:** `python -m eval.run_eval` imprime o resumo, grava os dois arquivos
   e retorna 0
 
-### Fase 6 — Mensageria, testes e Docker (60 min)
+### Fase 6: Mensageria, testes e Docker (60 min)
 - [ ] `workers/ingestor.py`: classe `Ingestor` testável + loop Kafka
 - [ ] Idempotência por hash e commit manual de offset
 - [ ] `tests/`: detector (tabela de severidade), guardrail, retriever, ingestor,
@@ -752,7 +752,7 @@ fronteira (gap exatamente em 12 e em 24 meses).
 - [ ] `docker-compose.yml`, `Dockerfile`, `Makefile`
 - **Aceite:** `pytest` verde; `docker compose up` sobe a stack
 
-### Fase 7 — Opcional, só se sobrar tempo
+### Fase 7: Opcional, só se sobrar tempo
 - [ ] BFF NestJS mínimo agregando `/v1/defasagens`
 - [ ] Front Next.js de uma página com o radar
 - [ ] OpenTelemetry com trace atravessando BFF → Kafka → FastAPI
@@ -807,7 +807,7 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
 ### Abertura (30 s)
 > "O conteúdo de vocês envelhece sozinho. Saiu atualização de protocolo em 2024
 > e a aula continua citando 2019 porque ninguém foi avisado. Eu construí o
-> serviço que avisa — e que se cala quando não tem base para avisar."
+> serviço que avisa, e que se cala quando não tem base para avisar."
 
 ### Demo (3 min)
 1. `GET /v1/defasagens` → o radar. "31 objetos, 4 defasagens altas. Esta é a
@@ -817,7 +817,7 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
    `[1]`: a referência do material e a evidência que a supera.
 3. `med-card-hipertensao-aula03` → `sem_achado`. "Não inventei trabalho."
 4. `med-sem-referencia-aula01` → `abstido` com `material_sem_referencia`.
-   **Pausar aqui.** "Eu poderia ter chutado um ano. Preferi me calar — é o que
+   **Pausar aqui.** "Eu poderia ter chutado um ano. Preferi me calar. É o que
    protege a confiança no resto da fila."
 5. `med-orl-rinite-aula05` → `abstido` com `fonte_nao_validada`. "Existe texto
    sobre o tema, mas de blog sem revisão. Não sustento alerta nisso."
@@ -833,11 +833,11 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
 
 | Pergunta | Resposta curta |
 | --- | --- |
-| "Isso não é só comparar datas?" | É — e é de propósito. ADR-2: a data é verificável e explicável ao colegiado. Diff semântico dá número que ninguém sabe defender em reunião de curso. |
+| "Isso não é só comparar datas?" | É, e é de propósito. ADR-2: a data é verificável e explicável ao colegiado. Diff semântico dá número que ninguém sabe defender em reunião de curso. |
 | "Por que não embeddings?" | ADR-1: determinismo para auditoria, custo zero, sobe offline. A interface isola a troca; o gatilho é quando a detecção cair abaixo da meta por sinonímia de tema. |
 | "Como escala para todos os cursos?" | Índice de evidência em memória por pod, reconstruído na ingestão. O radar é varredura em lote, assíncrona. Acima de ~100k trechos, migra para Atlas Vector Search sem tocar no resto. |
 | "E se apontar errado?" | É a métrica que eu mais olho. Falso alarme tem meta de 10% e o eval reprova o build se a invariante de citação quebrar. Prefiro abster e perder um achado a entregar uma fila que o coordenador não confia. |
-| "Por que artigo revisado por pares não dispara alerta?" | Porque estudo primário isolado é hipótese, não consenso — o que muda currículo é diretriz e protocolo. Se eu aceitasse paper isolado como gatilho, teria construído a máquina de gritar lobo que o produto existe para evitar. O conjunto de eval tem um caso só para isso (c026). |
+| "Por que artigo revisado por pares não dispara alerta?" | Porque estudo primário isolado é hipótese, não consenso; o que muda currículo é diretriz e protocolo. Se eu aceitasse paper isolado como gatilho, teria construído a máquina de gritar lobo que o produto existe para evitar. O conjunto de eval tem um caso só para isso (c026). |
 | "E LGPD?" | Nenhum dado de aluno ou paciente entra. O objeto vira hash na auditoria. A barreira de escopo abstém quando o texto menciona pessoa identificada. |
 | "Dá para usar no lado clínico também?" | Sim, e é o ponto: a regra é de proveniência, não de medicina. Troca o corpus, mantém guardrail, auditoria e eval. |
 
@@ -861,7 +861,7 @@ compilar algo se não houver wheel para a sua versão de Python.
 ### 15.2 PEP 668: o Python do sistema é "externally managed"
 
 Instalar pacote direto com `pip install` falha com
-`error: externally-managed-environment`. **Use sempre venv** — é o caminho
+`error: externally-managed-environment`. **Use sempre venv**: é o caminho
 correto e o que o `Makefile` assume:
 
 ```bash
@@ -920,14 +920,14 @@ sudo usermod -aG docker $USER   # exige reabrir o shell
 | Fim de linha | `git config core.autocrlf false` e um `.gitattributes` com `* text=auto eol=lf`, para o CRLF do Windows não entrar nos arquivos |
 | Relógio | Após suspender o Windows, o clock do WSL pode dessincronizar e quebrar TLS. `sudo hwclock -s` resolve |
 | Memória | Se o `pytest` ou o compose travarem a máquina, limite a RAM do WSL em `%UserProfile%\.wslconfig` (`[wsl2]` / `memory=6GB`) |
-| `jq` | `sudo apt install -y jq` — usado nos comandos da seção 16 |
+| `jq` | `sudo apt install -y jq`, usado nos comandos da seção 16 |
 
 ---
 
 ## 16. Comandos
 
 ```bash
-# setup (Debian/WSL2 — ver seção 15)
+# setup (Debian/WSL2, ver seção 15)
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env

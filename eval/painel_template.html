@@ -7,7 +7,7 @@
 <!--
   Painel autocontido do harness de avaliação (seção 8 do PRD).
   Gerado por `python -m eval.run_eval`: os dados vêm embutidos no <script
-  type="application/json"> abaixo. Sem fetch, sem CDN — abre com duplo clique.
+  type="application/json"> abaixo. Sem fetch, sem CDN: abre com duplo clique.
 -->
 <style>
   /*
@@ -242,7 +242,7 @@
   <section class="topo">
     <div class="card" id="hero"></div>
     <div class="card">
-      <h2>Metas duras — travam o build</h2>
+      <h2>Metas duras: travam o build</h2>
       <div class="duras" id="duras"></div>
       <p class="explica">Verificadas pelo harness de forma independente da barreira 3: o painel não confia no guardrail que está medindo.</p>
     </div>
@@ -302,9 +302,9 @@
     (filhos || []).forEach(function (f) { if (f != null) n.appendChild(f); });
     return n;
   }
-  function pct(v) { return v == null ? "—" : Math.round(v * 100) + "%"; }
+  function pct(v) { return v == null ? "n/d" : Math.round(v * 100) + "%"; }
   function fmt(meta, v) {
-    if (v == null) return "—";
+    if (v == null) return "n/d";
     return meta.metrica.indexOf("taxa_") === 0 ? pct(v) : String(v);
   }
   function status(ok, rotulos) {
@@ -351,8 +351,8 @@
 
   // --- portão ------------------------------------------------------------
   document.getElementById("portao").appendChild(status(R.metas_duras_ok, {
-    ok: "Metas duras cumpridas — build liberado",
-    falha: "Meta dura violada — build travado"
+    ok: "Metas duras cumpridas, build liberado",
+    falha: "Meta dura violada, build travado"
   }));
   document.getElementById("portao").appendChild(el("span", {
     classe: "detalhe",

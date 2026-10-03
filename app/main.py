@@ -3,7 +3,7 @@
 O lifespan monta, nesta ordem, índice de evidência, catálogo, guardrail,
 serviço e repositório de auditoria. Nada externo é obrigatório (O7): sem
 Mongo a auditoria vai para a memória, sem chave a justificativa é extrativa,
-e sem base de evidência o serviço sobe em `degraded` — o log diz em que modo.
+e sem base de evidência o serviço sobe em `degraded`, e o log diz em que modo.
 """
 
 from __future__ import annotations
@@ -71,7 +71,7 @@ def criar_app(settings: Settings | None = None) -> FastAPI:
         version=settings.app_versao,
         description=(
             "Radar de defasagem curricular: cruza o material didático com a "
-            "evidência vigente e aponta, com citação, o que envelheceu — ou se "
+            "evidência vigente e aponta, com citação, o que envelheceu, ou se "
             "abstém. Corpus sintético e ilustrativo. " + settings.aviso_padrao
         ),
         lifespan=lifespan,
