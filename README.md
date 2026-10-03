@@ -25,23 +25,18 @@ quando não tem base para apontar.**
 ![API em OpenAPI](docs/api-openapi.png)
 *A API documentada em OpenAPI.*
 
-![Painel de avaliação](docs/painel-1-metas.png)
-*O painel de avaliação: falso alarme em 0%.*
+![Painel de avaliação, metas](docs/painel-1.png)
+![Painel de avaliação, matriz de classes](docs/painel-2.png)
+![Painel de avaliação, casos](docs/painel-3.png)
+*O painel de avaliação: falso alarme em 0%, os 31 casos na diagonal da matriz
+e o resultado caso a caso.*
 
-![Matriz de classes](docs/painel-2-demais-metas.png)
-*Classe esperada × status obtido: os 31 casos na diagonal.*
-
-![Casos c006 a c018](docs/painel-3-casos.png)
-*Os casos defasados e atualizados, com as fronteiras da tabela de severidade.*
-
-![Casos-chave c026 e c027](docs/painel-4-casos-chave.png)
+![Casos-chave c026 e c027](docs/painel-4.png)
 *c026 e c027: os dois níveis do filtro de proveniência.*
 
-![Radar do coordenador](docs/radar-1-topo.png)
+![Radar do coordenador, topo](docs/radar-1.png)
+![Radar do coordenador, resto da fila](docs/radar-2.png)
 *O radar do coordenador, ordenado por severidade.*
-
-![Resto da fila do radar](docs/radar-2-lista.png)
-*O resto da fila, das defasagens médias às baixas.*
 
 Galeria com uma explicação por captura: [docs/capturas.md](docs/capturas.md).
 
