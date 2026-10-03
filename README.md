@@ -22,19 +22,28 @@ quando não tem base para apontar.**
 > didático real e não servem como referência clínica ou pedagógica. Detalhes em
 > [Aviso](#aviso).
 
-![Radar do coordenador](docs/radar-1-topo.png)
-*O radar do coordenador, ordenado por severidade.*
+![API em OpenAPI](docs/api-openapi.png)
+*A API documentada em OpenAPI.*
 
 ![Painel de avaliação](docs/painel-1-metas.png)
 *O painel de avaliação: falso alarme em 0%.*
 
+![Matriz de classes](docs/painel-2-demais-metas.png)
+*Classe esperada × status obtido: os 31 casos na diagonal.*
+
+![Casos c006 a c018](docs/painel-3-casos.png)
+*Os casos defasados e atualizados, com as fronteiras da tabela de severidade.*
+
 ![Casos-chave c026 e c027](docs/painel-4-casos-chave.png)
 *c026 e c027: os dois níveis do filtro de proveniência.*
 
-![API em OpenAPI](docs/api-openapi.png)
-*A API documentada em OpenAPI.*
+![Radar do coordenador](docs/radar-1-topo.png)
+*O radar do coordenador, ordenado por severidade.*
 
-Galeria completa, com as sete capturas: [docs/capturas.md](docs/capturas.md).
+![Resto da fila do radar](docs/radar-2-lista.png)
+*O resto da fila, das defasagens médias às baixas.*
+
+Galeria com uma explicação por captura: [docs/capturas.md](docs/capturas.md).
 
 ## O problema
 
