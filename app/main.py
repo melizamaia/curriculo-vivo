@@ -9,10 +9,12 @@ e sem base de evidência o serviço sobe em `degraded` — o log diz em que modo
 from __future__ import annotations
 
 import logging
+import os
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import routes_analise, routes_catalogo, routes_ops
 from app.config import Settings, get_settings
@@ -74,6 +76,15 @@ def criar_app(settings: Settings | None = None) -> FastAPI:
         ),
         lifespan=lifespan,
     )
+    # Front de desenvolvimento (web/, Vite). CORS_ORIGINS aceita uma lista
+    # separada por vírgula; vazio desliga o CORS.
+    origens = [
+        o.strip()
+        for o in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
+        if o.strip()
+    ]
+    if origens:
+        app.add_middleware(CORSMiddleware, allow_origins=origens, allow_methods=["GET"])
     app.include_router(routes_analise.router)
     app.include_router(routes_catalogo.router)
     app.include_router(routes_ops.router)

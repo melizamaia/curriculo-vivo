@@ -72,6 +72,21 @@ make test         # 214 testes
 make eval         # harness de avaliação + painel em dashboard/index.html
 ```
 
+### Front (radar do coordenador)
+
+Uma tela em React + TypeScript + Vite, em `web/`, que consome
+`GET /v1/defasagens`. Requer Node 24 (`web/.nvmrc`). Com a API no ar, em
+outro terminal:
+
+```bash
+make front        # http://localhost:5173 (instala as dependências na 1ª vez)
+```
+
+Ou, sem o Makefile: `cd web && npm install && npm run dev`. A API libera CORS
+para `http://localhost:5173` por padrão. Para outra origem, use
+`CORS_ORIGINS=http://a:1,http://b:2` no ambiente (essa variável não é lida do `.env`); vazio desliga o CORS. O front aponta
+para `http://localhost:8000`; para outra URL, use `VITE_API_URL=... npm run dev`.
+
 `make demo` não precisa da API no ar (sobe em processo). Para rodar contra a
 API: `make demo URL=http://localhost:8000`.
 
@@ -233,6 +248,7 @@ app/
   workers/       ingestor Kafka
 data/            corpus sintético (evidências curadas + catálogo de material)
 eval/            dataset rotulado, harness e template do painel
+web/             front React: o radar do coordenador (uma tela)
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
 tests/           214 testes
 PRD.md           requisitos, contratos e regras completas

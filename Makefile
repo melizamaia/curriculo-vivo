@@ -7,7 +7,7 @@ BIN    := $(VENV)/bin
 PORTA  ?= 8000
 
 .DEFAULT_GOAL := help
-.PHONY: help install run test eval demo worker evento up down logs limpar
+.PHONY: help install run front test eval demo worker evento up down logs limpar
 
 help: ## Lista os alvos
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-8s %s\n", $$1, $$2}'
@@ -23,6 +23,14 @@ install: $(BIN)/activate ## Cria o .venv e instala as dependências
 
 run: install ## Sobe a API em localhost:8000 (sem Mongo, Kafka ou chave de LLM)
 	$(BIN)/uvicorn app.main:app --reload --port $(PORTA)
+
+web/node_modules: web/package-lock.json
+	@command -v npm >/dev/null || { echo "npm não encontrado: instale o Node 24 (ex.: nvm install 24)"; exit 1; }
+	cd web && npm ci
+	@touch $@
+
+front: web/node_modules ## Sobe o front em localhost:5173 (precisa da API no ar: make run)
+	cd web && npm run dev
 
 test: install ## Roda a suíte de testes
 	$(BIN)/pytest -q
