@@ -69,20 +69,23 @@ Como ler esses números:
 
 ## Telas
 
-![API em OpenAPI](docs/api-openapi.png)
+<img src="docs/api-openapi.png" alt="API em OpenAPI" width="600">
+
 *A API documentada em OpenAPI.*
 
-![Painel de avaliação, metas](docs/painel-1.png)
-![Painel de avaliação, matriz de classes](docs/painel-2.png)
-![Painel de avaliação, casos](docs/painel-3.png)
-*O painel de avaliação: falso alarme em 0%, os 31 casos na diagonal da matriz
-e o resultado caso a caso.*
+<img src="docs/painel-1.png" alt="Painel de avaliação, metas" width="600">
+<img src="docs/painel-2.png" alt="Painel de avaliação, matriz de classes" width="600">
+<img src="docs/painel-3.png" alt="Painel de avaliação, casos" width="600">
 
-![Casos-chave c026 e c027](docs/painel-4.png)
+*O painel de avaliação: falso alarme em 0%, os 31 casos na diagonal da matriz e o resultado caso a caso.*
+
+<img src="docs/painel-4.png" alt="Casos-chave c026 e c027" width="600">
+
 *c026 e c027: os dois níveis do filtro de proveniência.*
 
-![Radar do coordenador, topo](docs/radar-1.png)
-![Radar do coordenador, resto da fila](docs/radar-2.png)
+<img src="docs/radar-1.png" alt="Radar do coordenador, topo" width="600">
+<img src="docs/radar-2.png" alt="Radar do coordenador, resto da fila" width="600">
+
 *O radar do coordenador, ordenado por severidade.*
 
 Galeria com uma explicação por captura: [docs/capturas.md](docs/capturas.md).
