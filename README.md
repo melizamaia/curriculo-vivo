@@ -69,22 +69,22 @@ Como ler esses números:
 
 ## Telas
 
-<img src="docs/api-openapi.png" alt="API em OpenAPI" width="600">
+<img src="docs/api-openapi.png" alt="API em OpenAPI" width="400">
 
 *A API documentada em OpenAPI.*
 
-<img src="docs/painel-1.png" alt="Painel de avaliação, metas" width="600">
-<img src="docs/painel-2.png" alt="Painel de avaliação, matriz de classes" width="600">
-<img src="docs/painel-3.png" alt="Painel de avaliação, casos" width="600">
+<img src="docs/painel-1.png" alt="Painel de avaliação, metas" width="400">
+<img src="docs/painel-2.png" alt="Painel de avaliação, matriz de classes" width="400">
+<img src="docs/painel-3.png" alt="Painel de avaliação, casos" width="400">
 
 *O painel de avaliação: falso alarme em 0%, os 31 casos na diagonal da matriz e o resultado caso a caso.*
 
-<img src="docs/painel-4.png" alt="Casos-chave c026 e c027" width="600">
+<img src="docs/painel-4.png" alt="Casos-chave c026 e c027" width="400">
 
 *c026 e c027: os dois níveis do filtro de proveniência.*
 
-<img src="docs/radar-1.png" alt="Radar do coordenador, topo" width="600">
-<img src="docs/radar-2.png" alt="Radar do coordenador, resto da fila" width="600">
+<img src="docs/radar-1.png" alt="Radar do coordenador, topo" width="400">
+<img src="docs/radar-2.png" alt="Radar do coordenador, resto da fila" width="400">
 
 *O radar do coordenador, ordenado por severidade.*
 
