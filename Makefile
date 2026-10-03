@@ -6,9 +6,13 @@ VENV   := .venv
 BIN    := $(VENV)/bin
 PORTA  ?= 8000
 PORTA_BFF ?= 3001
+# Porta do front é fixa no web/package.json (next dev -p 5173).
+PORTA_WEB := 5173
+# $(MAKE) indireto: linhas com $(MAKE) literal rodam até sob `make -n`.
+SUBMAKE := $(MAKE) --no-print-directory
 
 .DEFAULT_GOAL := help
-.PHONY: help install run front bff test eval demo worker evento up down logs limpar
+.PHONY: help install run front bff stack parar test eval demo worker evento up down logs limpar
 
 help: ## Lista os alvos
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-8s %s\n", $$1, $$2}'
@@ -40,6 +44,33 @@ bff/node_modules: bff/package-lock.json
 
 bff: bff/node_modules ## Sobe o BFF NestJS em localhost:3001 (opcional; precisa da API no ar)
 	cd bff && PORT=$(PORTA_BFF) npm start
+
+# Processos em background num shell não interativo ignoram SIGINT: o trap mata
+# os três e chama `parar` para pegar netos (reloader do uvicorn, next dev).
+stack: install web/node_modules bff/node_modules ## Sobe API + BFF + front juntos (Ctrl+C derruba tudo)
+	@trap 'echo; echo "Derrubando a stack..."; kill $$PIDS 2>/dev/null; $(SUBMAKE) parar; exit 0' INT TERM; \
+	$(BIN)/uvicorn app.main:app --reload --port $(PORTA) & PIDS="$$!"; \
+	(cd bff && PORT=$(PORTA_BFF) FASTAPI_URL=http://localhost:$(PORTA) npm start) & PIDS="$$PIDS $$!"; \
+	(cd web && VITE_BFF_URL=http://localhost:$(PORTA_BFF) npm run dev) & PIDS="$$PIDS $$!"; \
+	sleep 2; \
+	echo; \
+	echo "  API    http://localhost:$(PORTA)/docs"; \
+	echo "  BFF    http://localhost:$(PORTA_BFF)/api/radar"; \
+	echo "  Front  http://localhost:$(PORTA_WEB)"; \
+	echo "  Ctrl+C para derrubar tudo"; \
+	echo; \
+	wait
+
+parar: ## Mata o que estiver escutando nas portas da API, do BFF e do front
+	@for p in $(PORTA) $(PORTA_BFF) $(PORTA_WEB); do \
+		pids=$$(ss -ltnpH "sport = :$$p" | grep -o 'pid=[0-9]*' | cut -d= -f2 | sort -u | xargs); \
+		if [ -n "$$pids" ]; then echo "porta $$p: kill $$pids"; kill $$pids 2>/dev/null; fi; \
+	done; \
+	sleep 1; \
+	for p in $(PORTA) $(PORTA_BFF) $(PORTA_WEB); do \
+		pids=$$(ss -ltnpH "sport = :$$p" | grep -o 'pid=[0-9]*' | cut -d= -f2 | sort -u | xargs); \
+		if [ -n "$$pids" ]; then echo "porta $$p: kill -9 $$pids"; kill -9 $$pids 2>/dev/null; fi; \
+	done
 
 test: install ## Roda a suíte de testes
 	$(BIN)/pytest -q
