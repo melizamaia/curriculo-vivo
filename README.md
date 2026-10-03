@@ -22,24 +22,6 @@ quando não tem base para apontar.**
 > didático real e não servem como referência clínica ou pedagógica. Detalhes em
 > [Aviso](#aviso).
 
-![API em OpenAPI](docs/api-openapi.png)
-*A API documentada em OpenAPI.*
-
-![Painel de avaliação, metas](docs/painel-1.png)
-![Painel de avaliação, matriz de classes](docs/painel-2.png)
-![Painel de avaliação, casos](docs/painel-3.png)
-*O painel de avaliação: falso alarme em 0%, os 31 casos na diagonal da matriz
-e o resultado caso a caso.*
-
-![Casos-chave c026 e c027](docs/painel-4.png)
-*c026 e c027: os dois níveis do filtro de proveniência.*
-
-![Radar do coordenador, topo](docs/radar-1.png)
-![Radar do coordenador, resto da fila](docs/radar-2.png)
-*O radar do coordenador, ordenado por severidade.*
-
-Galeria com uma explicação por captura: [docs/capturas.md](docs/capturas.md).
-
 ## O problema
 
 Uma aula de sepse continua citando o protocolo de 2019 porque ninguém foi
@@ -84,6 +66,26 @@ Como ler esses números:
   tanto a CI quanto o `docker build` rodam o eval: o build fica vermelho, o
   painel não é publicado e uma imagem que alerta sem fonte não chega a ser
   construída.
+
+## Telas
+
+![API em OpenAPI](docs/api-openapi.png)
+*A API documentada em OpenAPI.*
+
+![Painel de avaliação, metas](docs/painel-1.png)
+![Painel de avaliação, matriz de classes](docs/painel-2.png)
+![Painel de avaliação, casos](docs/painel-3.png)
+*O painel de avaliação: falso alarme em 0%, os 31 casos na diagonal da matriz
+e o resultado caso a caso.*
+
+![Casos-chave c026 e c027](docs/painel-4.png)
+*c026 e c027: os dois níveis do filtro de proveniência.*
+
+![Radar do coordenador, topo](docs/radar-1.png)
+![Radar do coordenador, resto da fila](docs/radar-2.png)
+*O radar do coordenador, ordenado por severidade.*
+
+Galeria com uma explicação por captura: [docs/capturas.md](docs/capturas.md).
 
 ## Como rodar
 
