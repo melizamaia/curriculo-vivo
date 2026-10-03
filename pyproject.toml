@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+# Sem isso, `pytest` (fora de `python -m pytest`) não acha o pacote `app`.
+pythonpath = ["."]
+testpaths = ["tests"]
