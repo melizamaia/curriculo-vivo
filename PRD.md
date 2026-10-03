@@ -60,7 +60,7 @@ ementa), o serviço:
 | # | Objetivo | Métrica de sucesso |
 | --- | --- | --- |
 | O1 | Detectar material defasado | Taxa de detecção ≥ 0.85 no conjunto de eval |
-| O2 | Não gritar lobo | Taxa de falso alarme ≤ 0.10 |
+| O2 | Não emitir falso alarme | Taxa de falso alarme ≤ 0.10 |
 | O3 | Todo alerta rastreável | 100% dos alertas com citação da evidência mais nova |
 | O4 | Zero alerta sem fonte | 0 alertas com marcador sem citação correspondente |
 | O5 | Latência previsível | p95 < 500 ms por objeto analisado |
@@ -255,7 +255,7 @@ A linha do `literatura_revisada` é a decisão mais importante desta seção.
 **Um artigo revisado por pares não é motivo para dizer a um coordenador que a
 aula dele está desatualizada.** Metade dos achados primários não se replica, e o
 que muda currículo é diretriz e protocolo, não o último paper. Aceitar
-literatura isolada como gatilho construiria exatamente a máquina de gritar lobo
+literatura isolada como gatilho construiria exatamente a máquina de alarme falso
 que este produto existe para evitar, e o custo seria pago na confiança do
 coordenador, que é o ativo mais caro do sistema.
 
@@ -827,7 +827,7 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
 ### Fechamento (30 s)
 > "A arquitetura é a mesma do time: FastAPI ao lado de NestJS, eventos em Kafka,
 > Mongo, Kubernetes. O que eu entrego é o lado Python. E o diferente não é o
-> RAG: é o harness que mede se ele está gritando lobo."
+> RAG: é o harness que mede se ele está apontando errado."
 
 ### Perguntas prováveis
 
@@ -837,7 +837,7 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
 | "Por que não embeddings?" | ADR-1: determinismo para auditoria, custo zero, sobe offline. A interface isola a troca; o gatilho é quando a detecção cair abaixo da meta por sinonímia de tema. |
 | "Como escala para todos os cursos?" | Índice de evidência em memória por pod, reconstruído na ingestão. O radar é varredura em lote, assíncrona. Acima de ~100k trechos, migra para Atlas Vector Search sem tocar no resto. |
 | "E se apontar errado?" | É a métrica que eu mais olho. Falso alarme tem meta de 10% e o eval reprova o build se a invariante de citação quebrar. Prefiro abster e perder um achado a entregar uma fila que o coordenador não confia. |
-| "Por que artigo revisado por pares não dispara alerta?" | Porque estudo primário isolado é hipótese, não consenso; o que muda currículo é diretriz e protocolo. Se eu aceitasse paper isolado como gatilho, teria construído a máquina de gritar lobo que o produto existe para evitar. O conjunto de eval tem um caso só para isso (c026). |
+| "Por que artigo revisado por pares não dispara alerta?" | Porque estudo primário isolado é hipótese, não consenso; o que muda currículo é diretriz e protocolo. Se eu aceitasse paper isolado como gatilho, teria construído a máquina de alarme falso que o produto existe para evitar. O conjunto de eval tem um caso só para isso (c026). |
 | "E LGPD?" | Nenhum dado de aluno ou paciente entra. O objeto vira hash na auditoria. A barreira de escopo abstém quando o texto menciona pessoa identificada. |
 | "Dá para usar no lado clínico também?" | Sim, e é o ponto: a regra é de proveniência, não de medicina. Troca o corpus, mantém guardrail, auditoria e eval. |
 
