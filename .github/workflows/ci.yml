@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  testes-e-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instala as dependências
+        run: pip install -r requirements.txt
+
+      # Sem Mongo, Kafka nem chave de LLM: o serviço cai nos fallbacks.
+      - name: Testes
+        run: pytest -q
+
+      # Sai com código diferente de zero quando uma meta dura é violada.
+      - name: Avaliação
+        run: python -m eval.run_eval
+
+      # always(): o painel é gerado antes da checagem das metas, então
+      # ele também fica disponível quando o eval reprova o build.
+      - name: Publica o painel
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dashboard
+          path: dashboard/index.html
+          if-no-files-found: warn

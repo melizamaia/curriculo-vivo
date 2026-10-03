@@ -1,5 +1,6 @@
 # Currículo Vivo
 
+[![CI](https://github.com/melizamaia/curriculo-vivo/actions/workflows/ci.yml/badge.svg)](https://github.com/melizamaia/curriculo-vivo/actions/workflows/ci.yml)
 ![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff)
 ![React](https://img.shields.io/badge/React-20232a?logo=react&logoColor=61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=fff)
