@@ -1,5 +1,15 @@
 # Currículo Vivo
 
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff)
+![React](https://img.shields.io/badge/React-20232a?logo=react&logoColor=61dafb)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=fff)
+![NestJS](https://img.shields.io/badge/NestJS-ea2845?logo=nestjs&logoColor=fff)
+![Python](https://img.shields.io/badge/Python%203.12-3776ab?logo=python&logoColor=fff)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=fff)
+![Kafka](https://img.shields.io/badge/Kafka-231f20?logo=apachekafka&logoColor=fff)
+![MongoDB](https://img.shields.io/badge/MongoDB-47a248?logo=mongodb&logoColor=fff)
+![Docker](https://img.shields.io/badge/Docker-2496ed?logo=docker&logoColor=fff)
+
 **Radar de defasagem curricular para educação médica: cruza o material didático
 com a evidência vigente e aponta, com citação, o que envelheceu — e se cala
 quando não tem base para apontar.**
