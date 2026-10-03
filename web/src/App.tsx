@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import type { AnaliseResponse, Defasagem, RadarResponse, Severidade } from "./tipos";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+// BFF NestJS opcional (bff/). Se não responder, o front fala direto com o FastAPI.
+const BFF: string | undefined = import.meta.env.VITE_BFF_URL || undefined;
 
 const SEVERIDADES: Severidade[] = ["alta", "media", "baixa"];
 const ORDEM: Record<Severidade, number> = { alta: 3, media: 2, baixa: 1 };
@@ -13,7 +15,25 @@ type Filtro = Severidade | "todas";
 type Estado =
   | { fase: "carregando" }
   | { fase: "erro"; mensagem: string }
-  | { fase: "ok"; radar: RadarResponse };
+  | { fase: "ok"; radar: RadarResponse; via: string };
+
+async function obterJson(url: string, sinal?: AbortSignal): Promise<RadarResponse> {
+  const r = await fetch(url, { signal: sinal });
+  if (!r.ok) throw new Error(`a API respondeu ${r.status} ${r.statusText}`);
+  return (await r.json()) as RadarResponse;
+}
+
+async function buscarRadar(sinal?: AbortSignal): Promise<{ radar: RadarResponse; via: string }> {
+  if (BFF) {
+    try {
+      return { radar: await obterJson(`${BFF}/api/radar`, sinal), via: "BFF" };
+    } catch (e) {
+      if (sinal?.aborted) throw e;
+      console.warn(`BFF em ${BFF} falhou; caindo para o FastAPI em ${API}`, e);
+    }
+  }
+  return { radar: await obterJson(`${API}/v1/defasagens`, sinal), via: "FastAPI" };
+}
 
 export function App() {
   const [estado, setEstado] = useState<Estado>({ fase: "carregando" });
@@ -22,12 +42,8 @@ export function App() {
 
   const carregar = useCallback((sinal?: AbortSignal) => {
     setEstado({ fase: "carregando" });
-    fetch(`${API}/v1/defasagens`, { signal: sinal })
-      .then(async (r) => {
-        if (!r.ok) throw new Error(`a API respondeu ${r.status} ${r.statusText}`);
-        return (await r.json()) as RadarResponse;
-      })
-      .then((radar) => setEstado({ fase: "ok", radar }))
+    buscarRadar(sinal)
+      .then(({ radar, via }) => setEstado({ fase: "ok", radar, via }))
       .catch((e: unknown) => {
         if (sinal?.aborted) return;
         const msg = e instanceof TypeError ? `não foi possível falar com ${API}` : String(e instanceof Error ? e.message : e);
@@ -65,6 +81,7 @@ export function App() {
       {estado.fase === "ok" && (
         <Radar
           radar={estado.radar}
+          via={estado.via}
           filtro={filtro}
           setFiltro={setFiltro}
           aberto={aberto}
@@ -77,12 +94,13 @@ export function App() {
 
 function Radar(props: {
   radar: RadarResponse;
+  via: string;
   filtro: Filtro;
   setFiltro: (f: Filtro) => void;
   aberto: string | null;
   alternar: (id: string) => void;
 }) {
-  const { radar, filtro, setFiltro, aberto, alternar } = props;
+  const { radar, via, filtro, setFiltro, aberto, alternar } = props;
   const comDefasagem = radar.itens
     .filter((i): i is AnaliseResponse & { severidade_maxima: Severidade } =>
       i.status === "defasagem_detectada" && i.severidade_maxima !== null)
@@ -123,7 +141,7 @@ function Radar(props: {
             <span className="conta">{f === "todas" ? comDefasagem.length : (radar.por_severidade[f] ?? 0)}</span>
           </button>
         ))}
-        <span className="meta">índice <code>{radar.versao_indice}</code></span>
+        <span className="meta">índice <code>{radar.versao_indice}</code> · via {via}</span>
       </div>
 
       {visiveis.length === 0 ? (

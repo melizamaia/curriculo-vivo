@@ -85,7 +85,33 @@ make front        # http://localhost:5173 (instala as dependências na 1ª vez)
 Ou, sem o Makefile: `cd web && npm install && npm run dev`. A API libera CORS
 para `http://localhost:5173` por padrão. Para outra origem, use
 `CORS_ORIGINS=http://a:1,http://b:2` no ambiente (essa variável não é lida do `.env`); vazio desliga o CORS. O front aponta
-para `http://localhost:8000`; para outra URL, use `VITE_API_URL=... npm run dev`.
+para `http://localhost:8000`; para outra URL, use `VITE_API_URL=... npm run dev`
+(modelo em `web/.env.example`).
+
+### BFF NestJS (opcional)
+
+Em `bff/`, um BFF mínimo em NestJS (um módulo, um controller, um service) que
+fecha o desenho da [arquitetura](#arquitetura): `GET /api/radar` repassa
+`GET /v1/defasagens` do FastAPI (mesmo contrato, mesmos filtros) e devolve ao
+front. Sem auth, sem banco, sem cache.
+
+**O BFF é opcional.** O front só passa por ele quando `VITE_BFF_URL` está
+definida, e mesmo assim, se o BFF não responder, cai sozinho para o FastAPI em
+`VITE_API_URL`. A tela mostra por onde o radar veio (`via BFF` ou
+`via FastAPI`). Derrubar o BFF no meio da demo não derruba o radar.
+
+Ordem de subida, um terminal por serviço:
+
+```bash
+make run                                          # 1. FastAPI em :8000 (obrigatório)
+make bff                                          # 2. BFF em :3001 (opcional)
+VITE_BFF_URL=http://localhost:3001 make front     # 3. front em :5173, via BFF
+```
+
+Sem o BFF, pule o passo 2 e rode só `make front`. Variáveis do BFF:
+`FASTAPI_URL` (padrão `http://localhost:8000`), `PORT` (padrão `3001`;
+no Makefile, `PORTA_BFF`) e `CORS_ORIGINS` (padrão
+`http://localhost:5173,http://localhost:3000`).
 
 `make demo` não precisa da API no ar (sobe em processo). Para rodar contra a
 API: `make demo URL=http://localhost:8000`.
@@ -157,8 +183,9 @@ curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
 ```
 
 Este repositório é o lado Python: a API FastAPI, o worker de ingestão e o
-harness de avaliação. O BFF NestJS e o front aparecem no diagrama como contexto
-de integração e não fazem parte do MVP.
+harness de avaliação. O front (`web/`) e um BFF NestJS mínimo (`bff/`) existem
+como prova de contrato: o BFF só agrega o radar, e o front funciona com ou sem
+ele. O NestJS de domínio (cursos, turmas, docentes) fica fora do escopo.
 
 ### O caminho de uma análise
 
@@ -249,6 +276,7 @@ app/
 data/            corpus sintético (evidências curadas + catálogo de material)
 eval/            dataset rotulado, harness e template do painel
 web/             front React: o radar do coordenador (uma tela)
+bff/             BFF NestJS opcional: GET /api/radar → GET /v1/defasagens
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
 tests/           214 testes
 PRD.md           requisitos, contratos e regras completas

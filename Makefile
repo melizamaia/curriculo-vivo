@@ -5,9 +5,10 @@ PYTHON ?= python3
 VENV   := .venv
 BIN    := $(VENV)/bin
 PORTA  ?= 8000
+PORTA_BFF ?= 3001
 
 .DEFAULT_GOAL := help
-.PHONY: help install run front test eval demo worker evento up down logs limpar
+.PHONY: help install run front bff test eval demo worker evento up down logs limpar
 
 help: ## Lista os alvos
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-8s %s\n", $$1, $$2}'
@@ -29,8 +30,16 @@ web/node_modules: web/package-lock.json
 	cd web && npm ci
 	@touch $@
 
-front: web/node_modules ## Sobe o front em localhost:5173 (precisa da API no ar: make run)
+front: web/node_modules ## Sobe o front em localhost:5173 (VITE_BFF_URL=... para passar pelo BFF)
 	cd web && npm run dev
+
+bff/node_modules: bff/package-lock.json
+	@command -v npm >/dev/null || { echo "npm não encontrado: instale o Node 24 (ex.: nvm install 24)"; exit 1; }
+	cd bff && npm ci
+	@touch $@
+
+bff: bff/node_modules ## Sobe o BFF NestJS em localhost:3001 (opcional; precisa da API no ar)
+	cd bff && PORT=$(PORTA_BFF) npm start
 
 test: install ## Roda a suíte de testes
 	$(BIN)/pytest -q
