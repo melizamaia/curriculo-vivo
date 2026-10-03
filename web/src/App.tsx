@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import type { AnaliseResponse, Defasagem, RadarResponse, Severidade } from "./tipos";
 
-const API = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+const API = process.env.VITE_API_URL || "http://localhost:8000";
 // BFF NestJS opcional (bff/). Se não responder, o front fala direto com o FastAPI.
-const BFF: string | undefined = import.meta.env.VITE_BFF_URL || undefined;
+const BFF: string | undefined = process.env.VITE_BFF_URL || undefined;
 
 const SEVERIDADES: Severidade[] = ["alta", "media", "baixa"];
 const ORDEM: Record<Severidade, number> = { alta: 3, media: 2, baixa: 1 };

@@ -74,7 +74,7 @@ make eval         # harness de avaliação + painel em dashboard/index.html
 
 ### Front (radar do coordenador)
 
-Uma tela em React + TypeScript + Vite, em `web/`, que consome
+Uma tela em Next.js (App Router) + React + TypeScript, em `web/`, que consome
 `GET /v1/defasagens`. Requer Node 24 (`web/.nvmrc`). Com a API no ar, em
 outro terminal:
 
@@ -86,7 +86,8 @@ Ou, sem o Makefile: `cd web && npm install && npm run dev`. A API libera CORS
 para `http://localhost:5173` por padrão. Para outra origem, use
 `CORS_ORIGINS=http://a:1,http://b:2` no ambiente (essa variável não é lida do `.env`); vazio desliga o CORS. O front aponta
 para `http://localhost:8000`; para outra URL, use `VITE_API_URL=... npm run dev`
-(modelo em `web/.env.example`).
+(modelo em `web/.env.example`). Os nomes `VITE_*` vêm de antes da migração
+para Next e foram mantidos; o `web/next.config.ts` os expõe ao navegador.
 
 ### BFF NestJS (opcional)
 
@@ -149,43 +150,43 @@ curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
 
 ## Arquitetura
 
+O que existe neste repositório:
+
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                      React / Next.js (front)                         │
-│          radar de defasagens · detalhe do objeto · painel            │
-└───────────────────────────────┬──────────────────────────────────────┘
-                                │ HTTP
-┌───────────────────────────────▼──────────────────────────────────────┐
-│                    API Gateway / BFF  ←  NestJS                      │
-└───────────────┬──────────────────────────────┬───────────────────────┘
-                │                              │
-     ┌──────────▼──────────┐        ┌──────────▼──────────────────────┐
-     │  NestJS             │        │  FastAPI (este repositório)     │
-     │  (domínio: cursos,  │        │  POST /v1/analises              │
-     │   turmas, docentes) │        │  GET  /v1/defasagens  (radar)   │
-     └──────────┬──────────┘        │  POST /v1/objetos  /evidencias  │
-                │                   │  GET  /v1/metricas /auditoria   │
-                │                   └──────────┬──────────────────────┘
-                │                              │
-┌───────────────▼──────────────────────────────▼───────────────────────┐
-│   MongoDB (auditoria, evidências)  +  Hub de eventos (Kafka)         │
-│   evidencia.nova → evidencia.indexada → defasagem.detectada          │
-└───────────────────────────────┬──────────────────────────────────────┘
-                                │
-                   ┌────────────▼─────────────┐
-                   │ Worker Python de ingestão│
-                   │ ETL + validação + índice │
-                   └────────────┬─────────────┘
-                                │
-┌───────────────────────────────▼──────────────────────────────────────┐
-│          Kubernetes  ·  GitLab CI/CD  ·  OpenTelemetry               │
-└──────────────────────────────────────────────────────────────────────┘
+│          Next.js · App Router (web/)  ·  radar do coordenador        │
+└──────────────┬───────────────────────────────────────┬───────────────┘
+               │ GET /api/radar                        ┆ direto, sem BFF
+               │ (se VITE_BFF_URL)                     ┆ ou se ele cair
+┌──────────────▼───────────────────┐                   ┆
+│  BFF NestJS (bff/) · opcional    │                   ┆
+│  GET /api/radar                  │                   ┆
+└──────────────┬───────────────────┘                   ┆
+               │ GET /v1/defasagens                    ┆
+┌──────────────▼───────────────────────────────────────▼───────────────┐
+│  FastAPI (app/)                                                      │
+│  POST /v1/analises · GET /v1/defasagens (radar)                      │
+│  POST /v1/objetos /evidencias · GET /v1/metricas /auditoria          │
+└──────────────┬───────────────────────────────────────────────────────┘
+               │
+┌──────────────▼───────────────────────────────────────────────────────┐
+│  MongoDB (auditoria, evidências; sem ele, memória)                   │
+│  + Kafka: evidencia.nova → evidencia.indexada → defasagem.detectada  │
+└──────────────┬───────────────────────────────────────────────────────┘
+               │
+  ┌────────────▼─────────────┐
+  │ Worker Python de ingestão│
+  │ ETL + validação + índice │
+  └──────────────────────────┘
 ```
 
-Este repositório é o lado Python: a API FastAPI, o worker de ingestão e o
-harness de avaliação. O front (`web/`) e um BFF NestJS mínimo (`bff/`) existem
-como prova de contrato: o BFF só agrega o radar, e o front funciona com ou sem
-ele. O NestJS de domínio (cursos, turmas, docentes) fica fora do escopo.
+Este repositório é o lado Python (a API FastAPI, o worker de ingestão e o
+harness de avaliação) mais duas camadas finas que fecham o caminho de ponta a
+ponta como prova de contrato: o front Next.js e um BFF NestJS que só agrega o
+radar. O front funciona com ou sem o BFF. Ficam de fora o NestJS de domínio
+(cursos, turmas, docentes) e a camada de plataforma do PRD (Kubernetes,
+GitLab CI/CD, OpenTelemetry); o diagrama-alvo completo está na seção 4 do
+[PRD](PRD.md).
 
 ### O caminho de uma análise
 
@@ -275,7 +276,7 @@ app/
   workers/       ingestor Kafka
 data/            corpus sintético (evidências curadas + catálogo de material)
 eval/            dataset rotulado, harness e template do painel
-web/             front React: o radar do coordenador (uma tela)
+web/             front Next.js: o radar do coordenador (uma tela)
 bff/             BFF NestJS opcional: GET /api/radar → GET /v1/defasagens
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
 tests/           214 testes
