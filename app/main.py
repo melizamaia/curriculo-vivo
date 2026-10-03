@@ -71,7 +71,7 @@ def criar_app(settings: Settings | None = None) -> FastAPI:
         version=settings.app_versao,
         description=(
             "Radar de defasagem curricular: cruza o material didático com a "
-            "evidência vigente e aponta, com citação, o que envelheceu, ou se "
+            "evidência vigente e aponta, com citação, o que envelheceu — ou se "
             "abstém. Corpus sintético e ilustrativo. " + settings.aviso_padrao
         ),
         lifespan=lifespan,
