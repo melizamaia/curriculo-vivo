@@ -13,7 +13,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ed?logo=docker&logoColor=fff)
 
 **Radar de defasagem curricular para educação médica: cruza o material didático
-com a evidência vigente e aponta, com citação, o que envelheceu — e se cala
+com a evidência vigente e aponta, com citação, o que envelheceu, e se cala
 quando não tem base para apontar.**
 
 > ⚠️ **Corpus sintético.** Todas as evidências e todos os objetos de
@@ -52,7 +52,7 @@ verde em [melizamaia.github.io/curriculo-vivo](https://melizamaia.github.io/curr
 | **Alerta sem citação** | = 0 (dura) | **0** |
 | **Invariante de contrato violada** | = 0 (dura) | **0** |
 | Latência p50 / p95 por análise | p95 < 500 ms | 0,7 / 1,1 ms |
-| Custo por análise | — | US$ 0 (síntese extrativa, sem LLM) |
+| Custo por análise | sem meta | US$ 0 (síntese extrativa, sem LLM) |
 
 Como ler esses números:
 

@@ -19,7 +19,7 @@ pedagogica.
 
 O servico propaga essa marca ate a resposta da API: toda citacao de evidencia
 ilustrativa volta com `exemplo_ilustrativo: true` e um alerta explicito. Isso e
-deliberado — mostra que a flag de proveniencia atravessa a pilha inteira, da
+deliberado: mostra que a flag de proveniencia atravessa a pilha inteira, da
 ingestao ate o payload que o front consome.
 
 ## Como o corpus foi calibrado
@@ -33,14 +33,14 @@ conjunto cubra todos os comportamentos que o produto precisa acertar.
 | Defasado, severidade alta | 4 | `defasagem_detectada` com `severidade: alta` |
 | Defasado, severidade media | 4 | `defasagem_detectada` com `severidade: media` |
 | Defasado, severidade baixa | 4 | `defasagem_detectada` com `severidade: baixa` |
-| Atualizado | 10 | `sem_achado` — **o teste de falso alarme** |
+| Atualizado | 10 | `sem_achado`: **o teste de falso alarme** |
 | Tema sem evidencia na base | 3 | `abstido` / `evidencia_insuficiente` |
 | Tema so em fonte nao validada | 2 | `abstido` / `fonte_nao_validada` |
 | Sem referencia datada | 2 | `abstido` / `material_sem_referencia` |
 | Fora de escopo | 1 | `abstido` / `fora_de_escopo` |
 | Sem conteudo extraido | 1 | `abstido` / `objeto_invalido` |
 
-Dois casos ficam de proposito na **fronteira** da tabela — gap de exatamente 12
+Dois casos ficam de proposito na **fronteira** da tabela, com gap de exatamente 12
 e de exatamente 24 meses. E onde um erro de comparacao (`>` em vez de `>=`)
 aparece, e por isso eles existem.
 
