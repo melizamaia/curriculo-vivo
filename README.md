@@ -210,7 +210,8 @@ sintética de oftalmologia, tema que a base curada não cobre, e imprime o
 `evidencia.indexada` que o worker devolve. Para a API passar a usá-la:
 `docker compose restart api` (veja [Limitações](#limitações-conhecidas)).
 
-Todos os alvos: `make help`.
+Todos os alvos: `make help`. Portas, acesso ao MongoDB e ao Kafka e consultas
+úteis estão em [docs/documentacao.md](docs/documentacao.md).
 
 ### Exemplos de chamada
 
@@ -422,7 +423,7 @@ data/            corpus sintético (evidências curadas + catálogo de material)
 eval/            dataset rotulado, harness e template do painel
 web/             front Next.js: o radar do coordenador (uma tela)
 bff/             BFF NestJS opcional: GET /api/radar → GET /v1/defasagens
-docs/            capturas de tela (galeria em docs/capturas.md)
+docs/            documentação de operação (docs/documentacao.md) e capturas (docs/capturas.md)
 k8s/             manifestos Kubernetes para revisão (não aplicados)
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
 tests/           214 testes
