@@ -219,6 +219,32 @@ sintética de oftalmologia, tema que a base curada não cobre, e imprime o
 Todos os alvos: `make help`. Portas, acesso ao MongoDB e ao Kafka e consultas
 úteis estão em [docs/documentacao.md](docs/documentacao.md).
 
+Com a stack no ar, cada análise vira um documento na coleção `auditoria` do
+banco `curriculo_vivo`. Para conferir pelo `mongosh` do container
+(`docker compose exec mongo mongosh curriculo_vivo`, ou a aba *Exec* do
+container `curriculo-mongo` no Docker Desktop):
+
+```js
+show dbs
+use curriculo_vivo
+show collections
+db.auditoria.countDocuments()
+db.auditoria.findOne()
+```
+
+<img src="docs/show_dbs.png" alt="mongosh: show dbs, coleção auditoria com 732 documentos" width="600">
+
+*O banco `curriculo_vivo` e a coleção `auditoria`, com 732 análises gravadas
+pelo radar. A coleção `evidencias` só aparece depois que o worker ingere a
+primeira evidência (`make evento`).*
+
+<img src="docs/show_dbs2.png" alt="mongosh: um registro de auditoria" width="600">
+
+*Um registro de auditoria: a abstenção `fora_de_escopo` do objeto
+`enf-escopo-aluno-aula05` (caso c043 do eval). O registro guarda o
+`objeto_hash`, e não o texto do material (decisão 7), além de status, motivo,
+confiança, evidências citadas, modo de síntese e latência.*
+
 ### Exemplos de chamada
 
 ```bash
