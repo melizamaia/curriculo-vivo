@@ -31,7 +31,9 @@ contrato completo no [PRD](../PRD.md).
 | BFF NestJS | `bff/` | opcional; repassa o radar da API |
 | Eval | `eval/` | 43 casos rotulados + painel HTML |
 
-Diagrama em [`arquitetura.drawio`](arquitetura.drawio), com duas páginas:
+![Arquitetura do Currículo Vivo](curriculo-vivo.drawio.png)
+
+Diagrama editável em [`arquitetura.drawio`](arquitetura.drawio), com duas páginas:
 a arquitetura e o caminho de uma análise pelas quatro barreiras. Abra em
 [app.diagrams.net](https://app.diagrams.net) ou na extensão Draw.io do VS Code.
 

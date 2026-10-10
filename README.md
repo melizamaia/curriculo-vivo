@@ -230,6 +230,11 @@ curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
 
 ## Arquitetura
 
+![Arquitetura do Currículo Vivo](docs/curriculo-vivo.drawio.png)
+
+*Fonte editável em [docs/arquitetura.drawio](docs/arquitetura.drawio), com uma
+segunda página sobre o caminho de uma análise.*
+
 O que existe neste repositório:
 
 ```
