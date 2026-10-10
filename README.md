@@ -89,6 +89,7 @@ Como ler esses números:
 *O radar do coordenador, ordenado por severidade.*
 
 Galeria com uma explicação por captura: [docs/capturas.md](docs/capturas.md).
+
 Roteiro de apresentação com essas telas e o porquê da stack: [docs/roteiro-apresentacao.md](docs/roteiro-apresentacao.md).
 
 ## Como rodar
