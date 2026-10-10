@@ -128,8 +128,8 @@ def test_requisicao_vazia_422(cliente):
 
 def test_radar_ordena_por_severidade(cliente):
     corpo = cliente.get("/v1/defasagens").json()
-    assert corpo["total_objetos"] == 31
-    assert corpo["por_severidade"] == {"alta": 4, "media": 4, "baixa": 4}
+    assert corpo["total_objetos"] == 43
+    assert corpo["por_severidade"] == {"alta": 6, "media": 6, "baixa": 7}
     peso = {"alta": 3, "media": 2, "baixa": 1, None: 0}
     pesos = [peso[i["severidade_maxima"]] for i in corpo["itens"]]
     assert pesos == sorted(pesos, reverse=True)
@@ -186,14 +186,14 @@ def test_ingestao_de_objeto():
         assert cliente.post("/v1/objetos", json=objeto).status_code == 201
         assert cliente.post("/v1/objetos", json=objeto).status_code == 200
         assert analisar(cliente, "ingerido-01")["objeto_id"] == "ingerido-01"
-        assert cliente.get("/v1/defasagens").json()["total_objetos"] == 32
+        assert cliente.get("/v1/defasagens").json()["total_objetos"] == 44
 
 
 def test_radar_audita_cada_analise_e_metricas_separam_origem():
     # Cliente próprio: as contagens precisam partir do zero.
     with TestClient(criar_app(Settings(**SEM_MONGO))) as cliente:
         analisar(cliente, "med-clin-sepse-aula07")
-        # Severidade e limite recortam a fila, não a auditoria: as 31
+        # Severidade e limite recortam a fila, não a auditoria: as 43
         # análises da varredura são gravadas.
         radar = cliente.get(
             "/v1/defasagens", params={"severidade": "alta", "limite": 1}
@@ -202,7 +202,7 @@ def test_radar_audita_cada_analise_e_metricas_separam_origem():
 
         trilha = cliente.get("/v1/auditoria", params={"limite": 1000}).json()
         do_radar = [r for r in trilha if r["origem"] == "radar"]
-        assert len(do_radar) == 31
+        assert len(do_radar) == 43
         assert [r["origem"] for r in trilha].count("analise") == 1
         assert {r["versao_indice"] for r in do_radar} == {radar["versao_indice"]}
         apontado = radar["itens"][0]
@@ -218,5 +218,5 @@ def test_radar_audita_cada_analise_e_metricas_separam_origem():
         assert padrao["por_status"] == {"defasagem_detectada": 1}
 
         com_radar = cliente.get("/v1/metricas", params={"incluir_radar": True}).json()
-        assert com_radar["total_analises"] == 32
-        assert com_radar["por_status"]["defasagem_detectada"] == 13
+        assert com_radar["total_analises"] == 44
+        assert com_radar["por_status"]["defasagem_detectada"] == 20

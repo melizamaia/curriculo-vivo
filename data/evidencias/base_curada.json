@@ -356,5 +356,78 @@
         "texto": "Com EXIGIR_FONTE_OFICIAL ligado, nenhum trecho deste documento pode sustentar um alerta de defasagem, mesmo que a similaridade textual com o material didatico seja alta. O resultado esperado e abstencao por fonte nao validada."
       }
     ]
+  },
+  {
+    "doc_id": "ms-dengue-2025",
+    "titulo": "Dengue: classificacao de risco e manejo clinico",
+    "fonte": "Ministerio da Saude (exemplo ilustrativo)",
+    "fonte_tipo": "orgao_oficial",
+    "url": "https://www.gov.br/saude/pt-br",
+    "publicado_em": "2025-03-18",
+    "nivel_evidencia": "B",
+    "temas": ["dengue"],
+    "practice_changing": true,
+    "substitui": ["guia de manejo clinico da dengue 2022"],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "ms-dengue-2025#t1",
+        "texto": "A classificacao de risco do paciente com suspeita de dengue orienta o local de atendimento e o tipo de hidratacao. A presenca de qualquer sinal de alarme indica hidratacao venosa e observacao em unidade com leito."
+      },
+      {
+        "trecho_id": "ms-dengue-2025#t2",
+        "texto": "O hematocrito seriado e a contagem de plaquetas devem ser repetidos conforme o grupo de risco. Esta versao antecipa a reavaliacao clinica do grupo com sinais de alarme e redefine os criterios de retorno, a principal mudanca em relacao a edicao anterior."
+      },
+      {
+        "trecho_id": "ms-dengue-2025#t3",
+        "texto": "Os criterios de internacao incluem sinais de alarme persistentes apos a hidratacao inicial, sinais de choque e impossibilidade de hidratacao oral."
+      }
+    ]
+  },
+  {
+    "doc_id": "diretriz-insuficiencia-cardiaca-2025",
+    "titulo": "Diretriz de insuficiencia cardiaca com fracao de ejecao reduzida",
+    "fonte": "Diretriz de sociedade medica (exemplo ilustrativo)",
+    "fonte_tipo": "diretriz_sociedade",
+    "url": "https://example.org/diretrizes/insuficiencia-cardiaca",
+    "publicado_em": "2025-06-24",
+    "nivel_evidencia": "A",
+    "temas": ["insuficiencia_cardiaca"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "diretriz-insuficiencia-cardiaca-2025#t1",
+        "texto": "O ecocardiograma classifica a insuficiencia cardiaca pela fracao de ejecao, e o peptideo natriuretico apoia o diagnostico quando a apresentacao clinica e duvidosa."
+      },
+      {
+        "trecho_id": "diretriz-insuficiencia-cardiaca-2025#t2",
+        "texto": "Na fracao de ejecao reduzida, a terapia modificadora de doenca combina as classes com beneficio comprovado, iniciadas precocemente e com titulacao de dose ate a maxima tolerada."
+      }
+    ]
+  },
+  {
+    "doc_id": "conitec-tabagismo-2024",
+    "titulo": "Relatorio de recomendacao: tratamento do tabagismo",
+    "fonte": "CONITEC (exemplo ilustrativo)",
+    "fonte_tipo": "orgao_oficial",
+    "url": "https://www.gov.br/conitec/pt-br",
+    "publicado_em": "2024-08-27",
+    "nivel_evidencia": "B",
+    "temas": ["tabagismo"],
+    "practice_changing": false,
+    "substitui": [],
+    "exemplo_ilustrativo": true,
+    "trechos": [
+      {
+        "trecho_id": "conitec-tabagismo-2024#t1",
+        "texto": "A avaliacao do grau de dependencia de nicotina orienta a escolha do tratamento, e a abordagem breve motivacional deve ser oferecida em toda consulta da atencao primaria."
+      },
+      {
+        "trecho_id": "conitec-tabagismo-2024#t2",
+        "texto": "A terapia de reposicao de nicotina pode ser combinada entre apresentacoes de liberacao lenta e rapida, com acompanhamento do paciente nas primeiras semanas de abstinencia."
+      }
+    ]
   }
 ]

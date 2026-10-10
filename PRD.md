@@ -679,7 +679,7 @@ curriculo-vivo/
 ├── scripts/
 │   └── gerar_corpus_material.py   # gera o corpus SINTÉTICO de material
 ├── data/
-│   ├── material/catalogo.json     # 31 objetos de aprendizagem (gerados)
+│   ├── material/catalogo.json     # 43 objetos de aprendizagem (gerados)
 │   └── evidencias/base_curada.json # 13 evidências (sintéticas)
 ├── eval/
 │   ├── dataset.json
@@ -810,7 +810,7 @@ Checklist de demonstração. Todos precisam passar antes da apresentação:
 > serviço que avisa, e que se cala quando não tem base para avisar."
 
 ### Demo (3 min)
-1. `GET /v1/defasagens` → o radar. "31 objetos, 4 defasagens altas. Esta é a
+1. `GET /v1/defasagens` → o radar. "43 objetos, 6 defasagens altas. Esta é a
    fila do coordenador na segunda-feira, ordenada por severidade."
 2. `med-clin-sepse-aula07` → defasagem alta. Mostrar **a citação com fonte,
    data e nível de evidência**, e a justificativa com os marcadores `[0]` e

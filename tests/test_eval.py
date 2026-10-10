@@ -172,7 +172,7 @@ def test_run_eval_retorna_zero_e_cumpre_as_metas(execucao):
     assert m["taxa_deteccao"] >= 0.85
     assert m["custo_estimado_usd"] == 0
     assert resultado["metas_duras_ok"] is True
-    assert len(resultado["casos"]) == 31
+    assert len(resultado["casos"]) == 43
 
 
 def test_painel_autocontido_com_dados_embutidos(execucao):

@@ -29,7 +29,7 @@ contrato completo no [PRD](../PRD.md).
 | Kafka (KRaft) | `docker-compose.yml` | eventos de evidência |
 | Front Next.js | `web/` | o radar do coordenador |
 | BFF NestJS | `bff/` | opcional; repassa o radar da API |
-| Eval | `eval/` | 31 casos rotulados + painel HTML |
+| Eval | `eval/` | 43 casos rotulados + painel HTML |
 
 Mongo e Kafka são opcionais. Sem eles a API sobe em memória e registra no log
 em que modo entrou (decisão 8 do README).

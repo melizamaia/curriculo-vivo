@@ -36,7 +36,7 @@ abstenção explícita**. Nunca um alerta sem fonte.
 
 ## Resultado da avaliação
 
-`make eval` roda 31 casos rotulados em quatro classes e gera um painel
+`make eval` roda 43 casos rotulados em quatro classes e gera um painel
 autocontido em `dashboard/index.html` (também servido em `/painel`). A CI roda
 testes e eval a cada push e PR na `main` e publica o painel do último build
 verde em [melizamaia.github.io/curriculo-vivo](https://melizamaia.github.io/curriculo-vivo/).
@@ -51,7 +51,7 @@ verde em [melizamaia.github.io/curriculo-vivo](https://melizamaia.github.io/curr
 | Motivo de abstenção correto | ≥ 90% | 100% |
 | **Alerta sem citação** | = 0 (dura) | **0** |
 | **Invariante de contrato violada** | = 0 (dura) | **0** |
-| Latência p50 / p95 por análise | p95 < 500 ms | 0,7 / 1,1 ms |
+| Latência p50 / p95 por análise | p95 < 500 ms | 1,2 / 3,1 ms |
 | Custo por análise | sem meta | US$ 0 (síntese extrativa, sem LLM) |
 
 Como ler esses números:
@@ -77,7 +77,7 @@ Como ler esses números:
 <img src="docs/painel-2.png" alt="Painel de avaliação, matriz de classes" width="400">
 <img src="docs/painel-3.png" alt="Painel de avaliação, casos" width="400">
 
-*O painel de avaliação: falso alarme em 0%, os 31 casos na diagonal da matriz e o resultado caso a caso.*
+*O painel de avaliação: falso alarme em 0%, os casos na diagonal da matriz e o resultado caso a caso. Capturas tiradas com o corpus de 31 casos.*
 
 <img src="docs/painel-4.png" alt="Casos-chave c026 e c027" width="400">
 
@@ -115,7 +115,7 @@ Em outro terminal:
 
 ```bash
 make demo         # roteiro da apresentação: radar, 5 casos, auditoria, métricas
-make test         # 214 testes
+make test         # 231 testes
 make eval         # harness de avaliação + painel em dashboard/index.html
 ```
 
@@ -426,7 +426,7 @@ bff/             BFF NestJS opcional: GET /api/radar → GET /v1/defasagens
 docs/            documentação de operação (docs/documentacao.md) e capturas (docs/capturas.md)
 k8s/             manifestos Kubernetes para revisão (não aplicados)
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
-tests/           214 testes
+tests/           231 testes
 .github/         CI: pytest + eval em push e PR, painel no GitHub Pages
 PRD.md           requisitos, contratos e regras completas
 ```

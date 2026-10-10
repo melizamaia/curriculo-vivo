@@ -103,6 +103,24 @@ TEMAS = {
         "a pressao seletiva associada a exposicao e as ressalvas para "
         "pacientes imunossuprimidos ou com foco nao controlado."
     ),
+    "dengue": (
+        "A aula apresenta o manejo da dengue com classificacao de risco por "
+        "sinais de alarme, hidratacao oral ou venosa conforme o grupo, "
+        "hematocrito seriado, contagem de plaquetas e criterios de "
+        "internacao e de retorno para reavaliacao."
+    ),
+    "insuficiencia_cardiaca": (
+        "A aula discute a insuficiencia cardiaca com fracao de ejecao reduzida, "
+        "com ecocardiograma para classificar a fracao de ejecao, peptideo "
+        "natriuretico no diagnostico, as classes de terapia modificadora de "
+        "doenca e a titulacao de dose ate a maxima tolerada."
+    ),
+    "tabagismo": (
+        "A aula aborda a cessacao do tabagismo na atencao primaria, com "
+        "avaliacao do grau de dependencia de nicotina, abordagem breve "
+        "motivacional, terapia de reposicao de nicotina e acompanhamento do "
+        "paciente nas primeiras semanas de abstinencia."
+    ),
     # Temas sem evidencia correspondente na base curada.
     "oftalmologia": (
         "A aula trata do glaucoma agudo de angulo fechado, com reconhecimento "
@@ -163,6 +181,29 @@ OBJETOS = [
      "plano_de_aula", "Medicina", "Endocrinologia", "7", ["farmacologia"], [2022], "2022-06-14"),
     ("med-card-dor-toracica-sim01", "Simulado: dor toracica na emergencia",
      "questao", "Medicina", "Cardiologia", "6", ["dor_toracica"], [2023], "2023-11-22"),
+    # --- outros cursos, temas novos e objetos com mais de um tema ---------
+    # Enfermagem: practice-changing com gap de 27 meses.
+    ("enf-saude-adulto-dengue-aula02", "Dengue: classificacao de risco e hidratacao",
+     "aula", "Enfermagem", "Saude do Adulto", "4", ["dengue"], [2022], "2022-04-12"),
+    # Practice-changing com gap de 3 meses: posterior, mas recente.
+    ("med-infecto-dengue-aula03", "Dengue: manejo clinico por grupo de risco",
+     "plano_de_aula", "Medicina", "Infectologia", "8", ["dengue"], [2024], "2024-03-05"),
+    ("med-card-ic-aula08", "Insuficiencia cardiaca com fracao de ejecao reduzida",
+     "plano_de_aula", "Medicina", "Cardiologia", "7", ["insuficiencia_cardiaca"], [2021], "2021-09-02"),
+    ("farm-atencao-tabagismo-aula01", "Cessacao do tabagismo no cuidado farmaceutico",
+     "aula", "Farmacia", "Atencao Farmaceutica", "6", ["tabagismo"], [2022], "2022-02-17"),
+    # Dois temas defasados com severidades diferentes: a maxima vence.
+    ("med-clin-sepse-antibiotico-aula15", "Sepse e duracao do antimicrobiano",
+     "plano_de_aula", "Medicina", "Clinica Medica", "8", ["sepse", "antibioticoterapia"],
+     [2022], "2022-10-03"),
+    # Um tema defasado e outro em dia: o alerta cita so o defasado.
+    ("med-angio-tev-antibiotico-aula16", "TEV e antibioticoterapia no paciente internado",
+     "plano_de_aula", "Medicina", "Clinica Medica", "8", ["tev", "antibioticoterapia"],
+     [2023], "2023-08-21"),
+    # Ementa com dois temas practice-changing, ambos com gap abaixo de 12.
+    ("med-urgencia-ementa", "Ementa: Urgencia e Emergencia",
+     "ementa", "Medicina", "Urgencia e Emergencia", "9", ["avc", "dor_toracica"],
+     [2023], "2023-12-15"),
     # --- atualizados: o teste de falso alarme -------------------------------
     ("med-card-hipertensao-aula03", "Hipertensao arterial: diagnostico e tratamento",
      "plano_de_aula", "Medicina", "Cardiologia", "6", ["hipertensao"], [2024], "2024-08-01"),
@@ -184,6 +225,17 @@ OBJETOS = [
      "plano_de_aula", "Medicina", "Pneumologia", "7", ["pneumonia"], [2024], "2024-01-30"),
     ("med-infecto-antibiotico-aula09r", "Duracao de antibioticoterapia (revisao 2025)",
      "plano_de_aula", "Medicina", "Infectologia", "8", ["antibioticoterapia"], [2025], "2025-04-02"),
+    ("med-infecto-dengue-aula03r", "Dengue: manejo clinico (revisao 2025)",
+     "plano_de_aula", "Medicina", "Infectologia", "8", ["dengue"], [2025], "2025-05-14"),
+    # Evidencia posterior, mas gap de 6 meses e sem practice-changing.
+    ("med-card-ic-aula08r", "Insuficiencia cardiaca (revisao 2024)",
+     "plano_de_aula", "Medicina", "Cardiologia", "7", ["insuficiencia_cardiaca"], [2024], "2024-10-08"),
+    # Evidencia posterior, mas gap de 8 meses e sem practice-changing.
+    ("farm-atencao-tabagismo-aula01r", "Cessacao do tabagismo (revisao 2023)",
+     "aula", "Farmacia", "Atencao Farmaceutica", "6", ["tabagismo"], [2023], "2023-09-26"),
+    # Bibliografia mista: a referencia de 2015 nao conta, vale a de 2024.
+    ("med-card-hipertensao-aula09", "Hipertensao resistente: bibliografia mista",
+     "plano_de_aula", "Medicina", "Cardiologia", "8", ["hipertensao"], [2015, 2024], "2024-11-04"),
     # --- sem evidencia na base: abstencao -----------------------------------
     ("med-oftalmo-glaucoma-aula01", "Glaucoma agudo de angulo fechado",
      "plano_de_aula", "Medicina", "Oftalmologia", "9", ["oftalmologia"], [2019], "2019-02-11"),
@@ -279,6 +331,22 @@ def objetos_inelegiveis() -> list[dict]:
         }
     ]
 
+    aluno = objeto_base(
+        "enf-escopo-aluno-aula05",
+        "Estudo de caso com aluno identificado",
+        "aula", "Enfermagem", "Saude do Adulto", "4", ["dengue"], [2022],
+        "2022-04-12",
+    )
+    aluno["trechos"] = [
+        {
+            "trecho_id": "enf-escopo-aluno-aula05#t1",
+            "texto": (
+                "Discussao do desempenho da aluna Carla Mendes na estacao de "
+                "classificacao de risco da dengue, com as notas de cada etapa."
+            ),
+        }
+    ]
+
     invalido = objeto_base(
         "med-objeto-invalido-aula04",
         "Objeto digital sem conteudo extraido",
@@ -287,7 +355,7 @@ def objetos_inelegiveis() -> list[dict]:
     )
     invalido["trechos"] = []
 
-    return [sem_ref, ref_sem_ano, fora_escopo, invalido]
+    return [sem_ref, ref_sem_ano, fora_escopo, aluno, invalido]
 
 
 def main() -> None:

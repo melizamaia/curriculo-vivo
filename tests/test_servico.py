@@ -201,6 +201,22 @@ def test_mesma_evidencia_em_dois_temas_reusa_o_marcador(retriever, catalogo):
     assert [d.evidencia.marcador for d in resposta.defasagens] == [1, 1]
 
 
+def test_multitema_cita_cada_tema_e_severidade_maxima_vence(retriever, catalogo):
+    r = servico(retriever).analisar(catalogo["med-clin-sepse-antibiotico-aula15"])
+    assert [(d.tema, d.severidade, d.evidencia.doc_id, d.evidencia.marcador)
+            for d in r.defasagens] == [
+        ("sepse", Severidade.MEDIA, "ms-sepse-2024", 1),
+        ("antibioticoterapia", Severidade.ALTA, "diretriz-antibiotico-duracao-2024", 2),
+    ]
+    assert r.severidade_maxima is Severidade.ALTA
+
+
+def test_multitema_parcial_cita_so_o_tema_defasado(retriever, catalogo):
+    r = servico(retriever).analisar(catalogo["med-angio-tev-antibiotico-aula16"])
+    assert r.status is StatusAnalise.DEFASAGEM_DETECTADA
+    assert [d.tema for d in r.defasagens] == ["antibioticoterapia"]
+
+
 def test_objeto_sem_temas_abstem(retriever):
     objeto = ObjetoAprendizagem(
         objeto_id="sem-temas",
@@ -234,10 +250,11 @@ def test_radar_ordena_por_severidade_e_agrega(retriever, catalogo):
     radar = servico(retriever).radar(catalogo.values())
 
     assert radar.total_objetos == len(catalogo)
-    assert radar.objetos_com_defasagem == 12
-    assert radar.por_severidade == {"alta": 4, "media": 4, "baixa": 4}
+    assert radar.objetos_com_defasagem == 19
+    assert radar.por_severidade == {"alta": 6, "media": 6, "baixa": 7}
     assert radar.versao_indice == retriever.versao_indice
-    assert sum(radar.por_curso.values()) == 12
+    assert sum(radar.por_curso.values()) == 19
+    assert set(radar.por_curso) == {"Medicina", "Enfermagem", "Farmacia"}
 
     pesos = [
         {"alta": 3, "media": 2, "baixa": 1}.get(
@@ -252,7 +269,7 @@ def test_radar_filtra_severidade_e_limita(retriever, catalogo):
     radar = servico(retriever).radar(
         catalogo.values(), severidade=Severidade.ALTA, limite=2
     )
-    assert radar.total_objetos == 4
+    assert radar.total_objetos == 6
     assert len(radar.itens) == 2
     assert all(i.severidade_maxima is Severidade.ALTA for i in radar.itens)
 

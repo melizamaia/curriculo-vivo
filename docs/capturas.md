@@ -18,7 +18,7 @@ operação, incluindo `/v1/metricas`, `/v1/auditoria` e `/painel`.
 
 O resultado do `make eval`: metas duras cumpridas e build liberado, falso
 alarme em 0% (0 de 10 materiais atualizados), a matriz classe esperada ×
-status obtido com os 31 casos na diagonal e a tabela caso a caso, incluindo
+status obtido com os 31 casos na diagonal (corpus da época das capturas) e a tabela caso a caso, incluindo
 as fronteiras da tabela de severidade.
 
 ## 3. Painel de avaliação: casos-chave
@@ -34,6 +34,7 @@ radar se abstém em vez de alertar.
 ![Radar do coordenador, topo](radar-1.png)
 ![Radar do coordenador, resto da fila](radar-2.png)
 
-Os contadores (31 objetos analisados, 12 com defasagem, 4 de cada severidade)
+Os contadores (31 objetos analisados, 12 com defasagem, 4 de cada severidade;
+as capturas são de antes da ampliação do corpus para 43 objetos)
 e a fila inteira, das defasagens altas às baixas, com o ano da referência que
 cada material cita.

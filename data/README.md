@@ -30,19 +30,33 @@ conjunto cubra todos os comportamentos que o produto precisa acertar.
 
 | Classe | Qtd | Comportamento esperado |
 | --- | --- | --- |
-| Defasado, severidade alta | 4 | `defasagem_detectada` com `severidade: alta` |
-| Defasado, severidade media | 4 | `defasagem_detectada` com `severidade: media` |
-| Defasado, severidade baixa | 4 | `defasagem_detectada` com `severidade: baixa` |
-| Atualizado | 10 | `sem_achado`: **o teste de falso alarme** |
+| Defasado, severidade alta | 6 | `defasagem_detectada` com `severidade: alta` |
+| Defasado, severidade media | 6 | `defasagem_detectada` com `severidade: media` |
+| Defasado, severidade baixa | 7 | `defasagem_detectada` com `severidade: baixa` |
+| Atualizado | 14 | `sem_achado`: **o teste de falso alarme** |
 | Tema sem evidencia na base | 3 | `abstido` / `evidencia_insuficiente` |
 | Tema so em fonte nao validada | 2 | `abstido` / `fonte_nao_validada` |
 | Sem referencia datada | 2 | `abstido` / `material_sem_referencia` |
-| Fora de escopo | 1 | `abstido` / `fora_de_escopo` |
+| Fora de escopo | 2 | `abstido` / `fora_de_escopo` |
 | Sem conteudo extraido | 1 | `abstido` / `objeto_invalido` |
 
 Dois casos ficam de proposito na **fronteira** da tabela, com gap de exatamente 12
 e de exatamente 24 meses. E onde um erro de comparacao (`>` em vez de `>=`)
 aparece, e por isso eles existem.
+
+Alem dos casos de um tema so, o corpus simula situacoes que aparecem num
+catalogo de verdade:
+
+| Situacao | Objeto | O que se espera |
+| --- | --- | --- |
+| Dois temas defasados, severidades diferentes | `med-clin-sepse-antibiotico-aula15` | duas citacoes; `severidade_maxima` e a mais alta |
+| Um tema defasado, outro em dia | `med-angio-tev-antibiotico-aula16` | alerta so do tema defasado |
+| Ementa com dois temas | `med-urgencia-ementa` | duas citacoes de severidade baixa |
+| Bibliografia mista (2015 e 2024) | `med-card-hipertensao-aula09` | vale a referencia mais nova: sem alerta |
+| Evidencia posterior, gap curto, sem practice-changing | `med-card-ic-aula08r`, `farm-atencao-tabagismo-aula01r` | sem alerta |
+| Practice-changing com gap de 3 meses | `med-infecto-dengue-aula03` | alerta baixo |
+| Outros cursos | `enf-*` (Enfermagem), `farm-*` (Farmacia) | o radar agrega por curso |
+| Aluno identificado pelo nome | `enf-escopo-aluno-aula05` | `abstido` / `fora_de_escopo` |
 
 ## Os dois niveis do filtro de proveniencia
 

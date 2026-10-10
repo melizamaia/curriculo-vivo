@@ -378,6 +378,256 @@
     ]
   },
   {
+    "objeto_id": "enf-saude-adulto-dengue-aula02",
+    "titulo": "Dengue: classificacao de risco e hidratacao",
+    "tipo": "aula",
+    "curso": "Enfermagem",
+    "disciplina": "Saude do Adulto",
+    "periodo": "4",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "dengue"
+    ],
+    "atualizado_em": "2022-04-12",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre dengue (2022)",
+        "fonte": "Referencia sintetica",
+        "ano": 2022,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "enf-saude-adulto-dengue-aula02#t1",
+        "texto": "A aula apresenta o manejo da dengue com classificacao de risco por sinais de alarme, hidratacao oral ou venosa conforme o grupo, hematocrito seriado, contagem de plaquetas e criterios de internacao e de retorno para reavaliacao."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-infecto-dengue-aula03",
+    "titulo": "Dengue: manejo clinico por grupo de risco",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Infectologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "dengue"
+    ],
+    "atualizado_em": "2024-03-05",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre dengue (2024)",
+        "fonte": "Referencia sintetica",
+        "ano": 2024,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-infecto-dengue-aula03#t1",
+        "texto": "A aula apresenta o manejo da dengue com classificacao de risco por sinais de alarme, hidratacao oral ou venosa conforme o grupo, hematocrito seriado, contagem de plaquetas e criterios de internacao e de retorno para reavaliacao."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-card-ic-aula08",
+    "titulo": "Insuficiencia cardiaca com fracao de ejecao reduzida",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Cardiologia",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "insuficiencia_cardiaca"
+    ],
+    "atualizado_em": "2021-09-02",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre insuficiencia_cardiaca (2021)",
+        "fonte": "Referencia sintetica",
+        "ano": 2021,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-card-ic-aula08#t1",
+        "texto": "A aula discute a insuficiencia cardiaca com fracao de ejecao reduzida, com ecocardiograma para classificar a fracao de ejecao, peptideo natriuretico no diagnostico, as classes de terapia modificadora de doenca e a titulacao de dose ate a maxima tolerada."
+      }
+    ]
+  },
+  {
+    "objeto_id": "farm-atencao-tabagismo-aula01",
+    "titulo": "Cessacao do tabagismo no cuidado farmaceutico",
+    "tipo": "aula",
+    "curso": "Farmacia",
+    "disciplina": "Atencao Farmaceutica",
+    "periodo": "6",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "tabagismo"
+    ],
+    "atualizado_em": "2022-02-17",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre tabagismo (2022)",
+        "fonte": "Referencia sintetica",
+        "ano": 2022,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "farm-atencao-tabagismo-aula01#t1",
+        "texto": "A aula aborda a cessacao do tabagismo na atencao primaria, com avaliacao do grau de dependencia de nicotina, abordagem breve motivacional, terapia de reposicao de nicotina e acompanhamento do paciente nas primeiras semanas de abstinencia."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-clin-sepse-antibiotico-aula15",
+    "titulo": "Sepse e duracao do antimicrobiano",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "sepse",
+      "antibioticoterapia"
+    ],
+    "atualizado_em": "2022-10-03",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre sepse (2022)",
+        "fonte": "Referencia sintetica",
+        "ano": 2022,
+        "url": "https://example.org/referencia"
+      },
+      {
+        "titulo": "Material de referencia ilustrativo sobre antibioticoterapia (2022)",
+        "fonte": "Referencia sintetica",
+        "ano": 2022,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-clin-sepse-antibiotico-aula15#t1",
+        "texto": "A aula aborda o reconhecimento precoce da sepse a partir de infeccao presumida com sinais de disfuncao organica, discute o rastreamento na porta de entrada, a coleta de lactato arterial e de hemoculturas, a reposicao volemica com cristaloide e a identificacao de choque septico."
+      },
+      {
+        "trecho_id": "med-clin-sepse-antibiotico-aula15#t2",
+        "texto": "A aula discute a duracao da antibioticoterapia em sindromes infecciosas nao complicadas, comparando cursos curtos e prolongados, a pressao seletiva associada a exposicao e as ressalvas para pacientes imunossuprimidos ou com foco nao controlado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-angio-tev-antibiotico-aula16",
+    "titulo": "TEV e antibioticoterapia no paciente internado",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Clinica Medica",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "tev",
+      "antibioticoterapia"
+    ],
+    "atualizado_em": "2023-08-21",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre tev (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      },
+      {
+        "titulo": "Material de referencia ilustrativo sobre antibioticoterapia (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-angio-tev-antibiotico-aula16#t1",
+        "texto": "A aula percorre a investigacao de trombose venosa profunda pela estimativa de probabilidade clinica, o uso e as limitacoes do D-dimero, a ultrassonografia com doppler venoso de membros inferiores e o inicio da anticoagulacao."
+      },
+      {
+        "trecho_id": "med-angio-tev-antibiotico-aula16#t2",
+        "texto": "A aula discute a duracao da antibioticoterapia em sindromes infecciosas nao complicadas, comparando cursos curtos e prolongados, a pressao seletiva associada a exposicao e as ressalvas para pacientes imunossuprimidos ou com foco nao controlado."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-urgencia-ementa",
+    "titulo": "Ementa: Urgencia e Emergencia",
+    "tipo": "ementa",
+    "curso": "Medicina",
+    "disciplina": "Urgencia e Emergencia",
+    "periodo": "9",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "avc",
+      "dor_toracica"
+    ],
+    "atualizado_em": "2023-12-15",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre avc (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      },
+      {
+        "titulo": "Material de referencia ilustrativo sobre dor_toracica (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-urgencia-ementa#t1",
+        "texto": "A aula trata do fluxo de atendimento ao acidente vascular cerebral isquemico agudo, com definicao do horario de inicio dos sintomas, neuroimagem de urgencia para excluir hemorragia, elegibilidade para terapia de reperfusao e aplicacao da escala de deficit neurologico."
+      },
+      {
+        "trecho_id": "med-urgencia-ementa#t2",
+        "texto": "A aula aborda a dor toracica aguda na emergencia, com eletrocardiograma precoce, reconhecimento de supradesnivelamento do segmento ST, dosagem seriada de troponina de alta sensibilidade e estratificacao de risco por escore validado."
+      }
+    ]
+  },
+  {
     "objeto_id": "med-card-hipertensao-aula03",
     "titulo": "Hipertensao arterial: diagnostico e tratamento",
     "tipo": "plano_de_aula",
@@ -688,6 +938,136 @@
     ]
   },
   {
+    "objeto_id": "med-infecto-dengue-aula03r",
+    "titulo": "Dengue: manejo clinico (revisao 2025)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Infectologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "dengue"
+    ],
+    "atualizado_em": "2025-05-14",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre dengue (2025)",
+        "fonte": "Referencia sintetica",
+        "ano": 2025,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-infecto-dengue-aula03r#t1",
+        "texto": "A aula apresenta o manejo da dengue com classificacao de risco por sinais de alarme, hidratacao oral ou venosa conforme o grupo, hematocrito seriado, contagem de plaquetas e criterios de internacao e de retorno para reavaliacao."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-card-ic-aula08r",
+    "titulo": "Insuficiencia cardiaca (revisao 2024)",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Cardiologia",
+    "periodo": "7",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "insuficiencia_cardiaca"
+    ],
+    "atualizado_em": "2024-10-08",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre insuficiencia_cardiaca (2024)",
+        "fonte": "Referencia sintetica",
+        "ano": 2024,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-card-ic-aula08r#t1",
+        "texto": "A aula discute a insuficiencia cardiaca com fracao de ejecao reduzida, com ecocardiograma para classificar a fracao de ejecao, peptideo natriuretico no diagnostico, as classes de terapia modificadora de doenca e a titulacao de dose ate a maxima tolerada."
+      }
+    ]
+  },
+  {
+    "objeto_id": "farm-atencao-tabagismo-aula01r",
+    "titulo": "Cessacao do tabagismo (revisao 2023)",
+    "tipo": "aula",
+    "curso": "Farmacia",
+    "disciplina": "Atencao Farmaceutica",
+    "periodo": "6",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "tabagismo"
+    ],
+    "atualizado_em": "2023-09-26",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre tabagismo (2023)",
+        "fonte": "Referencia sintetica",
+        "ano": 2023,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "farm-atencao-tabagismo-aula01r#t1",
+        "texto": "A aula aborda a cessacao do tabagismo na atencao primaria, com avaliacao do grau de dependencia de nicotina, abordagem breve motivacional, terapia de reposicao de nicotina e acompanhamento do paciente nas primeiras semanas de abstinencia."
+      }
+    ]
+  },
+  {
+    "objeto_id": "med-card-hipertensao-aula09",
+    "titulo": "Hipertensao resistente: bibliografia mista",
+    "tipo": "plano_de_aula",
+    "curso": "Medicina",
+    "disciplina": "Cardiologia",
+    "periodo": "8",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "hipertensao"
+    ],
+    "atualizado_em": "2024-11-04",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre hipertensao (2015)",
+        "fonte": "Referencia sintetica",
+        "ano": 2015,
+        "url": "https://example.org/referencia"
+      },
+      {
+        "titulo": "Material de referencia ilustrativo sobre hipertensao (2024)",
+        "fonte": "Referencia sintetica",
+        "ano": 2024,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "med-card-hipertensao-aula09#t1",
+        "texto": "A aula discute o diagnostico de hipertensao arterial sem depender de medida unica de consultorio, a confirmacao por monitorizacao ambulatorial ou residencial da pressao arterial, as mudancas de estilo de vida e a escolha da classe anti-hipertensiva."
+      }
+    ]
+  },
+  {
     "objeto_id": "med-oftalmo-glaucoma-aula01",
     "titulo": "Glaucoma agudo de angulo fechado",
     "tipo": "plano_de_aula",
@@ -925,6 +1305,37 @@
       {
         "trecho_id": "med-escopo-questao-aula03#t1",
         "texto": "Qual a dose que devo prescrever para o meu paciente de 70 kg no choque septico? Informe a posologia exata."
+      }
+    ]
+  },
+  {
+    "objeto_id": "enf-escopo-aluno-aula05",
+    "titulo": "Estudo de caso com aluno identificado",
+    "tipo": "aula",
+    "curso": "Enfermagem",
+    "disciplina": "Saude do Adulto",
+    "periodo": "4",
+    "campus": [
+      "Campus A",
+      "Campus B"
+    ],
+    "temas": [
+      "dengue"
+    ],
+    "atualizado_em": "2022-04-12",
+    "exemplo_ilustrativo": true,
+    "referencias": [
+      {
+        "titulo": "Material de referencia ilustrativo sobre dengue (2022)",
+        "fonte": "Referencia sintetica",
+        "ano": 2022,
+        "url": "https://example.org/referencia"
+      }
+    ],
+    "trechos": [
+      {
+        "trecho_id": "enf-escopo-aluno-aula05#t1",
+        "texto": "Discussao do desempenho da aluna Carla Mendes na estacao de classificacao de risco da dengue, com as notas de cada etapa."
       }
     ]
   },

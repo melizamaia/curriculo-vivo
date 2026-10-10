@@ -1,9 +1,9 @@
 {
-  "versao": "1.0",
+  "versao": "1.1",
   "descricao": "Conjunto de avaliacao do Curriculo Vivo, calibrado contra o corpus de data/. Quatro classes: defasado (deve apontar, com severidade e evidencia esperadas), atualizado (nao deve apontar - teste de falso alarme), sem_evidencia (deve se abster), inelegivel (deve se abster, por motivo especifico).",
   "corpus_esperado": {
-    "evidencias": 14,
-    "objetos": 31
+    "evidencias": 17,
+    "objetos": 43
   },
   "politica_de_fonte": "Com EXIGIR_FONTE_OFICIAL=true, so orgao_oficial e diretriz_sociedade sustentam alerta. Literatura revisada por pares e fonte legitima, mas um estudo primario isolado nao muda curriculo: o que muda e diretriz ou protocolo oficial. Os casos c026 e c027 testam os dois niveis do filtro de proveniencia.",
   "itens": [
@@ -285,6 +285,114 @@
       "severidade_esperada": null,
       "motivo_esperado": "objeto_invalido",
       "nota": "sem conteudo extraido"
+    },
+    {
+      "id": "c032",
+      "objeto_id": "enf-saude-adulto-dengue-aula02",
+      "classe": "defasado",
+      "evidencia_esperada": "ms-dengue-2025",
+      "severidade_esperada": "alta",
+      "motivo_esperado": null,
+      "nota": "outro curso (Enfermagem): practice-changing com gap de 27 meses"
+    },
+    {
+      "id": "c033",
+      "objeto_id": "med-infecto-dengue-aula03",
+      "classe": "defasado",
+      "evidencia_esperada": "ms-dengue-2025",
+      "severidade_esperada": "baixa",
+      "motivo_esperado": null,
+      "nota": "practice-changing com gap de 3 meses: posterior, mas recente"
+    },
+    {
+      "id": "c034",
+      "objeto_id": "med-card-ic-aula08",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-insuficiencia-cardiaca-2025",
+      "severidade_esperada": "media",
+      "motivo_esperado": null,
+      "nota": "sem practice-changing, gap de 42 meses"
+    },
+    {
+      "id": "c035",
+      "objeto_id": "farm-atencao-tabagismo-aula01",
+      "classe": "defasado",
+      "evidencia_esperada": "conitec-tabagismo-2024",
+      "severidade_esperada": "baixa",
+      "motivo_esperado": null,
+      "nota": "outro curso (Farmacia): sem practice-changing, gap de 20 meses"
+    },
+    {
+      "id": "c036",
+      "objeto_id": "med-clin-sepse-antibiotico-aula15",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-antibiotico-duracao-2024",
+      "severidade_esperada": "alta",
+      "motivo_esperado": null,
+      "nota": "MULTITEMA: sepse media (gap 17) e antibioticoterapia alta (FRONTEIRA: gap de exatamente 24); a severidade maxima vence e as duas evidencias sao citadas"
+    },
+    {
+      "id": "c037",
+      "objeto_id": "med-angio-tev-antibiotico-aula16",
+      "classe": "defasado",
+      "evidencia_esperada": "diretriz-antibiotico-duracao-2024",
+      "severidade_esperada": "media",
+      "motivo_esperado": null,
+      "nota": "MULTITEMA PARCIAL: tev em dia (evidencia de 2023-06 nao e posterior a 31/12/2023), antibioticoterapia com gap de 12; o alerta cita so o tema defasado"
+    },
+    {
+      "id": "c038",
+      "objeto_id": "med-urgencia-ementa",
+      "classe": "defasado",
+      "evidencia_esperada": "ms-avc-isquemico-2024",
+      "severidade_esperada": "baixa",
+      "motivo_esperado": null,
+      "nota": "EMENTA MULTITEMA: avc (gap 11) e dor toracica (gap 9), ambos practice-changing abaixo de 12"
+    },
+    {
+      "id": "c039",
+      "objeto_id": "med-infecto-dengue-aula03r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": null
+    },
+    {
+      "id": "c040",
+      "objeto_id": "med-card-ic-aula08r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": "FRONTEIRA: evidencia posterior, mas gap de 6 meses sem practice-changing nao alerta"
+    },
+    {
+      "id": "c041",
+      "objeto_id": "farm-atencao-tabagismo-aula01r",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": "FRONTEIRA: evidencia posterior, mas gap de 8 meses sem practice-changing nao alerta"
+    },
+    {
+      "id": "c042",
+      "objeto_id": "med-card-hipertensao-aula09",
+      "classe": "atualizado",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": null,
+      "nota": "bibliografia mista (2015 e 2024): vale a referencia mais nova, e a de 2015 nao pode gerar falso alarme"
+    },
+    {
+      "id": "c043",
+      "objeto_id": "enf-escopo-aluno-aula05",
+      "classe": "inelegivel",
+      "evidencia_esperada": null,
+      "severidade_esperada": null,
+      "motivo_esperado": "fora_de_escopo",
+      "nota": "menciona aluna identificada pelo nome"
     }
   ]
 }
