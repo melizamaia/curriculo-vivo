@@ -26,19 +26,16 @@ obrigatória ou se abstém explicitamente. Nunca dá um alerta sem fonte."*
 
 Comece pelo que o usuário vê.
 
-- **Contadores no topo:** 31 objetos analisados, 12 com defasagem, 4 de cada
-  severidade.
+- **Contadores no topo:** 43 objetos analisados, 19 com defasagem (6 altas,
+  6 médias, 7 baixas).
 - **Fila ordenada por severidade.** Aponte "AVC, alta, referência de 2018" e
   diga: *"O coordenador abre a tela e sabe por onde começar."*
-- **Rodapé à direita (`índice 6ad5… · via BFF`):** *"Cada resposta diz qual
+- **Rodapé à direita (`índice b07f… · via BFF`):** *"Cada resposta diz qual
   versão do índice usou e por qual caminho veio. Isso vai importar daqui a
   pouco."*
 - **Por que comparar datas, e não o conteúdo:** "sua aula cita 2019, existe
   2024" é verificável e defensável num colegiado. "O texto divergiu 0,72" não
   é.
-
-> Avise logo: *"As capturas são de quando o corpus tinha 31 objetos. Hoje são
-> 43, com o mesmo resultado."*
 
 ---
 
@@ -73,7 +70,7 @@ achado → alertas. Cada barreira tem um motivo de abstenção próprio e testad
 
 ![Painel de avaliação, metas](painel-1.png)
 
-- **Falso alarme em 0%** (0 de 10 materiais atualizados apontados). *"É o
+- **Falso alarme em 0%** (0 de 14 materiais atualizados apontados). *"É o
   número que decide se a fila é confiável."*
 - **Metas duras:** zero alertas sem citação e zero invariantes violadas. *"Se
   uma delas falhar, o build fica vermelho e a imagem Docker nem é construída,
@@ -132,7 +129,7 @@ Limitações, ditas por você:
 ## Dicas
 
 - Imagens que podem ficar de reserva para perguntas: `painel-2` (a matriz com
-  todos os casos na diagonal), `painel-3` e `radar-2`. Todas estão em
+  todos os casos na diagonal), `painel-3`, `painel-5` (os 12 casos da ampliação do corpus) e `radar-2`. Todas estão em
   [capturas.md](capturas.md).
 - Para uma demo ao vivo no lugar das capturas, use `make demo`, que segue esse
   mesmo roteiro e roda sem a API no ar.

@@ -77,11 +77,15 @@ Como ler esses números:
 <img src="docs/painel-2.png" alt="Painel de avaliação, matriz de classes" width="400">
 <img src="docs/painel-3.png" alt="Painel de avaliação, casos" width="400">
 
-*O painel de avaliação: falso alarme em 0%, os casos na diagonal da matriz e o resultado caso a caso. Capturas tiradas com o corpus de 31 casos.*
+*O painel de avaliação: falso alarme em 0%, os casos na diagonal da matriz e o resultado caso a caso.*
 
 <img src="docs/painel-4.png" alt="Casos-chave c026 e c027" width="400">
 
 *c026 e c027: os dois níveis do filtro de proveniência.*
+
+<img src="docs/painel-5.png" alt="Casos da ampliação do corpus, c032 a c043" width="400">
+
+*c032 a c043: os casos da ampliação do corpus para 43 objetos.*
 
 <img src="docs/radar-1.png" alt="Radar do coordenador, topo" width="400">
 <img src="docs/radar-2.png" alt="Radar do coordenador, resto da fila" width="400">
