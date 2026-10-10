@@ -1,8 +1,8 @@
 # Documentação do Currículo Vivo
 
 Guia de operação: o que sobe, em que porta, como acessar cada peça e onde os
-dados ficam. O porquê das decisões está no [README](../README.md) e o
-contrato completo no [PRD](../PRD.md).
+dados ficam. O porquê das decisões está em [system-design.md](system-design.md)
+e no [README](../README.md); o contrato completo está no [PRD](../PRD.md).
 
 > ⚠️ Todo o corpus é sintético (`exemplo_ilustrativo: true`). Nada aqui é
 > referência clínica ou pedagógica.

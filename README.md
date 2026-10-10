@@ -233,7 +233,8 @@ curl -s localhost:8000/v1/analises -H 'content-type: application/json' \
 ![Arquitetura do Currículo Vivo](docs/curriculo-vivo.drawio.png)
 
 *Fonte editável em [docs/arquitetura.drawio](docs/arquitetura.drawio), com uma
-segunda página sobre o caminho de uma análise.*
+segunda página sobre o caminho de uma análise. Requisitos, fluxos, escala e
+trade-offs em [docs/system-design.md](docs/system-design.md).*
 
 O que existe neste repositório:
 
@@ -428,7 +429,7 @@ data/            corpus sintético (evidências curadas + catálogo de material)
 eval/            dataset rotulado, harness e template do painel
 web/             front Next.js: o radar do coordenador (uma tela)
 bff/             BFF NestJS opcional: GET /api/radar → GET /v1/defasagens
-docs/            documentação de operação (docs/documentacao.md) e capturas (docs/capturas.md)
+docs/            operação, system design, diagrama e capturas
 k8s/             manifestos Kubernetes para revisão (não aplicados)
 scripts/         gerador do corpus, roteiro da demo, publicador de evento
 tests/           231 testes
